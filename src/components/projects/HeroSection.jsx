@@ -2,7 +2,13 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function HeroSection() {
+export default function HeroSection({
+  src,
+  alt,
+  title,
+  description,
+  keywords,
+}) {
   return (
     <section className="relative min-h-[calc(100vh-6rem)] max-lg:pt-24 flex flex-col-reverse lg:flex-row overflow-hidden justify-center items-center gap-16">
       {/* IMAGE SIDE */}
@@ -29,10 +35,10 @@ export default function HeroSection() {
           "
         >
           <Image
-            src="/images/smokins_hero.webp"
+            src={src}
             width={1100}
             height={900}
-            alt="Smokins app"
+            alt={alt}
             priority
             className="w-full h-full object-cover object-center"
           />
@@ -47,16 +53,10 @@ export default function HeroSection() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="h1 font-bold"
         >
-          Smokin's
-          <br />
-          Loyalty App
+          {title}
         </motion.h1>
-        <p className="body-lg mt-6 max-w-xl text-n-1">
-          Cyfrowa transformacja programu lojalnościowego dla sieci retail
-        </p>
-        <p className="body-sm mt-4 text-n-4">
-          Mobile App • eCommerce • Loyalty System
-        </p>
+        <p className="body-lg mt-6 max-w-xl text-n-1">{description}</p>
+        <p className="body-sm mt-4 text-n-4">{keywords}</p>
       </div>
     </section>
   );

@@ -1,4 +1,12 @@
 @import "tailwindcss";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+.slick-slider,
+.slick-list,
+.slick-track {
+  height: 100%;
+}
 
 :root {
   --background: #ffffff;
@@ -35,49 +43,120 @@
   --border-width-default: 0.0625rem;
 }
 
-:root {
-  color-scheme: dark;
-}
-
-* {
-  scroll-behavior: smooth;
-}
-
 @layer base {
+  :root {
+    color-scheme: dark;
+    --container-padding: clamp(1rem, 3vw, 2.5rem);
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-n-8 text-n-1 text-base overscroll-none;
+    @apply bg-n-8 text-n-1 text-base overscroll-none antialiased;
     font-family: Inter, Michroma, sans-serif;
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
   }
 
-  img {
-    user-drag: none;
-    -webkit-user-drag: none;
+  main {
+    /* transition-property: opacity, transform, filter, background;
+    transition-timing-function: ease-in-out;
+    transition-duration: 500ms; */
+    transition: opacity 0.5s ease-in-out,
+      transform 0.5s ease-in-out,
+      filter 0.5s ease-in-out;
+    will-change: transform, opacity;
+  }
+
+  .page-transition {
+    opacity: 0;
+    transform: translateY(-48px);
+    /* filter: blur(12px); */
+  }
+
+  img,
+  video {
     user-select: none;
-    pointer-events: none;
+    -webkit-user-drag: none;
   }
 }
 
 @layer components {
+
+  /* CONTAINERS */
   .container {
-    @apply relative max-w-310 xl:max-w-350 mx-auto px-4 sm:px-6 md:px-10;
+    @apply relative mx-auto;
+    max-width: min(1280px, 92vw);
+    padding-inline: var(--container-padding);
   }
 
+  /* .container {
+    @apply relative max-w-310 xl:max-w-350 mx-auto px-4 sm:px-6 md:px-10;
+  } */
+  /* 
   .container-lg {
     @apply relative max-w-350 xl:max-w-390 mx-auto px-4 sm:px-6 md:px-10;
+  } */
+  .container-lg {
+    @apply relative mx-auto;
+    max-width: min(1440px, 94vw);
+    padding-inline: var(--container-padding);
   }
 
-  .container-xl {
+  /* .container-xl {
     @apply relative max-w-350 xl:max-w-390 mx-auto px-4 sm:px-6 md:px-5;
+  } */
+  .container-xl {
+    @apply relative mx-auto;
+    max-width: min(1600px, 96vw);
+    padding-inline: var(--container-padding);
   }
 
+  /* TYPOGRAPHY */
   .h1 {
-    @apply text-[2.25rem] md:text-[3rem] lg:text-[4rem] leading-tight tracking-tight text-n-1;
+    @apply leading-[1.1] tracking-tight text-n-1;
     font-family: var(--font-michroma);
+    font-size: clamp(2.25rem, 4vw, 4rem);
   }
 
   .h2 {
+    @apply leading-[1.15] text-n-1;
+    font-family: var(--font-michroma);
+    font-size: clamp(1.5rem, 2.6vw, 3rem);
+  }
+
+  .h3 {
+    @apply leading-snug text-n-1;
+    font-family: var(--font-michroma);
+    font-size: clamp(1.25rem, 2vw, 2rem);
+  }
+
+  .h4 {
+    @apply leading-snug text-n-1;
+    font-family: var(--font-michroma);
+    font-size: clamp(1.125rem, 1.6vw, 1.75rem);
+  }
+
+  .h5 {
+    @apply leading-snug text-n-1;
+    font-family: var(--font-michroma);
+    font-size: clamp(1rem, 1.4vw, 1.5rem);
+  }
+
+  .h6 {
+    @apply leading-snug tracking-wide text-n-1;
+    font-family: var(--font-michroma);
+    font-size: clamp(0.95rem, 1.2vw, 1.25rem);
+  }
+
+  /* .h1 {
+    @apply text-[2.25rem] md:text-[3rem] lg:text-[4rem] leading-tight tracking-tight text-n-1;
+    font-family: var(--font-michroma);
+  } */
+
+  /* .h2 {
     @apply text-[1.5rem] md:text-[1.75rem] lg:text-[2.25rem] xl:text-[3rem] leading-snug text-n-1;
     font-family: var(--font-michroma);
   }
@@ -100,9 +179,9 @@
   .h6 {
     @apply text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] leading-snug tracking-wide text-n-1;
     font-family: var(--font-michroma);
-  }
+  } */
 
-  .body-lg {
+  /* .body-lg {
     @apply text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] leading-relaxed text-n-1;
     font-family: var(--font-inter);
   }
@@ -115,6 +194,25 @@
   .menu-text {
     @apply font-medium text-[0.875rem] md:text-[1rem] tracking-wide text-n-1;
     font-family: var(--font-inter);
+  } */
+
+  /* BODY TEXT */
+  .body-lg {
+    @apply leading-relaxed text-n-1;
+    font-family: var(--font-inter);
+    font-size: clamp(1rem, 1.1vw, 1.25rem);
+  }
+
+  .body-sm {
+    @apply font-medium leading-relaxed text-n-4;
+    font-family: var(--font-inter);
+    font-size: clamp(0.875rem, 0.95vw, 1.125rem);
+  }
+
+  .menu-text {
+    @apply font-medium tracking-wide text-n-1;
+    font-family: var(--font-inter);
+    font-size: clamp(0.875rem, 0.9vw, 1rem);
   }
 }
 

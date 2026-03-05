@@ -10,6 +10,7 @@ import MenuSvg from "@/components/design/MenuSvg";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { TransitionLink } from "../utils/TransitionLink";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -71,26 +72,26 @@ ${scrolled ? "px-4 lg:px-32 xl:px-48 2xl:px-64" : "px-4 lg:px-16"}`}
           <div
             className={`flex gap-16 xl:gap-32 items-center w-full justify-end pr-2`}
           >
-            <Link href="/about" className="group relative">
+            <TransitionLink href="/about" className="group relative">
               <div className="menu-text relative py-2 px-1">
                 {t("navigation.about")}
                 <NavUnderline href="/about" className="bg-primary-pink" />
               </div>
-            </Link>
+            </TransitionLink>
 
-            <Link href="/portfolio" className="group relative">
+            <TransitionLink href="/portfolio" className="group relative">
               <div className="menu-text relative py-2 px-1">
                 {t("navigation.portfolio")}
                 <NavUnderline href="/portfolio" className="bg-primary-aqua" />
               </div>
-            </Link>
+            </TransitionLink>
 
-            <Link href="/contact" className="group relative">
+            <TransitionLink href="/contact" className="group relative">
               <div className="menu-text relative py-2 px-1">
                 {t("navigation.contact")}
                 <NavUnderline href="/contact" className="bg-primary-red" />
               </div>
-            </Link>
+            </TransitionLink>
           </div>
         </nav>
 

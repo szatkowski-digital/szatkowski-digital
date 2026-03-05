@@ -15,7 +15,10 @@
     "next-intl": "^4.7.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "scroll-lock": "^2.1.5"
+    "react-photo-album": "^3.5.1",
+    "react-slick": "^0.31.0",
+    "scroll-lock": "^2.1.5",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

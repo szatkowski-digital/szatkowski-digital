@@ -1,7 +1,6 @@
 "use client";
 
 import { CircleCheckBig } from "lucide-react";
-import Reveal from "../ui/Reveal";
 import { useTranslations } from "next-intl";
 import GradientDiv from "../design/GradientDiv";
 import { skillsConfig } from "@/config/icons";

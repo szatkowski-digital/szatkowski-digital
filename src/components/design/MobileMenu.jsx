@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { TransitionLink } from "../utils/TransitionLink";
 
 const linkVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -67,9 +67,9 @@ export const MobileMenu = ({ open, handleClick }) => {
                 animate="visible"
                 exit="hidden"
               >
-                <Link href={link.href} onClick={handleClick}>
+                <TransitionLink href={link.href} onClick={handleClick}>
                   {link.label}
-                </Link>
+                </TransitionLink>
               </motion.div>
             ))}
           </div>

@@ -1,11 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import {
-  RenderImageContext,
-  RenderImageProps,
-  RowsPhotoAlbum,
-} from "react-photo-album";
+import { RowsPhotoAlbum } from "react-photo-album";
 import "react-photo-album/rows.css";
 
 function renderNextImage(props, context) {
@@ -22,7 +18,7 @@ function renderNextImage(props, context) {
     >
       <Image
         fill
-        src={photo.src} // 🔥 KLUCZOWA POPRAWKA
+        src={photo.src}
         alt={alt || photo.alt}
         title={title}
         sizes={sizes}

@@ -1,20 +1,55 @@
 import { motion } from "framer-motion";
 import { useMouseParallax } from "../../hooks/useMouseParallax";
+import { useEffect, useRef, useState } from "react";
+import {
+  registerPageTransition,
+  unregisterPageTransition,
+} from "@/hooks/pageTransitions";
 
 const SvgComponent = () => {
   const slow = useMouseParallax({ strength: 10, stiffness: 50 });
   const medium = useMouseParallax({ strength: 20, stiffness: 50 });
   const fast = useMouseParallax({ strength: 30, stiffness: 50 });
 
+  const [exit, setExit] = useState(false);
+  const resolveRef = useRef(null);
+
+  useEffect(() => {
+    registerPageTransition(() => {
+      return new Promise((resolve) => {
+        resolveRef.current = resolve;
+        setExit(true);
+      });
+    });
+
+    return () => unregisterPageTransition();
+  }, []);
+
   return (
-    <div className="absolute top-50 h-[65%] w-[55%] -z-10 blur-sm opacity-50">
+    <div className="absolute h-full w-full -z-10 blur-sm opacity-40">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 698.68 459.04"
         className="w-full h-full"
       >
         {/* WARSTWA 1 – SZARA */}
-        <motion.g id="layer-gray" style={{ x: slow.x, y: slow.y }}>
+        <motion.g
+          id="layer-gray"
+          style={{ x: slow.x, y: slow.y }}
+          initial={{ scale: 3, opacity: 0 }}
+          animate={{ scale: exit ? 3 : 0.8, opacity: exit ? 0 : 1 }}
+          transition={{
+            duration: 2,
+            ease: [0.145, 0.94, 0.245, 0.95],
+            delay: exit ? 0 : 0.4,
+          }}
+          onAnimationComplete={() => {
+            if (exit && resolveRef.current) {
+              resolveRef.current();
+              resolveRef.current = null;
+            }
+          }}
+        >
           <path d="M234.3 277.76h35.42v35.42H234.3z" fill="#d9d9d9" />
           <path d="M436.68 316.97h35.42v35.42h-35.42z" fill="#d9d9d9" />
           <path d="M199.97 157.19h16.23v17.71h-16.23z" fill="#d9d9d9" />
@@ -30,7 +65,23 @@ const SvgComponent = () => {
         </motion.g>
 
         {/* WARSTWA 2 – ZIELONA */}
-        <motion.g id="layer-green" style={{ x: medium.x, y: medium.y }}>
+        <motion.g
+          id="layer-green"
+          style={{ x: medium.x, y: medium.y }}
+          initial={{ scale: 3, opacity: 0 }}
+          animate={{ scale: exit ? 3 : 0.8, opacity: exit ? 0 : 1 }}
+          transition={{
+            duration: 2,
+            ease: [0.145, 0.94, 0.245, 0.95],
+            delay: exit ? 0 : 0.4,
+          }}
+          onAnimationComplete={() => {
+            if (exit && resolveRef.current) {
+              resolveRef.current();
+              resolveRef.current = null;
+            }
+          }}
+        >
           <path d="M147.29 405.9H165v17.71h-17.71z" fill="#06d8b3" />
           <path d="M690.21 410.85h8.47v8.47h-8.47z" fill="#06d8b3" />
           <path d="M76.7 0h8.47v8.47H76.7z" fill="#06d8b3" />
@@ -42,7 +93,23 @@ const SvgComponent = () => {
         </motion.g>
 
         {/* WARSTWA 3 – RÓŻOWA */}
-        <motion.g id="layer-pink" style={{ x: fast.x, y: fast.y }}>
+        <motion.g
+          id="layer-pink"
+          style={{ x: fast.x, y: fast.y }}
+          initial={{ scale: 3, opacity: 0 }}
+          animate={{ scale: exit ? 3 : 0.8, opacity: exit ? 0 : 1 }}
+          transition={{
+            duration: 2,
+            ease: [0.145, 0.94, 0.245, 0.95],
+            delay: exit ? 0 : 0.4,
+          }}
+          onAnimationComplete={() => {
+            if (exit && resolveRef.current) {
+              resolveRef.current();
+              resolveRef.current = null;
+            }
+          }}
+        >
           <path d="M111.96 105.93h17.71v17.71h-17.71z" fill="#de3182" />
           <path d="M129.67 123.57h17.71v17.71h-17.71z" fill="#de3182" />
           <path d="M507.26 192.74h17.71v17.71h-17.71z" fill="#de3182" />

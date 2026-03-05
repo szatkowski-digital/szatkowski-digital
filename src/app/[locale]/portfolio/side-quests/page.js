@@ -1,5 +1,5 @@
 import HeroSection from "@/components/projects/HeroSection";
-import MediaSection from "@/components/projects/MediSection";
+import MediaSection from "@/components/projects/MediaSection";
 import LogoGrid from "@/components/projects/others/LogoGrid";
 import Carousel from "@/components/ui/Carousel";
 

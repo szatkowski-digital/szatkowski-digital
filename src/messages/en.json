@@ -2,14 +2,31 @@
   "common": {
     "navigation": {
       "about": "About",
-      "portfolio": "Project",
+      "portfolio": "Projects",
       "contact": "Contact"
     },
     "seo": {
       "home": {
-        "title": "BlitzForm - mobile 3D printing factory",
-        "description": "BlitzForm provides mobile 3D printing, fast part processing, and a digital parts warehouse delivered directly to your location."
+        "title": "BlitzForm - mobilna fabryka druku 3D na miejscu i części przemysłowe",
+        "description": "BlitzForm oferuje mobilny druk 3D w terenie, szybkie przetwarzanie części przemysłowych i cyfrowy magazyn części wprost do Twojej lokalizacji."
       }
+    }
+  },
+
+  "home": {
+    "hero": {
+      "greeting": "Hi! I'm Paweł",
+      "subtitle": "Full-stack developer",
+      "ctaButton": "See more about me"
+    },
+    "portfolioPreview": {
+      "verticalTag": {
+        "action": "Let’s See",
+        "subject": "My Portfolio"
+      },
+      "header": "Making the web look easy.",
+      "description": "Clean code. Bold design. Real impact.\nI craft seamless digital experiences\nusing React — for web, mobile, and\nwhatever comes next.",
+      "footer": "Let's shape the future, one pixel\nat a time."
     }
   },
 
@@ -18,11 +35,110 @@
       "header": "Paweł Szatkowski",
       "title": "Full-Stack Developer",
       "intro": "Driven to create refined, inclusive digital experiences that are both visually precise and user-centered.",
-      "more": [
+      "paragraphs": [
         "I have gained valuable experience working on freelance projects, where each assignment allows me to blend creativity with technology to deliver intuitive and user-friendly solutions.",
         "Currently, I also work as a data analyst, which lets me combine analytical thinking with my development skills. This background enables me to create projects that are not only visually appealing but also functional and user-centered."
       ],
       "button": "Skontaktuj się z nami"
+    },
+    "modernWeb": {
+      "title": "Building modern web experiences powered by AI.",
+      "points": [
+        "I specialize in crafting clean, scalable applications with React, JavaScript, and Tailwind CSS, supported by Python on the backend.",
+        "My workflow is enhanced by AI tools that speed up coding, testing, and problem-solving, letting me focus on what matters most: building great user experiences.",
+        "Always learning, always experimenting, always creating."
+      ]
+    },
+    "skills": [
+      {
+        "id": "frontend",
+        "title": "Frontend",
+        "subtitle": "React.js • HTML • CSS\nTailwind"
+      },
+      {
+        "id": "backend",
+        "title": "Backend",
+        "subtitle": "Python • Node.js\nAPIs • Automation"
+      },
+      {
+        "id": "ai",
+        "title": "AI-Driven",
+        "subtitle": "Code assist • Prototyping\nOptimization"
+      },
+      {
+        "id": "security",
+        "title": "Security",
+        "subtitle": "Secure code • Privacy-first\nReliable apps"
+      }
+    ],
+    "CTA": {
+      "tagline": "Code smarter. Build faster. Stay creative.",
+      "title": "Ideas are cool. Execution is better. Here’s mine.",
+      "button": "Portfolio"
+    }
+  },
+
+  "portfolio": {
+    "projects": {
+      "navigation": {
+        "button": "Check more",
+        "next": "Next",
+        "prev": "Previous"
+      },
+      "project1": {
+        "title": "Smokin’s Loyalty App",
+        "description": "A simple and efficient loyalty program that allows users to earn and redeem points by scanning QR codes. The app includes separate roles for users and admins, ensuring seamless in-store management via smartphone only.",
+        "images": [
+          {
+            "alt": "Smokin’s Loyalty App interface"
+          },
+          {
+            "alt": "Smokin’s Loyalty App screens"
+          }
+        ],
+        "seo": {
+          "keywords": [
+            "loyalty app",
+            "qr code rewards",
+            "business webapp",
+            "3D renders"
+          ],
+          "slug": "smokins-loyalty-app"
+        }
+      },
+      "project2": {
+        "title": "Blanco Trade WebApp",
+        "description": "A modern B2B platform designed to simplify trading operations and data visualization for business partners. The app provides responsive dashboards, advanced analytics, and real-time updates for seamless collaboration.",
+        "images": [
+          {
+            "alt": "Blanco Trade dashboard preview"
+          }
+        ]
+      },
+      "project3": {
+        "title": "Design & 3D Visualization",
+        "description": "A creative collection of 3D product visualizations and web design projects. Each render highlights realistic materials, lighting, and precise modeling used in modern digital branding.",
+        "images": [
+          { "alt": "3D car rims render" },
+          { "alt": "MSI product render" },
+          { "alt": "Brevky web design" },
+          { "alt": "Brevky logo design" }
+        ]
+      }
+    },
+    "projectPages": {
+      "project1": {
+        "title": "Smokin’s Loyalty App",
+        "description": "A simple and efficient loyalty program that allows users to earn and redeem points by scanning QR codes. The app includes separate roles for users and admins, ensuring seamless in-store management via smartphone only."
+      },
+      "project2": {
+        "title": "Blanco Trade WebApp",
+        "description": "A modern B2B platform designed to simplify trading operations and data visualization for business partners. The app provides responsive dashboards, advanced analytics, and real-time updates for seamless collaboration."
+      },
+      "project3": {
+        "title": "Design & 3D Visualization",
+        "description": "A creative collection of 3D product visualizations and web design projects. Each render highlights realistic materials, lighting, and precise modeling used in modern digital branding."
+      }
     }
   }
 }

@@ -1,9 +1,10 @@
 import Portfolio from "@/components/sections/Portfolio";
+import MainTransition from "@/components/ui/MainTransition";
 
 export default function page() {
   return (
-    <main>
+    <MainTransition>
       <Portfolio />
-    </main>
+    </MainTransition>
   );
 }

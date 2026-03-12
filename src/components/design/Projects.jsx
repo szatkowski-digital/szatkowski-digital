@@ -1,89 +1,124 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import Button from "../ui/Button";
-import Link from "next/link";
+import { TransitionLink } from "../utils/TransitionLink";
 
-const TextSection = ({ title, description }) => {
+/**
+ * ------------------------------------------------------------------
+ * PROJECT 1
+ * ------------------------------------------------------------------
+ * Mobile app showcase with dual device preview.
+ */
+export function Project1({ href, t }) {
   return (
-    <div className="flex flex-col lg:flex-2 items-end justify-center">
-      <h1 className="h1 font-bold mb-8">{title}</h1>
-      <p className="pl-12 text-lg pb-8">{description}</p>
-      <Link href="/portfolio/smokins-app" className="self-start">
-        <Button className="text-xl">Check more</Button>
-      </Link>
-    </div>
-  );
-};
+    <div className="relative flex items-center justify-center w-full h-full text-white">
+      <div className="container flex flex-row items-center justify-center gap-8 max-lg:flex-col max-lg:space-y-8">
+        <TextSection
+          title={t("project1.title")}
+          description={t("project1.description")}
+          href={href}
+          button={t("navigation.button")}
+        />
 
-export const Project1 = () => {
-  const t = useTranslations("portfolio.projects.project1");
-
-  return (
-    <div className="relative w-full h-full flex items-center justify-center text-white">
-      <div className="container flex flex-row items-center justify-center max-lg:space-y-8 max-lg:flex-col gap-8">
-        <TextSection title={t("title")} description={t("description")} />
-
-        <div className="lg:flex-3 flex flex-row items-center justify-end gap-2 overflow-hidden">
+        <div className="flex flex-row items-center justify-end gap-2 overflow-hidden lg:flex-3">
           <Image
             src="/images/smokins_app_1.webp"
             width={400}
             height={800}
-            alt="Opis zdjęcia"
-            className="h-140 lg:h-160 w-auto max-lg:hidden"
+            alt="Smokins mobile application preview"
+            className="w-auto h-140 lg:h-160 max-lg:hidden"
           />
+
           <Image
             src="/images/smokins_app_2.webp"
             width={400}
             height={800}
-            alt="Opis zdjęcia"
-            className="h-100 w-auto max-lg:hidden"
+            alt="Smokins mobile application interface"
+            className="w-auto h-100 max-lg:hidden"
           />
         </div>
       </div>
     </div>
   );
-};
+}
 
-export const Project2 = () => {
-  const t = useTranslations("portfolio.projects.project2");
-
+/**
+ * ------------------------------------------------------------------
+ * PROJECT 2
+ * ------------------------------------------------------------------
+ * Single visual preview with reversed layout.
+ */
+export function Project2({ href, t }) {
   return (
-    <div className="relative w-full h-full flex items-center justify-center text-white">
-      <div className="container flex flex-row items-center justify-center max-lg:space-y-8 max-lg:flex-col gap-8">
-        <div className="lg:flex-3 flex flex-row items-center justify-center gap-2 overflow-hidden">
+    <div className="relative flex items-center justify-center w-full h-full text-white">
+      <div className="container flex flex-row items-center justify-center gap-8 max-lg:flex-col max-lg:space-y-8">
+        <div className="flex flex-row items-center justify-center gap-2 overflow-hidden lg:flex-3">
           <Image
             src="/images/smokins_app_2.webp"
             width={400}
             height={800}
-            alt="Opis zdjęcia"
-            className="h-max w-auto max-lg:hidden"
+            alt="Blitzform application preview"
+            className="w-auto h-max max-lg:hidden"
           />
         </div>
 
-        <TextSection title={t("title")} description={t("description")} />
+        <TextSection
+          title={t("project2.title")}
+          description={t("project2.description")}
+          button={t("navigation.button")}
+          href={href}
+        />
       </div>
     </div>
   );
-};
+}
 
-export const Project3 = () => {
-  const t = useTranslations("portfolio.projects.project3");
-
+/**
+ * ------------------------------------------------------------------
+ * PROJECT 3
+ * ------------------------------------------------------------------
+ * Minimal preview with large device showcase.
+ */
+export function Project3({ href, t }) {
   return (
-    <div className="relative w-full h-full flex items-center justify-center text-white">
-      <div className="container flex flex-row items-center justify-center max-lg:space-y-8 max-lg:flex-col gap-8">
-        <TextSection title={t("title")} description={t("description")} />
+    <div className="relative flex items-center justify-center w-full h-full text-white">
+      <div className="container flex flex-row items-center justify-center gap-8 max-lg:flex-col max-lg:space-y-8">
+        <TextSection
+          title={t("project3.title")}
+          description={t("project3.description")}
+          href={href}
+          button={t("navigation.button")}
+        />
 
-        <div className="lg:flex-3 flex flex-row items-center justify-end gap-2 overflow-hidden">
+        <div className="flex flex-row items-center justify-end gap-2 overflow-hidden lg:flex-3">
           <Image
             src="/images/smokins_app_2.webp"
             width={400}
             height={800}
-            alt="Opis zdjęcia"
-            className="h-120 lg:h-128 w-auto max-lg:hidden"
+            alt="Side Quests application preview"
+            className="w-auto h-120 lg:h-128 max-lg:hidden"
           />
         </div>
       </div>
     </div>
   );
-};
+}
+
+/**
+ * ------------------------------------------------------------------
+ * TEXT SECTION
+ * ------------------------------------------------------------------
+ * Reusable text block used across portfolio project layouts.
+ */
+function TextSection({ title, description, href, button }) {
+  return (
+    <div className="flex flex-col items-end justify-center lg:flex-2">
+      <h1 className="mb-8 font-bold h1">{title}</h1>
+
+      <p className="pb-8 pl-12 text-lg">{description}</p>
+
+      <TransitionLink href={href} className="self-start">
+        <Button className="text-xl">{button}</Button>
+      </TransitionLink>
+    </div>
+  );
+}

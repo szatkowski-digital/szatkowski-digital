@@ -1,167 +1,207 @@
 "use client";
 
-import HomeBg from "@/components/design/HomeBg";
-import Button from "@/components/ui/Button";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import LanguageSwitcher from "../ui/LanguageSwitcher";
+
 import { Github, Instagram, Linkedin } from "lucide-react";
 
+import HomeBg from "@/components/design/HomeBg";
+import Button from "@/components/ui/Button";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import { TransitionLink } from "@/components/utils/TransitionLink";
+
+import { usePageExit } from "@/hooks/usePageExit";
+import { slideLeft, slideRight } from "@/animations/motionVariants";
+
+/**
+ * ------------------------------------------------------------------
+ * HERO SECTION
+ * ------------------------------------------------------------------
+ * Main landing section of the homepage.
+ * Contains:
+ * - introduction CTA
+ * - portfolio preview
+ * - supporting interface description
+ * - social links
+ * - animated background
+ */
+
 export default function Hero() {
+  const t = useTranslations("home");
+  const { exit, onAnimationComplete } = usePageExit();
+
   return (
-    <section className="relative w-full h-screen md:h-dvh flex items-center justify-center overflow-hidden">
-      {/* Call To Action */}
-      <div className="relative container mx-auto px-6 items-center justify-between">
+    <section className="relative flex items-center justify-center h-dvh w-full overflow-hidden">
+      {/* MAIN CONTAINER */}
+      <div className="container relative flex items-center justify-between px-6 mx-auto">
+        {/* LEFT SIDE — HERO CTA */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          exit={{
-            opacity: 0,
-            x: -30,
-            transition: { ease: "easeIn", duration: 0.3 },
-          }}
-          className="text-white max-w-xl"
+          initial={slideLeft.initial}
+          animate={exit ? slideLeft.exit : slideLeft.enter}
+          transition={slideLeft.enter.transition}
+          onAnimationComplete={onAnimationComplete}
+          className="max-w-xl text-white"
         >
-          <h1 className="font-michroma text-4xl md:text-6xl font-bold mb-4">
-            I'M PAWEL
+          <h1 className="mb-4 text-4xl font-bold md:text-6xl font-michroma">
+            {t("hero.greeting")}
           </h1>
-          <p className="font-michroma text-lg md:text-2xl mb-6">
-            Full-stack developer
+
+          <p className="mb-6 text-lg md:text-2xl font-michroma">
+            {t("hero.subtitle")}
           </p>
-          <Link href="/about">
-            <Button className={"text-xl"}>See More</Button>
-          </Link>
+
+          <TransitionLink href="/about">
+            <Button className="text-xl">{t("hero.ctaButton")}</Button>
+          </TransitionLink>
         </motion.div>
       </div>
 
-      {/* Hero Image */}
+      {/* RIGHT SIDE CONTENT */}
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{
-          opacity: 0,
-          y: 30,
-          transition: { ease: "easeIn", duration: 0.3 },
-        }}
-        transition={{ duration: 0.6 }}
-        className="absolute left-1/2 -translate-x-1/2 bottom-0 md:-ml-25 lg:-ml-31.25 xl:-ml-37.5 2xl:-ml-40"
+        initial={slideRight.initial}
+        animate={exit ? slideRight.exit : slideRight.enter}
+        transition={slideRight.enter.transition}
+        onAnimationComplete={onAnimationComplete}
+        className="absolute z-10 space-y-16 xl:space-y-20 right-8 md:right-16 xl:right-32 bottom-20 md:bottom-24 xl:bottom-32 max-lg:hidden"
       >
-        {/* <GlitchImage
-              src={heroImage}
-              alt="Hero"
-              className="w-full md:w-[200px] lg:w-[250px] xl:w-[300px] 2xl:w-[320px]"
-            /> */}
+        <PortfolioPreview
+          action={t("portfolioPreview.verticalTag.action")}
+          subject={t("portfolioPreview.verticalTag.subject")}
+        />
+        <InterfacesBlock
+          header={t("portfolioPreview.header")}
+          description={t("portfolioPreview.description")}
+          footer={t("portfolioPreview.footer")}
+        />
       </motion.div>
 
-      {/* Portfolio Preview */}
-      <div className="absolute right-32 bottom-32 space-y-20 max-lg:hidden z-10">
-        <PortfolioPrev />
+      {/* SOCIAL LINKS */}
+      <SocialsHero exit={exit} onAnimationComplete={onAnimationComplete} />
 
-        <InterfacesBlock />
-      </div>
-
-      <SocialsHero />
-
-      <HomeBg />
+      {/* BACKGROUND */}
+      <HomeBg exit={exit} onAnimationComplete={onAnimationComplete} />
     </section>
   );
 }
 
-const PortfolioPrev = () => {
+/**
+ * ------------------------------------------------------------------
+ * PORTFOLIO PREVIEW
+ * ------------------------------------------------------------------
+ * Small preview directing the user to the portfolio section.
+ */
+
+function PortfolioPreview({ action, subject }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6 }}
-      exit={{
-        opacity: 0,
-        x: 30,
-        transition: { ease: "easeIn", duration: 0.3 },
-      }}
-      className="flex w-full relative pb-12"
-    >
-      {/* Left section */}
-      <div className="flex flex-col justify-center items-center w-[25%] relative">
-        <div className="-rotate-90 absolute -left-8 bottom-6 xl:-left-16 xl:bottom-9">
-          <h4 className="lg:text-2xl xl:text-3xl font-bold tracking-wider font-michroma whitespace-nowrap">
-            Let’s See
+    <div className="relative flex w-full pb-10 xl:pb-12">
+      {/* LEFT LABEL */}
+      <div className="relative flex items-center justify-center w-[25%]">
+        <div className="absolute -rotate-90 -left-6 xl:-left-14 bottom-4 xl:bottom-8">
+          <h4 className="text-xl font-bold tracking-wider xl:text-3xl font-michroma whitespace-nowrap">
+            {action}
           </h4>
-          <p className="font-michroma ls:text-xl xl:text-2xl whitespace-nowrap">
-            My Portfolio
+
+          <p className="text-lg xl:text-2xl font-michroma whitespace-nowrap">
+            {subject}
           </p>
         </div>
       </div>
 
-      {/* Right section */}
-      <div className="flex justify-center items-center w-[75%] relative">
+      {/* RIGHT IMAGE */}
+      <div className="relative flex items-center justify-center w-[75%]">
         <Image
           src="/portfolio_stripes.svg"
-          alt="Portfolio stripes"
+          alt="Decorative portfolio background stripes"
           width={100}
           height={100}
-          className="absolute -bottom-10 xl:-bottom-12 lg:-left-2 xl:-left-4 lg:w-[6rem] xl:w-[8rem] -z-10"
+          className="absolute -bottom-10 xl:-bottom-12 -left-2 xl:-left-4 w-[5rem] xl:w-[8rem] -z-10"
         />
 
-        <Link href="/portfolio">
+        <TransitionLink href="/portfolio">
           <Image
             src="/images/Anyfab.webp"
-            alt="Portfolio preview"
+            alt="Preview of portfolio project"
             width={500}
             height={300}
-            className="pl-6 md:w-[175px] lg:w-[275px] xl:w-[350px] 2xl:w-[375px] h-auto relative z-10 pointer-events-auto transition-transform duration-300 ease-in-out hover:scale-110 cursor-hover"
+            priority
+            className="relative z-10 h-auto pl-4 transition-transform duration-300 ease-out md:w-[175px] lg:w-[260px] xl:w-[340px] 2xl:w-[380px] hover:scale-110 cursor-pointer"
           />
-        </Link>
+        </TransitionLink>
       </div>
-    </motion.div>
-  );
-};
-
-const InterfacesBlock = () => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6 }}
-      exit={{
-        opacity: 0,
-        x: 30,
-        transition: { ease: "easeIn", duration: 0.3 },
-      }}
-      className="flex items-start space-x-4 max-w-lg"
-    >
-      <div className="h4 font-normal mt-1">›</div>
-
-      <div>
-        <h3 className="h5 font-michroma font-normal">
-          Build the interfaces <br /> of tomorrow
-        </h3>
-        <p className="font-michroma mt-3 text-sm font-normal">
-          Clean code. Bold design. Real impact. <br />
-          I craft seamless digital experiences <br />
-          using React — for web, mobile, and <br />
-          whatever comes next. <br />
-          Let’s shape the future, one interface <br />
-          at a time.
-        </p>
-      </div>
-    </motion.div>
-  );
-};
-
-const SocialsHero = () => {
-  return (
-    <div className="absolute bottom-12 left-24 flex flex-col  items-center gap-6 text-n-1">
-      <Linkedin className="w-6 h-6" />
-
-      <Github className="w-6 h-6" />
-
-      <Instagram className="w-6 h-6" />
-
-      <div className="h-6 w-px bg-n-1 rounded-px" />
-
-      <LanguageSwitcher />
     </div>
   );
-};
+}
+
+/**
+ * ------------------------------------------------------------------
+ * INTERFACES BLOCK
+ * ------------------------------------------------------------------
+ * Supporting marketing message about the developer's work.
+ */
+
+function InterfacesBlock({ header, description, footer }) {
+  return (
+    <div className="flex items-start max-w-md space-x-4">
+      <span className="mt-1 text-xl">›</span>
+
+      <div>
+        <h3 className="font-normal leading-snug font-michroma">{header}</h3>
+
+        <p className="mt-3 text-sm leading-relaxed font-michroma whitespace-pre-line">
+          {description}
+          <br />
+          {footer}
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * ------------------------------------------------------------------
+ * SOCIAL LINKS
+ * ------------------------------------------------------------------
+ * Vertical social links displayed on the left side of the hero.
+ */
+
+function SocialsHero({ exit, onAnimationComplete }) {
+  return (
+    <motion.aside
+      initial={slideLeft.initial}
+      animate={exit ? slideLeft.exit : slideLeft.enter}
+      transition={slideLeft.enter.transition}
+      onAnimationComplete={onAnimationComplete}
+      className="absolute flex flex-col items-center gap-6 bottom-12 left-6 md:left-12 xl:left-24 text-n-1"
+    >
+      <Link
+        href="https://linkedin.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Linkedin className="w-6 h-6 transition-opacity cursor-pointer hover:opacity-70" />
+      </Link>
+
+      <Link
+        href="https://github.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Github className="w-6 h-6 transition-opacity cursor-pointer hover:opacity-70" />
+      </Link>
+
+      <Link
+        href="https://instagram.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Instagram className="w-6 h-6 transition-opacity cursor-pointer hover:opacity-70" />
+      </Link>
+
+      <div className="w-px h-6 rounded bg-n-1" />
+
+      <LanguageSwitcher />
+    </motion.aside>
+  );
+}

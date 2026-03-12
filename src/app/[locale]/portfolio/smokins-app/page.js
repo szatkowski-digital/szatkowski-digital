@@ -3,10 +3,11 @@ import IntroSection from "@/components/projects/smokins/IntroSection";
 import AppUXSection from "@/components/projects/smokins/AppUXSection";
 import SellerPanelSection from "@/components/projects/smokins/SellerPanelSection";
 import TechStackSection from "@/components/projects/TechStackSection";
+import MainTransition from "@/components/ui/MainTransition";
 
 export default function page() {
   return (
-    <main className="bg-n-9 text-n-1">
+    <MainTransition className="bg-n-9 text-n-1">
       <HeroSection
         src="/images/smokins_hero.webp"
         alt="Smokins app"
@@ -18,6 +19,6 @@ export default function page() {
       <AppUXSection />
       <SellerPanelSection />
       <TechStackSection />
-    </main>
+    </MainTransition>
   );
 }

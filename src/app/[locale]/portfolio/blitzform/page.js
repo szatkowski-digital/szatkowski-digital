@@ -1,5 +1,5 @@
 import LogoGrid from "@/components/projects/others/LogoGrid";
-import { Blitzform } from "@/components/sections/Blitzform";
+import { Blitzform } from "@/components/pages/Blitzform";
 import MainTransition from "@/components/ui/MainTransition";
 
 export default function page() {

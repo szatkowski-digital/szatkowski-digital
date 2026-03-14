@@ -35,8 +35,8 @@ export default function Hero() {
   return (
     <section className="relative flex items-center justify-center h-dvh w-full overflow-hidden">
       {/* MAIN CONTAINER */}
-      <div className="container relative flex items-center justify-between px-6 mx-auto">
-        {/* LEFT SIDE — HERO CTA */}
+      <div className="container flex flex-col items-start justify-start px-6 mx-auto">
+        {/* HERO CTA */}
         <motion.div
           initial={slideLeft.initial}
           animate={exit ? slideLeft.exit : slideLeft.enter}
@@ -64,13 +64,14 @@ export default function Hero() {
         animate={exit ? slideRight.exit : slideRight.enter}
         transition={slideRight.enter.transition}
         onAnimationComplete={onAnimationComplete}
-        className="absolute z-10 space-y-16 xl:space-y-20 right-8 md:right-16 xl:right-32 bottom-20 md:bottom-24 xl:bottom-32 max-lg:hidden"
+        className="absolute z-10 space-y-16 xl:space-y-20 right-8 md:right-16 xl:right-32 bottom-8 lg:bottom-24 xl:bottom-32"
       >
         <PortfolioPreview
           action={t("portfolioPreview.verticalTag.action")}
           subject={t("portfolioPreview.verticalTag.subject")}
         />
         <InterfacesBlock
+          className="hidden lg:block"
           header={t("portfolioPreview.header")}
           description={t("portfolioPreview.description")}
           footer={t("portfolioPreview.footer")}
@@ -126,7 +127,7 @@ function PortfolioPreview({ action, subject }) {
             width={500}
             height={300}
             priority
-            className="relative z-10 h-auto pl-4 transition-transform duration-300 ease-out md:w-[175px] lg:w-[260px] xl:w-[340px] 2xl:w-[380px] hover:scale-110 cursor-pointer"
+            className="relative z-10 h-auto pl-4 transition-transform duration-300 ease-out w-[260px] xl:w-[340px] 2xl:w-[380px] hover:scale-110 cursor-pointer"
           />
         </TransitionLink>
       </div>
@@ -141,9 +142,9 @@ function PortfolioPreview({ action, subject }) {
  * Supporting marketing message about the developer's work.
  */
 
-function InterfacesBlock({ header, description, footer }) {
+function InterfacesBlock({ className, header, description, footer }) {
   return (
-    <div className="flex items-start max-w-md space-x-4">
+    <div className={`flex items-start max-w-md space-x-4 ${className}`}>
       <span className="mt-1 text-xl">›</span>
 
       <div>

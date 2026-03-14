@@ -1,4 +1,4 @@
-import About from "@/components/sections/About";
+import About from "@/components/pages/About";
 import MainTransition from "@/components/ui/MainTransition";
 
 export default function page() {

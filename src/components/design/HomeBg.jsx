@@ -1,10 +1,5 @@
 import { motion } from "framer-motion";
 import { useMouseParallax } from "../../hooks/useMouseParallax";
-import { useEffect, useRef, useState } from "react";
-import {
-  registerPageTransition,
-  unregisterPageTransition,
-} from "@/hooks/pageTransitions";
 
 const SvgComponent = ({ exit, onAnimationComplete }) => {
   const slow = useMouseParallax({ strength: 10, stiffness: 50 });
@@ -72,12 +67,7 @@ const SvgComponent = ({ exit, onAnimationComplete }) => {
           variants={zoomVariants}
           initial="initial"
           animate={exit ? "exitState" : "animate"}
-          onAnimationComplete={() => {
-            if (exit && resolveRef.current) {
-              resolveRef.current();
-              resolveRef.current = null;
-            }
-          }}
+          onAnimationComplete={onAnimationComplete}
         >
           <path d="M147.29 405.9H165v17.71h-17.71z" fill="#06d8b3" />
           <path d="M690.21 410.85h8.47v8.47h-8.47z" fill="#06d8b3" />
@@ -96,12 +86,7 @@ const SvgComponent = ({ exit, onAnimationComplete }) => {
           variants={zoomVariants}
           initial="initial"
           animate={exit ? "exitState" : "animate"}
-          onAnimationComplete={() => {
-            if (exit && resolveRef.current) {
-              resolveRef.current();
-              resolveRef.current = null;
-            }
-          }}
+          onAnimationComplete={onAnimationComplete}
         >
           <path d="M111.96 105.93h17.71v17.71h-17.71z" fill="#de3182" />
           <path d="M129.67 123.57h17.71v17.71h-17.71z" fill="#de3182" />

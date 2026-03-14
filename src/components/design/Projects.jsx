@@ -80,7 +80,7 @@ export function Project2({ href, t }) {
  */
 export function Project3({ href, t }) {
   return (
-    <div className="relative flex items-center justify-center w-full h-full text-white">
+    <div className="relative flex items-center justify-center w-full h-full text-n-1">
       <div className="container flex flex-row items-center justify-center gap-8 max-lg:flex-col max-lg:space-y-8">
         <TextSection
           title={t("project3.title")}
@@ -111,10 +111,10 @@ export function Project3({ href, t }) {
  */
 function TextSection({ title, description, href, button }) {
   return (
-    <div className="flex flex-col items-end justify-center lg:flex-2">
-      <h1 className="mb-8 font-bold h1">{title}</h1>
+    <div className="flex flex-col items-start justify-center lg:flex-2 space-y-8">
+      <h1 className="font-bold h1">{title}</h1>
 
-      <p className="pb-8 pl-12 text-lg">{description}</p>
+      <p className="pl-12 text-lg">{description}</p>
 
       <TransitionLink href={href} className="self-start">
         <Button className="text-xl">{button}</Button>

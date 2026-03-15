@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +13,7 @@ import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import { TransitionLink } from "@/components/utils/TransitionLink";
 
 import { usePageExit } from "@/hooks/usePageExit";
-import { slideLeft, slideRight } from "@/animations/motionVariants";
+import { slideLeft, slideRight, slideUp } from "@/animations/motionVariants";
 
 /**
  * ------------------------------------------------------------------
@@ -33,16 +33,16 @@ export default function Hero() {
   const { exit, onAnimationComplete } = usePageExit();
 
   return (
-    <section className="relative flex items-center justify-center h-dvh w-full overflow-hidden">
+    <section className="relative flex items-start lg:items-center justify-center h-dvh w-full overflow-hidden">
       {/* MAIN CONTAINER */}
-      <div className="container flex flex-col items-start justify-start px-6 mx-auto">
+      <div className="container flex flex-col items-start justify-center px-6 mx-auto max-lg:mt-48">
         {/* HERO CTA */}
         <motion.div
           initial={slideLeft.initial}
           animate={exit ? slideLeft.exit : slideLeft.enter}
           transition={slideLeft.enter.transition}
           onAnimationComplete={onAnimationComplete}
-          className="max-w-xl text-white"
+          className="max-w-xl text-n-1"
         >
           <h1 className="mb-4 text-4xl font-bold md:text-6xl font-michroma">
             {t("hero.greeting")}
@@ -98,7 +98,7 @@ function PortfolioPreview({ action, subject }) {
   return (
     <div className="relative flex w-full pb-10 xl:pb-12">
       {/* LEFT LABEL */}
-      <div className="relative flex items-center justify-center w-[25%]">
+      <div className="relative flex items-center justify-center w-[30%] lg:w-[25%]">
         <div className="absolute -rotate-90 -left-6 xl:-left-14 bottom-4 xl:bottom-8">
           <h4 className="text-xl font-bold tracking-wider xl:text-3xl font-michroma whitespace-nowrap">
             {action}
@@ -111,7 +111,7 @@ function PortfolioPreview({ action, subject }) {
       </div>
 
       {/* RIGHT IMAGE */}
-      <div className="relative flex items-center justify-center w-[75%]">
+      <div className="relative flex items-center justify-center w-[70%] lg:w-[75%]">
         <Image
           src="/portfolio_stripes.svg"
           alt="Decorative portfolio background stripes"
@@ -145,17 +145,16 @@ function PortfolioPreview({ action, subject }) {
 function InterfacesBlock({ className, header, description, footer }) {
   return (
     <div className={`flex items-start max-w-md space-x-4 ${className}`}>
-      <span className="mt-1 text-xl">›</span>
-
-      <div>
+      <div className="flex justify-start items-center">
+        <span className="pr-2 text-xl">›</span>
         <h3 className="font-normal leading-snug font-michroma">{header}</h3>
-
-        <p className="mt-3 text-sm leading-relaxed font-michroma whitespace-pre-line">
-          {description}
-          <br />
-          {footer}
-        </p>
       </div>
+
+      <p className="mt-3 text-sm leading-relaxed font-michroma whitespace-pre-line">
+        {description}
+        <br />
+        {footer}
+      </p>
     </div>
   );
 }
@@ -170,9 +169,9 @@ function InterfacesBlock({ className, header, description, footer }) {
 function SocialsHero({ exit, onAnimationComplete }) {
   return (
     <motion.aside
-      initial={slideLeft.initial}
-      animate={exit ? slideLeft.exit : slideLeft.enter}
-      transition={slideLeft.enter.transition}
+      initial={slideUp.initial}
+      animate={exit ? slideUp.exit : slideUp.enter}
+      transition={slideUp.enter.transition}
       onAnimationComplete={onAnimationComplete}
       className="absolute flex flex-col items-center gap-6 bottom-12 left-6 md:left-12 xl:left-24 text-n-1"
     >

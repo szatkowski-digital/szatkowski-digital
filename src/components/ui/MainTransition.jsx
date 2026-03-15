@@ -1,4 +1,5 @@
 "use client";
+
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -9,6 +10,34 @@ import {
 export default function MainTransition({ children }) {
   const [exit, setExit] = useState(false);
   const resolveRef = useRef(null);
+  const mainRef = useRef(null);
+
+  const [origin, setOrigin] = useState("50% 50%");
+
+  useEffect(() => {
+    const updateOrigin = () => {
+      if (!mainRef.current) return;
+
+      const rect = mainRef.current.getBoundingClientRect();
+
+      const viewportCenterX = window.innerWidth / 2;
+      const viewportCenterY = window.innerHeight / 2;
+
+      const originX = viewportCenterX - rect.left;
+      const originY = viewportCenterY - rect.top;
+
+      setOrigin(`${originX}px ${originY}px`);
+    };
+
+    updateOrigin();
+    window.addEventListener("resize", updateOrigin);
+    window.addEventListener("scroll", updateOrigin);
+
+    return () => {
+      window.removeEventListener("resize", updateOrigin);
+      window.removeEventListener("scroll", updateOrigin);
+    };
+  }, []);
 
   useEffect(() => {
     registerPageTransition(() => {
@@ -23,6 +52,8 @@ export default function MainTransition({ children }) {
 
   return (
     <motion.main
+      ref={mainRef}
+      style={{ transformOrigin: origin }}
       animate={{
         opacity: exit ? 0 : 1,
         scale: exit ? 0.95 : 1,

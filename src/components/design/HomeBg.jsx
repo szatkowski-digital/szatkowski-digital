@@ -1,11 +1,37 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { useMouseParallax } from "../../hooks/useMouseParallax";
+import { useMouseParallax } from "@/hooks/useMouseParallax";
+
+/**
+ * ------------------------------------------------------------------
+ * HERO BACKGROUND
+ * ------------------------------------------------------------------
+ * Full screen animated SVG background.
+ *
+ * Behaviour:
+ * - always fills entire viewport
+ * - behaves like CSS background-size: cover
+ * - may crop edges but never leaves empty space
+ * - layered parallax motion
+ * - page transition exit animation
+ */
 
 const SvgComponent = ({ exit, onAnimationComplete }) => {
+  /**
+   * ------------------------------------------------------------------
+   * PARALLAX LAYERS
+   * ------------------------------------------------------------------
+   */
   const slow = useMouseParallax({ strength: 10, stiffness: 50 });
   const medium = useMouseParallax({ strength: 20, stiffness: 50 });
   const fast = useMouseParallax({ strength: 30, stiffness: 50 });
 
+  /**
+   * ------------------------------------------------------------------
+   * ZOOM ANIMATION
+   * ------------------------------------------------------------------
+   */
   const zoomVariants = {
     initial: {
       scale: 3,
@@ -15,7 +41,7 @@ const SvgComponent = ({ exit, onAnimationComplete }) => {
       scale: 0.8,
       opacity: 1,
       transition: {
-        duration: 2,
+        duration: 3,
         ease: [0.145, 0.94, 0.245, 0.95],
         delay: 0.4,
       },
@@ -35,9 +61,10 @@ const SvgComponent = ({ exit, onAnimationComplete }) => {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 698.68 459.04"
+        preserveAspectRatio="xMidYMid slice"
         className="w-full h-full"
       >
-        {/* WARSTWA 1 – SZARA */}
+        {/* LAYER — GRAY */}
         <motion.g
           id="layer-gray"
           style={{ x: slow.x, y: slow.y }}
@@ -60,7 +87,7 @@ const SvgComponent = ({ exit, onAnimationComplete }) => {
           <path d="M463.5 66.4h35.42v35.42H463.5z" fill="#d9d9d9" />
         </motion.g>
 
-        {/* WARSTWA 2 – ZIELONA */}
+        {/* LAYER — GREEN */}
         <motion.g
           id="layer-green"
           style={{ x: medium.x, y: medium.y }}
@@ -79,7 +106,7 @@ const SvgComponent = ({ exit, onAnimationComplete }) => {
           <path d="M199.97 174.9h33.94v17.71h-33.94z" fill="#06d8b3" />
         </motion.g>
 
-        {/* WARSTWA 3 – RÓŻOWA */}
+        {/* LAYER — PINK */}
         <motion.g
           id="layer-pink"
           style={{ x: fast.x, y: fast.y }}

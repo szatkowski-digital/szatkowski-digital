@@ -2,6 +2,7 @@
 
 import { CircleCheckBig } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 
 import GradientDiv from "../design/GradientDiv";
 import Card from "../ui/Card";
@@ -63,10 +64,14 @@ export default function About() {
 function AboutHero({ header, title, intro, paragraphs }) {
   return (
     <section className="container flex flex-col pt-24 lg:pt-72 lg:flex-row max-lg:space-y-8 py-6 lg:py-24">
-      <div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="space-y-4 lg:space-y-8"
+      >
         <h1 className="h1 font-black whitespace-pre-line">{header}</h1>
         <h5 className="h5 font-medium">{title}</h5>
-      </div>
+      </motion.div>
 
       <div className="lg:pl-32 space-y-2 lg:space-y-8">
         <h2 className="h3">{intro}</h2>

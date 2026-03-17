@@ -70,8 +70,8 @@ export default function page() {
   return (
     <main className="bg-n-9 text-n-1">
       <HeroSection
-        src="/images/blitzform_hero.webp"
-        alt="BlitzForm 3D"
+        src="/images/sidequests_banner.webp"
+        alt="Side Quests"
         title="Side Quests"
         description="Zbiór mniejszych realizacji z obszaru identyfikacji wizualnej, stron internetowych oraz materiałów marketingowych."
         keywords="Branding • Web Design • WordPress • Materiały reklamowe"

@@ -13,7 +13,7 @@ export const Blitzform = () => {
   return (
     <div className="pb-20">
       <HeroSection
-        src="/images/blitzform_hero.webp"
+        src="/images/blitzform_banner.webp"
         alt="BlitzForm 3D"
         title="BlitzForm"
         description="Cyfrowa transformacja programu lojalnościowego dla sieci retail"

@@ -10,7 +10,7 @@ export default function HeroSection({
   keywords,
 }) {
   return (
-    <section className="relative min-h-[calc(100vh-6rem)] max-lg:pt-24 flex flex-col-reverse lg:flex-row overflow-hidden justify-center items-center gap-16">
+    <section className="relative min-h-screen max-lg:pt-24 flex flex-col-reverse lg:flex-row overflow-hidden justify-center items-center gap-16">
       {/* IMAGE SIDE */}
       <div className="w-full lg:w-4/7 lg:py-32 flex items-center justify-center">
         <motion.div
@@ -18,7 +18,7 @@ export default function HeroSection({
             clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)",
           }}
           animate={{
-            clipPath: "polygon(0 0, 100% 0, 88% 100%, 0 100%)",
+            clipPath: "polygon(0 0, 100% 0, 86% 100%, 0 100%)",
           }}
           transition={{
             duration: 0.7,
@@ -28,8 +28,10 @@ export default function HeroSection({
           className="
             relative
             w-full
-            h-80
+            h-60
             lg:h-[calc(100vh-16rem)]
+            xl:h-[calc(100vh-18rem)]
+            2xl:h-[calc(100vh-24rem)]
             max-h-225
             overflow-hidden
           "

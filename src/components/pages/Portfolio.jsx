@@ -203,9 +203,9 @@ function PortfolioNavigation({
  * Gradient colors mapped to each project slide.
  */
 const bgColors = [
-  { colorStart: "#ec4899", colorEnd: "#22c55e" },
-  { colorStart: "#3b82f6", colorEnd: "#9333ea" },
-  { colorStart: "#f59e0b", colorEnd: "#10b981" },
+  { colorStart: "#D761CF", colorEnd: "#00C853" },
+  { colorStart: "#CDEB69", colorEnd: "#A2A2A2" },
+  { colorStart: "#DE3182", colorEnd: "#D9D9D9" },
 ];
 
 /**

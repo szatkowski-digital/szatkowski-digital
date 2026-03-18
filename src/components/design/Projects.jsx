@@ -4,40 +4,58 @@ import { TransitionLink } from "../utils/TransitionLink";
 
 /**
  * ------------------------------------------------------------------
- * PROJECT 1
+ * SHARED PROJECT
  * ------------------------------------------------------------------
- * Mobile app showcase with dual device preview.
  */
-export function Project1({ href, t }) {
+function Project({ title, description, href, button, image, alt, reverse }) {
   return (
     <div className="relative flex items-center justify-center w-full h-full text-white">
-      <div className="container flex flex-row items-center justify-center gap-8 max-lg:flex-col max-lg:space-y-8">
+      <div
+        className={`
+          container flex items-center justify-center gap-8 flex-collg:flex-row
+          ${reverse ? "lg:flex-row-reverse" : ""}
+          `}
+      >
+        {/* TEXT */}
         <TextSection
-          title={t("project1.title")}
-          description={t("project1.description")}
+          title={title}
+          description={description}
           href={href}
-          button={t("navigation.button")}
+          button={button}
         />
 
-        <div className="flex flex-row items-center justify-end gap-2 overflow-hidden lg:flex-3">
+        {/* IMAGE */}
+        <div className="flex items-center justify-center w-full lg:w-1/2">
           <Image
-            src="/images/smokins_app_1.webp"
-            width={400}
-            height={800}
-            alt="Smokins mobile application preview"
-            className="w-auto h-140 lg:h-160 max-lg:hidden"
-          />
-
-          <Image
-            src="/images/smokins_app_2.webp"
-            width={400}
-            height={800}
-            alt="Smokins mobile application interface"
-            className="w-auto h-100 max-lg:hidden"
+            src={image}
+            width={1440}
+            height={1440}
+            alt={alt}
+            className="w-auto object-contain h-[300px] sm:h-[400px] lg:h-[550px] xl:h-[750px] 2xl:h-[900px]"
+            priority
           />
         </div>
       </div>
     </div>
+  );
+}
+
+/**
+ * ------------------------------------------------------------------
+ * PROJECT 1
+ * ------------------------------------------------------------------
+ */
+export function Project1({ href, t }) {
+  return (
+    <Project
+      title={t("project1.title")}
+      description={t("project1.description")}
+      button={t("navigation.button")}
+      href={href}
+      image="/images/smokins_app.webp"
+      alt="Smokins application"
+      reverse={false}
+    />
   );
 }
 
@@ -45,30 +63,18 @@ export function Project1({ href, t }) {
  * ------------------------------------------------------------------
  * PROJECT 2
  * ------------------------------------------------------------------
- * Single visual preview with reversed layout.
  */
 export function Project2({ href, t }) {
   return (
-    <div className="relative flex items-center justify-center w-full h-full text-white">
-      <div className="container flex flex-row items-center justify-center gap-8 max-lg:flex-col max-lg:space-y-8">
-        <div className="flex flex-row items-center justify-center gap-2 overflow-hidden lg:flex-3">
-          <Image
-            src="/images/smokins_app_2.webp"
-            width={400}
-            height={800}
-            alt="Blitzform application preview"
-            className="w-auto h-max max-lg:hidden"
-          />
-        </div>
-
-        <TextSection
-          title={t("project2.title")}
-          description={t("project2.description")}
-          button={t("navigation.button")}
-          href={href}
-        />
-      </div>
-    </div>
+    <Project
+      title={t("project2.title")}
+      description={t("project2.description")}
+      button={t("navigation.button")}
+      href={href}
+      image="/images/blitzform.webp"
+      alt="Blitzform application"
+      reverse={true}
+    />
   );
 }
 
@@ -76,30 +82,18 @@ export function Project2({ href, t }) {
  * ------------------------------------------------------------------
  * PROJECT 3
  * ------------------------------------------------------------------
- * Minimal preview with large device showcase.
  */
 export function Project3({ href, t }) {
   return (
-    <div className="relative flex items-center justify-center w-full h-full text-n-1">
-      <div className="container flex flex-row items-center justify-center gap-8 max-lg:flex-col max-lg:space-y-8">
-        <TextSection
-          title={t("project3.title")}
-          description={t("project3.description")}
-          href={href}
-          button={t("navigation.button")}
-        />
-
-        <div className="flex flex-row items-center justify-end gap-2 overflow-hidden lg:flex-3">
-          <Image
-            src="/images/smokins_app_2.webp"
-            width={400}
-            height={800}
-            alt="Side Quests application preview"
-            className="w-auto h-120 lg:h-128 max-lg:hidden"
-          />
-        </div>
-      </div>
-    </div>
+    <Project
+      title={t("project3.title")}
+      description={t("project3.description")}
+      button={t("navigation.button")}
+      href={href}
+      image="/images/side_quests.webp"
+      alt="Side Quests"
+      reverse={false}
+    />
   );
 }
 
@@ -107,16 +101,15 @@ export function Project3({ href, t }) {
  * ------------------------------------------------------------------
  * TEXT SECTION
  * ------------------------------------------------------------------
- * Reusable text block used across portfolio project layouts.
  */
 function TextSection({ title, description, href, button }) {
   return (
-    <div className="flex flex-col items-start justify-center lg:flex-2 space-y-8">
+    <div className="flex flex-col justify-center w-full lg:w-1/2 space-y-8 text-center lg:text-left">
       <h1 className="font-bold h1">{title}</h1>
 
-      <p className="pl-12 text-lg">{description}</p>
+      <p className="text-lg lg:pl-12">{description}</p>
 
-      <TransitionLink href={href} className="self-start">
+      <TransitionLink href={href} className="self-center lg:self-start">
         <Button className="text-xl">{button}</Button>
       </TransitionLink>
     </div>

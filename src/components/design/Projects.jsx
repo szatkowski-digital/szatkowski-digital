@@ -9,10 +9,14 @@ import { TransitionLink } from "../utils/TransitionLink";
  */
 function Project({ title, description, href, button, image, alt, reverse }) {
   return (
-    <div className="relative flex items-center justify-center w-full h-full text-white">
+    <div className="relative flex items-center justify-center w-full h-full text-n-1">
       <div
         className={`
-          container flex items-center justify-center gap-8 flex-collg:flex-row
+          relative
+          container
+          flex flex-col lg:flex-row
+          items-center justify-end lg:justify-center
+          lg:gap-8 h-full w-full
           ${reverse ? "lg:flex-row-reverse" : ""}
           `}
       >
@@ -25,14 +29,14 @@ function Project({ title, description, href, button, image, alt, reverse }) {
         />
 
         {/* IMAGE */}
-        <div className="flex items-center justify-center w-full lg:w-1/2">
+        <div className="flex items-center justify-center w-full h-auto lg:w-1/2 overflow-hidden">
           <Image
             src={image}
-            width={1440}
-            height={1440}
+            width={1600}
+            height={1200}
             alt={alt}
-            className="w-auto object-contain h-[300px] sm:h-[400px] lg:h-[550px] xl:h-[750px] 2xl:h-[900px]"
             priority
+            className="object-contain lg:object-cover"
           />
         </div>
       </div>
@@ -104,10 +108,10 @@ export function Project3({ href, t }) {
  */
 function TextSection({ title, description, href, button }) {
   return (
-    <div className="flex flex-col justify-center w-full lg:w-1/2 space-y-8 text-center lg:text-left">
+    <div className="flex flex-col justify-center w-full lg:w-1/2 space-y-4 lg:space-y-8 text-center lg:text-left max-w-lg">
       <h1 className="font-bold h1">{title}</h1>
 
-      <p className="text-lg lg:pl-12">{description}</p>
+      <p className="text-lg lg:pl-6 xl:pl-12">{description}</p>
 
       <TransitionLink href={href} className="self-center lg:self-start">
         <Button className="text-xl">{button}</Button>

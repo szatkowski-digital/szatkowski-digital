@@ -87,13 +87,10 @@
       },
       "project1": {
         "title": "Smokin’s Loyalty App",
-        "description": "A simple and efficient loyalty program that allows users to earn and redeem points by scanning QR codes. The app includes separate roles for users and admins, ensuring seamless in-store management via smartphone only.",
+        "description": "A simple QR-based loyalty program. No paper cards, just scan and earn rewards directly on your phone.",
         "images": [
           {
             "alt": "Smokin’s Loyalty App interface"
-          },
-          {
-            "alt": "Smokin’s Loyalty App screens"
           }
         ],
         "seo": {
@@ -107,23 +104,18 @@
         }
       },
       "project2": {
-        "title": "Blanco Trade WebApp",
-        "description": "A modern B2B platform designed to simplify trading operations and data visualization for business partners. The app provides responsive dashboards, advanced analytics, and real-time updates for seamless collaboration.",
+        "title": "Blitzform 3D",
+        "description": "A modern site for a startup building mobile 3D printing containers. Tech-focused design for high-tech hardware.",
         "images": [
           {
-            "alt": "Blanco Trade dashboard preview"
+            "alt": "Blitzform home preview"
           }
         ]
       },
       "project3": {
-        "title": "Design & 3D Visualization",
-        "description": "A creative collection of 3D product visualizations and web design projects. Each render highlights realistic materials, lighting, and precise modeling used in modern digital branding.",
-        "images": [
-          { "alt": "3D car rims render" },
-          { "alt": "MSI product render" },
-          { "alt": "Brevky web design" },
-          { "alt": "Brevky logo design" }
-        ]
+        "title": "Side Quests",
+        "description": "My creative playground. A collection of 3D experiments, realistic renders, and digital branding concepts.",
+        "images": [{ "alt": "MSI product render" }]
       }
     },
     "projectPages": {

@@ -87,7 +87,7 @@
       },
       "project1": {
         "title": "Smokin’s Loyalty App",
-        "description": "A simple and efficient loyalty program that allows users to earn and redeem points by scanning QR codes. The app includes separate roles for users and admins, ensuring seamless in-store management via smartphone only.",
+        "description": "Prosty program lojalnościowy na kody QR. Bez zbędnych kart – skanujesz telefonem i odbierasz nagrody.",
         "images": [
           {
             "alt": "Smokin’s Loyalty App interface"
@@ -108,7 +108,7 @@
       },
       "project2": {
         "title": "BlitzForm 3D",
-        "description": "A modern B2B platform designed to simplify trading operations and data visualization for business partners. The app provides responsive dashboards, advanced analytics, and real-time updates for seamless collaboration.",
+        "description": "Strona dla startupu tworzącego mobilne kontenery do druku 3D. Nowoczesny design dla zaawansowanego hardware'u.",
         "images": [
           {
             "alt": "BlitzForm 3D dashboard preview"
@@ -117,13 +117,8 @@
       },
       "project3": {
         "title": "Side Quests",
-        "description": "A creative collection of 3D product visualizations and web design projects. Each render highlights realistic materials, lighting, and precise modeling used in modern digital branding.",
-        "images": [
-          { "alt": "3D car rims render" },
-          { "alt": "MSI product render" },
-          { "alt": "Brevky web design" },
-          { "alt": "Brevky logo design" }
-        ]
+        "description": "Moja kreatywna piaskownica. Zbiór eksperymentów 3D, realistycznych renderów i konceptów brandingowych.",
+        "images": [{ "alt": "MSI product render" }]
       }
     },
     "projectPages": {

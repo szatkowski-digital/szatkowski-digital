@@ -108,7 +108,7 @@ export default function Portfolio() {
   };
 
   return (
-    <section className="relative h-dvh w-full overflow-hidden pt-22 md:pt-29 pb-20 lg:pb-28">
+    <section className="relative h-dvh min-h-120 w-full overflow-hidden pt-22 md:pt-29 pb-20 lg:pb-28">
       <AnimatePresence custom={[direction, threshold]} mode="wait">
         <motion.div
           key={currentIndex}

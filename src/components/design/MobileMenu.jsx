@@ -80,7 +80,7 @@ export const MobileMenu = ({ open, handleClick }) => {
             initial="hidden"
             animate="visible"
           >
-            <p>© {new Date().getFullYear()} BlitzForm</p>
+            <p>© {new Date().getFullYear()} Szatkowski Digital</p>
           </motion.div>
         </motion.div>
       )}

@@ -33,7 +33,7 @@ export default function Hero() {
   const { exit, onAnimationComplete } = usePageExit();
 
   return (
-    <section className="relative flex items-start lg:items-center justify-center h-dvh w-full overflow-hidden">
+    <section className="relative flex items-start lg:items-center justify-center h-dvh min-h-120 w-full overflow-hidden">
       {/* MAIN CONTAINER */}
       <div className="container flex flex-col items-start justify-center px-6 mx-auto max-lg:mt-48">
         {/* HERO CTA */}

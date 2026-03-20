@@ -54,7 +54,7 @@
   }
 
   body {
-    @apply bg-n-8 text-n-1 text-base overscroll-none antialiased;
+    @apply bg-n-8 text-n-1 text-base overscroll-none antialiased selection:bg-primary-pink/30 selection:text-n-1;
     font-family: Inter, Michroma, sans-serif;
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
@@ -244,21 +244,4 @@
   100% {
     transform: translateY(40px);
   }
-}
-
-.animated-grid {
-  position: relative;
-}
-
-.animated-grid::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(6, 216, 179, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(6, 216, 179, 0.1) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(circle at center, black, transparent 80%);
-  animation: grid-move 4s linear infinite;
-  z-index: -1;
 }

@@ -350,19 +350,17 @@ const PhilosophySection = () => {
         </div>
 
         {/* Mobile Layout: Vertical Stack (Static) */}
-        <div className="flex md:hidden flex-col w-full bg-bg-dark">
+        <div className="flex md:hidden flex-col w-full">
           {items.map((item, i) => (
             <div
               key={i}
-              className="flex flex-col gap-8 p-10 border-b border-white/5 min-h-[40vh] justify-center"
+              className="flex flex-col gap-8 p-10 border-b border-n-1/5 min-h-[40vh] justify-center"
             >
               <div className="flex justify-between items-center">
-                <span className="font-mono text-[10px] tracking-[0.4em] text-brand-teal uppercase">
+                <span className="font-mono text-[10px] tracking-[0.4em] text-primary-aqua uppercase">
                   {item.label}
                 </span>
-                <span className="font-mono text-xs text-white/20">
-                  0{i + 1}
-                </span>
+                <span className="font-mono text-xs text-n-1/20">0{i + 1}</span>
               </div>
               <h3 className="text-4xl font-display font-bold uppercase tracking-tighter leading-[0.9]">
                 {item.q}
@@ -370,7 +368,7 @@ const PhilosophySection = () => {
               <p className="text-white/50 font-light leading-relaxed text-sm">
                 {item.s}
               </p>
-              <div className="flex items-center gap-3 text-brand-pink text-[10px] font-mono uppercase tracking-widest pt-4">
+              <div className="flex items-center gap-3 text-primary-pink text-[10px] font-mono uppercase tracking-widest pt-4">
                 <span>Explore</span>
                 <ArrowRight className="w-3 h-3" />
               </div>
@@ -448,23 +446,23 @@ const PhilosophyPanel = ({ item, index, scrollYProgress }) => {
   return (
     <motion.div
       style={{ width, opacity }}
-      className="relative h-full flex flex-col border-r border-white/5 overflow-hidden bg-bg-dark group"
+      className="relative h-full flex flex-col border-r border-n-1/5 overflow-hidden group"
     >
       {/* Background Accent Glow */}
       <motion.div
         style={{ opacity: contentOpacity }}
-        className="absolute inset-0 bg-gradient-to-br from-brand-pink/5 to-transparent pointer-events-none"
+        className="absolute inset-0 bg-linear-to-br from-primary-pink/5 to-transparent pointer-events-none"
       />
 
-      <div className="absolute top-0 left-0 h-full w-[100vw] md:w-[70vw] p-8 md:p-20 flex flex-col justify-between z-10">
-        <div className="flex justify-between items-start w-full md:w-auto">
+      <div className="absolute top-0 left-0 h-full w-screen md:w-[70vw] p-8 md:p-20 lg:pt-26 flex flex-col justify-between z-10">
+        <div className="flex justify-start items-start w-full md:w-auto">
           <motion.span
             style={{ opacity: useTransform(opacity, [0.2, 1], [0.2, 1]) }}
             className="font-mono text-[10px] tracking-[0.5em] text-white uppercase"
           >
             {item.label}
           </motion.span>
-          <item.icon className="w-6 h-6 text-brand-teal/40 group-hover:text-brand-teal transition-colors duration-500" />
+          <item.icon className="w-6 h-6 text-primary-aqua/40 group-hover:text-primary-aqua transition-colors duration-500" />
         </div>
 
         <motion.div style={{ scale, y: contentY }} className="origin-left">
@@ -477,10 +475,10 @@ const PhilosophyPanel = ({ item, index, scrollYProgress }) => {
           </h3>
 
           <motion.div style={{ opacity: contentOpacity }} className="space-y-6">
-            <p className="text-sm md:text-xl text-white/50 font-light max-w-md leading-relaxed">
+            <p className="text-sm md:text-xl text-n-1/50 font-light max-w-md leading-relaxed">
               {item.s}
             </p>
-            <div className="flex items-center gap-4 text-brand-pink text-xs font-mono tracking-widest uppercase">
+            <div className="flex items-center gap-4 text-primary-pink text-xs font-mono tracking-widest uppercase">
               <span>Discover More</span>
               <ArrowRight className="w-4 h-4" />
             </div>
@@ -488,7 +486,7 @@ const PhilosophyPanel = ({ item, index, scrollYProgress }) => {
         </motion.div>
 
         <div className="flex items-center gap-6">
-          <div className="h-px flex-grow bg-white/10" />
+          <div className="h-px grow bg-n-1/10" />
           <span className="font-mono text-xs text-white/30 tabular-nums">
             0{index + 1}
           </span>
@@ -498,7 +496,7 @@ const PhilosophyPanel = ({ item, index, scrollYProgress }) => {
       {/* Active Indicator Line */}
       <motion.div
         style={{ opacity: contentOpacity }}
-        className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-pink via-brand-teal to-brand-pink bg-[length:200%_100%] animate-gradient-x"
+        className="absolute bottom-0 left-0 right-0 h-1.5 bg-linear-to-r from-primary-pink via-primary-aqua to-primary-pink bg-size-[200%_100%] animate-gradient-x"
       />
     </motion.div>
   );

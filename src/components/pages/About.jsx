@@ -294,131 +294,211 @@ const TechBadge = ({ name }) => (
  */
 const PhilosophySection = () => {
   const containerRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // Thresholds: 0-0.25 (Step 1), 0.25-0.5 (Step 2), 0.5-0.75 (Step 3), 0.75-1 (Step 4)
-    // This creates the "snap" behavior where it only changes at specific points
-    if (latest < 0.25) {
-      if (activeIndex !== 0) setActiveIndex(0);
-    } else if (latest < 0.5) {
-      if (activeIndex !== 1) setActiveIndex(1);
-    } else if (latest < 0.75) {
-      if (activeIndex !== 2) setActiveIndex(2);
-    } else {
-      if (activeIndex !== 3) setActiveIndex(3);
-    }
+  // Smooth out the scroll progress for a more "liquid" feel
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 40,
+    damping: 20,
+    restDelta: 0.001,
   });
 
   const items = [
     {
       q: "Details define the experience.",
       s: "Precision is not an option, it's the foundation of everything we build. Every pixel serves a purpose.",
+      label: "Excellence",
+      icon: Layout,
     },
     {
       q: "Performance is part of design.",
       s: "A slow interface is a broken interface. We optimize for speed to ensure a seamless interaction.",
+      label: "Speed",
+      icon: Zap,
     },
     {
       q: "Motion should feel natural.",
       s: "Animation must serve a purpose, guiding the user's eye intuitively through the digital flow.",
+      label: "Fluidity",
+      icon: Activity,
     },
     {
       q: "Less, but better.",
       s: "Stripping away the noise to reveal the core value and essence of the product. Simplicity is sophistication.",
+      label: "Minimalism",
+      icon: Layers,
     },
   ];
 
   return (
-    <section ref={containerRef} className="relative h-[400vh]">
-      <div className="sticky top-16 lg:top-0 h-[calc(100vh-4rem)] lg:h-screen w-full flex flex-col overflow-hidden bg-bg-dark border-y border-white/5">
-        {items.map((item, i) => (
-          <PhilosophyItem
-            key={i}
-            item={item}
-            index={i}
-            activeIndex={activeIndex}
-          />
-        ))}
+    <section ref={containerRef} className="relative h-auto md:h-[400vh]">
+      <div className="relative md:sticky top-0 h-auto md:h-screen w-full flex flex-col md:flex-row overflow-hidden bg-bg-dark">
+        {/* Desktop Layout: Horizontal Compression */}
+        <div className="hidden md:flex w-full h-full">
+          {items.map((item, i) => (
+            <PhilosophyPanel
+              key={i}
+              item={item}
+              index={i}
+              scrollYProgress={smoothProgress}
+            />
+          ))}
+        </div>
+
+        {/* Mobile Layout: Vertical Stack (Static) */}
+        <div className="flex md:hidden flex-col w-full bg-bg-dark">
+          {items.map((item, i) => (
+            <div
+              key={i}
+              className="flex flex-col gap-8 p-10 border-b border-white/5 min-h-[40vh] justify-center"
+            >
+              <div className="flex justify-between items-center">
+                <span className="font-mono text-[10px] tracking-[0.4em] text-brand-teal uppercase">
+                  {item.label}
+                </span>
+                <span className="font-mono text-xs text-white/20">
+                  0{i + 1}
+                </span>
+              </div>
+              <h3 className="text-4xl font-display font-bold uppercase tracking-tighter leading-[0.9]">
+                {item.q}
+              </h3>
+              <p className="text-white/50 font-light leading-relaxed text-sm">
+                {item.s}
+              </p>
+              <div className="flex items-center gap-3 text-brand-pink text-[10px] font-mono uppercase tracking-widest pt-4">
+                <span>Explore</span>
+                <ArrowRight className="w-3 h-3" />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
 };
 
-const PhilosophyItem = ({ item, index, activeIndex }) => {
-  const isActive = activeIndex === index;
+const PhilosophyPanel = ({ item, index, scrollYProgress }) => {
+  // Interpolate width based on scroll progress
+  // We start at 25% each, then transition to dominant states
+  const width = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.4, 0.7, 1],
+    index === 0
+      ? ["25%", "70%", "10%", "10%", "10%"]
+      : index === 1
+        ? ["25%", "10%", "70%", "10%", "10%"]
+        : index === 2
+          ? ["25%", "10%", "10%", "70%", "10%"]
+          : ["25%", "10%", "10%", "10%", "70%"]
+  );
+
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.4, 0.7, 1],
+    index === 0
+      ? [1, 1, 0.3, 0.2, 0.2]
+      : index === 1
+        ? [0.8, 0.3, 1, 0.3, 0.2]
+        : index === 2
+          ? [0.6, 0.2, 0.3, 1, 0.3]
+          : [0.4, 0.2, 0.2, 0.3, 1]
+  );
+
+  const contentOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.4, 0.7, 1],
+    index === 0
+      ? [1, 1, 0, 0, 0]
+      : index === 1
+        ? [0, 0, 1, 0, 0]
+        : index === 2
+          ? [0, 0, 0, 1, 0]
+          : [0, 0, 0, 0, 1]
+  );
+
+  const contentY = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.4, 0.7, 1],
+    index === 0
+      ? [0, 0, 40, 40, 40]
+      : index === 1
+        ? [40, 40, 0, 40, 40]
+        : index === 2
+          ? [40, 40, 40, 0, 40]
+          : [40, 40, 40, 40, 0]
+  );
+
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.4, 0.7, 1],
+    index === 0
+      ? [1, 1, 0.85, 0.8, 0.8]
+      : index === 1
+        ? [0.9, 0.85, 1, 0.85, 0.8]
+        : index === 2
+          ? [0.85, 0.8, 0.85, 1, 0.85]
+          : [0.8, 0.8, 0.8, 0.85, 1]
+  );
 
   return (
     <motion.div
-      animate={{
-        flexGrow: isActive ? 4 : 1,
-        backgroundColor: isActive
-          ? "rgba(255, 255, 255, 0.02)"
-          : "rgba(0, 0, 0, 0)",
-      }}
-      transition={{
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      className="relative w-full overflow-hidden flex flex-col justify-center items-center border-b border-white/5 group"
+      style={{ width, opacity }}
+      className="relative h-full flex flex-col border-r border-white/5 overflow-hidden bg-bg-dark group"
     >
-      <div className="max-w-4xl px-6 w-full flex flex-col items-center justify-center">
-        <div className="flex items-center gap-6 w-full justify-center">
-          <motion.span
-            animate={{
-              opacity: isActive ? 1 : 0.2,
-              scale: isActive ? 1 : 0.8,
-              color: isActive ? "#DE3182" : "#ffffff",
-            }}
-            className="font-mono text-sm md:text-base tracking-widest shrink-0"
-          >
-            0{index + 1}
-          </motion.span>
+      {/* Background Accent Glow */}
+      <motion.div
+        style={{ opacity: contentOpacity }}
+        className="absolute inset-0 bg-gradient-to-br from-brand-pink/5 to-transparent pointer-events-none"
+      />
 
-          <motion.h3
-            animate={{
-              scale: isActive ? 1 : 0.85,
-              opacity: isActive ? 1 : 0.4,
-              x: isActive ? 0 : -10,
-            }}
-            transition={{ duration: 0.6 }}
-            className="text-xl md:text-5xl font-display font-bold uppercase tracking-tighter leading-none text-center"
+      <div className="absolute top-0 left-0 h-full w-[100vw] md:w-[70vw] p-8 md:p-20 flex flex-col justify-between z-10">
+        <div className="flex justify-between items-start w-full md:w-auto">
+          <motion.span
+            style={{ opacity: useTransform(opacity, [0.2, 1], [0.2, 1]) }}
+            className="font-mono text-[10px] tracking-[0.5em] text-white uppercase"
           >
-            {item.q}
-          </motion.h3>
+            {item.label}
+          </motion.span>
+          <item.icon className="w-6 h-6 text-brand-teal/40 group-hover:text-brand-teal transition-colors duration-500" />
         </div>
 
-        <motion.div
-          initial={false}
-          animate={{
-            height: isActive ? "auto" : 0,
-            opacity: isActive ? 1 : 0,
-            marginTop: isActive ? 24 : 0,
-          }}
-          transition={{
-            duration: 0.6,
-            ease: [0.16, 1, 0.3, 1],
-          }}
-          className="overflow-hidden text-center"
-        >
-          <p className="text-sm md:text-xl text-white/40 font-light max-w-xl mx-auto leading-relaxed">
-            {item.s}
-          </p>
+        <motion.div style={{ scale, y: contentY }} className="origin-left">
+          <h3 className="text-4xl md:text-8xl font-display font-bold uppercase tracking-tighter leading-[0.8] mb-10">
+            {item.q.split(" ").map((word, i) => (
+              <span key={i} className="block">
+                {word}
+              </span>
+            ))}
+          </h3>
+
+          <motion.div style={{ opacity: contentOpacity }} className="space-y-6">
+            <p className="text-sm md:text-xl text-white/50 font-light max-w-md leading-relaxed">
+              {item.s}
+            </p>
+            <div className="flex items-center gap-4 text-brand-pink text-xs font-mono tracking-widest uppercase">
+              <span>Discover More</span>
+              <ArrowRight className="w-4 h-4" />
+            </div>
+          </motion.div>
         </motion.div>
+
+        <div className="flex items-center gap-6">
+          <div className="h-px flex-grow bg-white/10" />
+          <span className="font-mono text-xs text-white/30 tabular-nums">
+            0{index + 1}
+          </span>
+        </div>
       </div>
 
-      {/* Visual Indicator for active state */}
+      {/* Active Indicator Line */}
       <motion.div
-        animate={{
-          opacity: isActive ? 0.1 : 0,
-          scaleY: isActive ? 1 : 0,
-        }}
-        className="absolute left-0 top-0 bottom-0 w-1 bg-primary-pink origin-top"
+        style={{ opacity: contentOpacity }}
+        className="absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-pink via-brand-teal to-brand-pink bg-[length:200%_100%] animate-gradient-x"
       />
     </motion.div>
   );

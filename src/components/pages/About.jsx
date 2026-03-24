@@ -1,13 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {
   motion,
   useScroll,
   useTransform,
   useSpring,
   useInView,
-  useMotionValueEvent,
 } from "framer-motion";
 import {
   Code2,
@@ -19,7 +18,6 @@ import {
   Github,
   Linkedin,
   Twitter,
-  ExternalLink,
   Activity,
 } from "lucide-react";
 
@@ -454,15 +452,20 @@ const PhilosophyPanel = ({ item, index, scrollYProgress }) => {
         className="absolute inset-0 bg-linear-to-br from-primary-pink/5 to-transparent pointer-events-none"
       />
 
+      {/* Main Container */}
       <div className="absolute top-0 left-0 h-full w-screen md:w-[70vw] p-8 md:p-20 lg:pt-26 flex flex-col justify-between z-10">
-        <div className="flex justify-start items-start w-full md:w-auto">
+        <div className="flex justify-start items-center gap-2 w-full md:w-auto">
+          <item.icon
+            style={{ opacity: useTransform(opacity, [0.2, 1], [0.2, 1]) }}
+            className="w-4 h-4 text-primary-aqua/40 group-hover:text-primary-aqua transition-colors duration-500"
+          />
+
           <motion.span
             style={{ opacity: useTransform(opacity, [0.2, 1], [0.2, 1]) }}
-            className="font-mono text-[10px] tracking-[0.5em] text-white uppercase"
+            className="font-mono text-[10px] tracking-[0.5em] text-primary-aqua/40 group-hover:text-primary-aqua uppercase transition-colors duration-500"
           >
             {item.label}
           </motion.span>
-          <item.icon className="w-6 h-6 text-primary-aqua/40 group-hover:text-primary-aqua transition-colors duration-500" />
         </div>
 
         <motion.div style={{ scale, y: contentY }} className="origin-left">

@@ -1,14 +1,53 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
-import BackButton from "../ui/BackButton";
-import NextButton from "../ui/NextButton";
+import { TransitionLink } from "../utils/TransitionLink";
+import Button from "../ui/Button";
 
-import ProjectsBg from "../design/ProjectsBg";
-import { Project1, Project2, Project3 } from "../design/Projects";
+/**
+ * ------------------------------------------------------------------
+ * CONSTANTS
+ * ------------------------------------------------------------------
+ */
+const DRAG_THRESHOLD = 50;
+
+/**
+ * ------------------------------------------------------------------
+ * ANIMATION CONFIG
+ * ------------------------------------------------------------------
+ */
+const slideVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? "50%" : "-50%",
+    opacity: 0,
+    scale: 0.9,
+    filter: "blur(10px)",
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    filter: "blur(0px)",
+    zIndex: 1,
+  },
+  exit: (direction) => ({
+    x: direction < 0 ? "50%" : "-50%",
+    opacity: 0,
+    scale: 0.9,
+    filter: "blur(10px)",
+    zIndex: 0,
+  }),
+};
+
+const transitionConfig = {
+  x: { type: "spring", stiffness: 200, damping: 25 },
+  opacity: { duration: 0.5 },
+  scale: { duration: 0.5 },
+  filter: { duration: 0.5 },
+};
 
 /**
  * ------------------------------------------------------------------
@@ -19,230 +58,229 @@ import { Project1, Project2, Project3 } from "../design/Projects";
  * - swipe navigation
  * - button navigation
  * - animated transitions
- * - dynamic background gradients
  */
 export default function Portfolio() {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-  const [threshold, setThreshold] = useState(0);
 
   const t = useTranslations("portfolio.projects");
-
-  const [currentIndex, setCurrentIndex] = useState(() => {
-    if (typeof window === "undefined") return 0;
-
-    const saved = sessionStorage.getItem("portfolioIndex");
-    return saved ? parseInt(saved) : 0;
-  });
-
   /**
    * ------------------------------------------------------------------
    * PROJECT CONFIGURATION
    * ------------------------------------------------------------------
-   * List of portfolio projects displayed in the slider.
    */
   const projects = [
-    <Project1 key="p1" href="/portfolio/smokins-app" t={t} />,
-    <Project2 key="p2" href="/portfolio/blitzform" t={t} />,
-    <Project3 key="p3" href="/portfolio/side-quests" t={t} />,
+    {
+      id: "01",
+      title: t("project1.title"),
+      label: "MOBILE ARCHITECTURE",
+      description: t("project1.description"),
+      image: "/images/smokins_banner.png",
+      href: "/portfolio/smokins-app",
+      alt: t("project1.images_alt"),
+    },
+    {
+      id: "02",
+      title: t("project2.title"),
+      label: "UI ENGINEERING",
+      description: t("project2.description"),
+      image: "/images/blitzform_banner.png",
+      href: "/portfolio/blitzform",
+      alt: t("project2.images_alt"),
+    },
+    {
+      id: "03",
+      title: t("project3.title"),
+      label: "INTERACTIVE EXPERIENCE",
+      description: t("project3.description"),
+      image: "/images/sidequests_banner.webp",
+      href: "/portfolio/side-quests",
+      alt: t("project3.images_alt"),
+    },
   ];
-
-  /**
-   * ------------------------------------------------------------------
-   * SESSION STATE
-   * ------------------------------------------------------------------
-   * Persist currently opened project between page reloads.
-   */
-  useEffect(() => {
-    sessionStorage.setItem("portfolioIndex", currentIndex.toString());
-  }, [currentIndex]);
-
-  /**
-   * ------------------------------------------------------------------
-   * DRAG THRESHOLD
-   * ------------------------------------------------------------------
-   * Calculates the swipe threshold dynamically based on viewport width.
-   * Prevents accidental slide navigation.
-   */
-  useEffect(() => {
-    const updateThreshold = () => setThreshold(window.innerWidth * 0.2);
-    updateThreshold();
-
-    let resizeTimeout;
-
-    const handleResize = () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(updateThreshold, 150);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      clearTimeout(resizeTimeout);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   /**
    * ------------------------------------------------------------------
    * NAVIGATION HANDLERS
    * ------------------------------------------------------------------
-   * Handles project switching through buttons or swipe gestures.
    */
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setDirection(1);
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
-  };
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+  }, []);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setDirection(-1);
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? projects.length - 1 : prevIndex - 1
-    );
-  };
+    setCurrentIndex((prev) => (prev === 0 ? projects.length - 1 : prev - 1));
+  }, []);
 
-  const handleDragEnd = (e, info) => {
-    if (Math.abs(info.offset.x) < threshold) return;
+  const goTo = useCallback(
+    (target) => {
+      setDirection(target > currentIndex ? 1 : -1);
+      setCurrentIndex(target);
+    },
+    [currentIndex]
+  );
 
-    if (info.offset.x < 0) handleNext();
-    else handlePrev();
-  };
+  const handleDragEnd = useCallback(
+    (_, info) => {
+      if (info.offset.x < -DRAG_THRESHOLD) handleNext();
+      if (info.offset.x > DRAG_THRESHOLD) handlePrev();
+    },
+    [handleNext, handlePrev]
+  );
 
   return (
-    <section className="relative h-dvh min-h-120 w-full overflow-hidden pt-22 md:pt-29 pb-20 lg:pb-28">
-      <AnimatePresence custom={[direction, threshold]} mode="wait">
-        <motion.div
-          key={currentIndex}
-          className="w-full h-full"
-          custom={[direction, threshold]}
-          variants={{
-            enter: ([dir, thr]) => slideVariants.enter(dir, thr),
-            exit: ([dir, thr]) => slideVariants.exit(dir, thr),
-            center: slideVariants.center,
-          }}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={0.15}
-          dragMomentum={false}
-          style={{ touchAction: "pan-y" }}
-          onDragEnd={handleDragEnd}
-        >
-          {projects[currentIndex]}
-        </motion.div>
-      </AnimatePresence>
+    <section className="fixed inset-0 h-dvh w-screen overflow-hidden flex flex-col py-32">
+      <div className="relative flex-1 min-h-0 w-full">
+        <AnimatePresence initial={false} custom={direction} mode="popLayout">
+          <motion.div
+            key={currentIndex}
+            custom={direction}
+            variants={slideVariants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={transitionConfig}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={handleDragEnd}
+            className="w-full h-full max-w-7xl flex cursor-grab active:cursor-grabbing px-6 mx-auto"
+          >
+            <PortfolioCard
+              project={projects}
+              index={currentIndex}
+              buttonText={t("navigation.button")}
+            />
+          </motion.div>
+        </AnimatePresence>
 
-      <PortfolioNavigation
-        projects={projects}
-        nextButton={t("navigation.next")}
-        prevButton={t("navigation.prev")}
-        currentIndex={currentIndex}
-        handlePrev={handlePrev}
-        handleNext={handleNext}
-      />
-
-      <ProjectsBg
-        colorStart={bgColors[currentIndex].colorStart}
-        colorEnd={bgColors[currentIndex].colorEnd}
-      />
+        <PortfolioNavigation
+          index={currentIndex}
+          total={projects.length}
+          onNext={handleNext}
+          onPrev={handlePrev}
+          onSelect={goTo}
+          nextText={t("navigation.next")}
+          prevText={t("navigation.prev")}
+        />
+      </div>
     </section>
   );
 }
 
 /**
  * ------------------------------------------------------------------
- * PORTFOLIO NAVIGATION
+ * PORTFOLIO CARD
  * ------------------------------------------------------------------
- * Navigation controls displayed at the bottom of the section.
- * Includes:
- * - previous / next buttons
- * - project indicators
  */
-function PortfolioNavigation({
-  projects,
-  nextButton,
-  prevButton,
-  currentIndex,
-  handlePrev,
-  handleNext,
-}) {
+function PortfolioCard({ project, index, buttonText }) {
   return (
-    <div className="absolute bottom-6 lg:bottom-12 w-full flex justify-center gap-8 md:gap-24">
-      <BackButton className="text-lg" onClick={handlePrev}>
-        {prevButton}
-      </BackButton>
-
-      <div className="flex items-center gap-4">
-        {projects.map((_, i) => (
-          <motion.div
-            key={i}
-            className={`w-2 h-2 rounded-full ${
-              currentIndex === i ? "bg-neutral-300" : "bg-neutral-600"
-            }`}
-            animate={{
-              scale: currentIndex === i ? 1.4 : 1,
-              opacity: currentIndex === i ? 1 : 0.5,
-            }}
-            transition={{ duration: 0.25 }}
-          />
-        ))}
+    <div className="relative w-full h-full glass-card rounded-[40px] overflow-hidden group flex flex-col md:flex-row">
+      {/* Image Section */}
+      <div className="w-full md:w-3/5 h-1/2 md:h-full relative overflow-hidden">
+        <motion.img
+          layoutId={`img-${index}`}
+          src={project[index].image}
+          alt={project[index].alt}
+          className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-1000 scale-110 group-hover:scale-100"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-linear-to-r from-bg-dark/80 via-transparent to-transparent hidden md:block" />
+        <div className="absolute inset-0 bg-linear-to-t from-bg-dark/80 via-transparent to-transparent md:hidden" />
       </div>
 
-      <NextButton className="text-lg" onClick={handleNext}>
-        {nextButton}
-      </NextButton>
+      {/* Text Section */}
+      <div className="w-full md:w-2/5 p-8 md:p-16 flex flex-col justify-center relative z-10">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          <span className="font-michroma text-[0.5rem] tracking-[0.25rem] text-primary-aqua mb-4 block uppercase">
+            {project[index].label}
+          </span>
+          <h3 className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tighter leading-none mb-8">
+            {project[index].title}
+          </h3>
+          <p className="text-white/50 font-light leading-relaxed mb-10 text-sm md:text-base">
+            {project[index].description}
+          </p>
+
+          <TransitionLink href={project[index].href} className="self-start">
+            <Button className="text-xl">{buttonText}</Button>
+          </TransitionLink>
+
+          {/* <motion.button
+            whileHover={{ x: 10 }}
+            className="flex items-center gap-4 text-primary-pink text-xs font-mono tracking-widest uppercase group/btn"
+          >
+            <span>{buttonText}</span>
+          </motion.button> */}
+        </motion.div>
+      </div>
+
+      {/* Slide Index */}
+      <div className="absolute top-8 right-12 font-mono text-4xl text-white/5 opacity-20 select-none">
+        {project[index].id}
+      </div>
     </div>
   );
 }
 
 /**
  * ------------------------------------------------------------------
- * BACKGROUND GRADIENT CONFIG
+ * NAVIGATION
  * ------------------------------------------------------------------
- * Gradient colors mapped to each project slide.
  */
-const bgColors = [
-  { colorStart: "#D761CF", colorEnd: "#00C853" },
-  { colorStart: "#CDEB69", colorEnd: "#A2A2A2" },
-  { colorStart: "#DE3182", colorEnd: "#D9D9D9" },
-];
+function PortfolioNavigation({
+  index,
+  total,
+  onPrev,
+  onNext,
+  onSelect,
+  nextText,
+  prevText,
+}) {
+  return (
+    <div className="absolute bottom-[-35px] md:bottom-[-70px] left-1/2 -translate-x-1/2 flex items-center gap-16 w-max">
+      <button
+        onClick={onPrev}
+        className="group flex items-center gap-4 text-n-1/30 hover:text-white transition-colors"
+      >
+        <div className="w-12 h-px bg-n-1/10 group-hover:bg-primary-pink transition-colors" />
+        <span className="font-mono text-[10px] tracking-widest uppercase">
+          {prevText}
+        </span>
+      </button>
 
-/**
- * ------------------------------------------------------------------
- * SLIDE ANIMATION VARIANTS
- * ------------------------------------------------------------------
- * Framer Motion animation variants controlling
- * slide transitions between projects.
- */
-const slideVariants = {
-  enter: (dir, threshold) => ({
-    x: dir === 0 ? 0 : dir > 0 ? threshold : -threshold,
-    opacity: 0,
-    scale: 0.95,
-    transition: {
-      duration: 0.6,
-      ease: [0.3, 0, 0.6, 1],
-    },
-  }),
+      <div className="flex gap-4">
+        {Array.from({ length: total }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => onSelect(i)}
+            className="relative w-2 h-2 rounded-full bg-white/10 overflow-hidden"
+          >
+            {index === i && (
+              <motion.div
+                layoutId="portfolio-dot"
+                className="absolute inset-0 bg-n-1"
+              />
+            )}
+          </button>
+        ))}
+      </div>
 
-  center: {
-    x: 0,
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.3,
-      ease: [0.3, 0, 0.6, 1],
-    },
-  },
-
-  exit: (dir, threshold) => ({
-    x: dir > 0 ? -threshold : threshold,
-    opacity: 0,
-    scale: 0.9,
-    transition: {
-      duration: 0.3,
-      ease: [0.4, 0, 1, 1],
-    },
-  }),
-};
+      <button
+        onClick={onNext}
+        className="group flex items-center gap-4 text-white/30 hover:text-white transition-colors"
+      >
+        <span className="font-mono text-[10px] tracking-widest uppercase">
+          {nextText}
+        </span>
+        <div className="w-12 h-px bg-white/10 group-hover:bg-primary-aqua transition-colors" />
+      </button>
+    </div>
+  );
+}

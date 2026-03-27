@@ -83,8 +83,8 @@ export default function About() {
  */
 function HeroSection() {
   return (
-    <section className="relative h-screen flex flex-col justify-center items-center px-6 overflow-hidden">
-      <div className="relative max-w-7xl w-full">
+    <section className="relative h-screen flex flex-col justify-center items-center">
+      <div className="relative w-full">
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
@@ -120,7 +120,7 @@ function HeroSection() {
             transition={{ delay: 1 }}
             className="mt-16"
           >
-            <div className="w-px h-24 bg-gradient-to-b from-brand-pink to-transparent mx-auto" />
+            <div className="w-px h-24 bg-linear-to-b from-primary-pink to-transparent mx-auto" />
           </motion.div>
         </motion.div>
       </div>
@@ -334,7 +334,7 @@ const PhilosophySection = () => {
 
   return (
     <section ref={containerRef} className="relative h-auto md:h-[400vh]">
-      <div className="relative md:sticky top-0 h-auto md:h-screen w-full flex flex-col md:flex-row overflow-hidden bg-bg-dark">
+      <div className="relative md:sticky top-0 h-auto md:h-screen w-full flex flex-col md:flex-row overflow-hidden">
         {/* Desktop Layout: Horizontal Compression */}
         <div className="hidden md:flex w-full h-full">
           {items.map((item, i) => (
@@ -453,7 +453,7 @@ const PhilosophyPanel = ({ item, index, scrollYProgress }) => {
       />
 
       {/* Main Container */}
-      <div className="absolute top-0 left-0 h-full w-screen md:w-[70vw] p-8 md:p-20 lg:pt-26 flex flex-col justify-between z-10">
+      <div className="absolute top-0 left-0 h-full w-screen md:w-[50vw] p-8 md:p-20 lg:pt-26 flex flex-col justify-between z-10">
         <div className="flex justify-start items-center gap-2 w-full md:w-auto">
           <item.icon
             style={{ opacity: useTransform(opacity, [0.2, 1], [0.2, 1]) }}

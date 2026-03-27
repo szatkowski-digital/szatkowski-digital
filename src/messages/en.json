@@ -88,11 +88,8 @@
       "project1": {
         "title": "Smokin’s Loyalty App",
         "description": "A simple QR-based loyalty program. No paper cards, just scan and earn rewards directly on your phone.",
-        "images": [
-          {
-            "alt": "Smokin’s Loyalty App interface"
-          }
-        ],
+        "images_alt": "Smokin’s Loyalty App interface",
+
         "seo": {
           "keywords": [
             "loyalty app",
@@ -106,16 +103,12 @@
       "project2": {
         "title": "Blitzform 3D",
         "description": "A modern site for a startup building mobile 3D printing containers. Tech-focused design for high-tech hardware.",
-        "images": [
-          {
-            "alt": "Blitzform home preview"
-          }
-        ]
+        "images_alt": "Blitzform home preview"
       },
       "project3": {
         "title": "Side Quests",
         "description": "My creative playground. A collection of 3D experiments, realistic renders, and digital branding concepts.",
-        "images": [{ "alt": "MSI product render" }]
+        "images_alt": "MSI product render"
       }
     },
     "projectPages": {

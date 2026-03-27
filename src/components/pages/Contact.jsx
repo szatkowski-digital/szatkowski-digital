@@ -95,7 +95,7 @@ export default function Contact() {
 
   return (
     <section className="py-32 px-6 relative min-h-[800px] flex items-center justify-center overflow-hidden">
-      <div className="max-w-7xl w-full glass-card rounded-[60px] p-12 md:p-24 relative overflow-hidden">
+      <div className="max-w-7xl w-full glass-card rounded-[40px] p-12 md:p-24 relative overflow-hidden">
         {/* PROGRESS BAR */}
         <div className="absolute top-0 left-0 h-1 bg-white/5 w-full">
           <motion.div

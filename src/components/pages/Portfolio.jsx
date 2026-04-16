@@ -131,7 +131,7 @@ export default function Portfolio() {
   );
 
   return (
-    <section className="fixed inset-0 h-dvh w-screen overflow-hidden flex flex-col py-32">
+    <section className="fixed inset-0 h-dvh w-screen overflow-hidden flex flex-col py-[clamp(20px,10dvh,128px)]">
       <div className="relative flex-1 min-h-0 w-full">
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div

@@ -34,7 +34,7 @@ import {
  */
 export default function About() {
   return (
-    <div className="pt-16 lg:pt-26 max-w-7xl mx-auto px-6 space-y-24 md:space-y-64">
+    <div className="pt-16 lg:pt-26 space-y-24 md:space-y-64">
       {/* About Hero */}
       <HeroSection />
 
@@ -83,7 +83,7 @@ export default function About() {
  */
 function HeroSection() {
   return (
-    <section className="relative h-screen flex flex-col justify-center items-center">
+    <section className="relative h-screen max-w-7xl px-6 mx-auto flex flex-col justify-center items-center">
       <div className="relative w-full">
         <motion.div
           initial={{ opacity: 0, y: 100 }}
@@ -136,7 +136,7 @@ function HeroSection() {
  */
 function AboutSection() {
   return (
-    <section>
+    <section className="max-w-7xl px-6 mx-auto">
       <SectionHeader number="01" title="Who I Am" />
       <div className="grid md:grid-cols-2 gap-12 items-start">
         <motion.p
@@ -183,7 +183,7 @@ function AboutSection() {
  */
 function SkillsSection() {
   return (
-    <section>
+    <section className="max-w-7xl px-6 mx-auto">
       <SectionHeader number="02" title="Capabilities" />
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <SkillCard
@@ -253,7 +253,7 @@ const SkillCard = ({ icon: Icon, title, desc, delay }) => {
  */
 function TechStackSection() {
   return (
-    <section>
+    <section className="max-w-7xl px-6 mx-auto">
       <SectionHeader number="03" title="The Stack" />
       <div className="flex flex-wrap gap-4 max-w-4xl">
         {[
@@ -385,12 +385,12 @@ const PhilosophyPanel = ({ item, index, scrollYProgress }) => {
     scrollYProgress,
     [0, 0.1, 0.4, 0.7, 1],
     index === 0
-      ? ["25%", "70%", "10%", "10%", "10%"]
+      ? ["25%", "55%", "15%", "15%", "15%"]
       : index === 1
-        ? ["25%", "10%", "70%", "10%", "10%"]
+        ? ["25%", "15%", "55%", "15%", "15%"]
         : index === 2
-          ? ["25%", "10%", "10%", "70%", "10%"]
-          : ["25%", "10%", "10%", "10%", "70%"]
+          ? ["25%", "15%", "15%", "55%", "15%"]
+          : ["25%", "15%", "15%", "15%", "55%"]
   );
 
   const opacity = useTransform(
@@ -453,7 +453,7 @@ const PhilosophyPanel = ({ item, index, scrollYProgress }) => {
       />
 
       {/* Main Container */}
-      <div className="absolute top-0 left-0 h-full w-screen md:w-[50vw] p-8 md:p-20 lg:pt-26 flex flex-col justify-between z-10">
+      <div className="absolute top-0 left-0 h-full w-screen md:w-[55vw] p-8 md:p-20 lg:pt-48 flex flex-col justify-between z-10">
         <div className="flex justify-start items-center gap-2 w-full md:w-auto">
           <item.icon
             style={{ opacity: useTransform(opacity, [0.2, 1], [0.2, 1]) }}
@@ -513,7 +513,7 @@ const PhilosophyPanel = ({ item, index, scrollYProgress }) => {
  */
 function CTASection() {
   return (
-    <section className="pb-32">
+    <section className="pb-32 max-w-7xl px-6 mx-auto">
       <div className="glass-card p-12 md:p-24 rounded-[40px] text-center relative overflow-hidden group">
         <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-primary-pink to-primary-aqua" />
 

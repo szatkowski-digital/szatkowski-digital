@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
+import { del } from "framer-motion/client";
 
 /**
  * ------------------------------------------------------------------

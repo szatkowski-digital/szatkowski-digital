@@ -15,7 +15,7 @@
 
   "home": {
     "hero": {
-      "greeting": "Cześć, jestem Paweł",
+      "greeting": "Jestem Paweł",
       "subtitle": "Full-stack developer",
       "ctaButton": "Poznajmy się lepiej"
     },

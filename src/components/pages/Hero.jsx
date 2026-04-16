@@ -1,6 +1,6 @@
 "use client";
 
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,8 +12,40 @@ import Button from "@/components/ui/Button";
 import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
 import { TransitionLink } from "@/components/utils/TransitionLink";
 
+import useIsMobile from "@/hooks/useIsMobile";
 import { usePageExit } from "@/hooks/usePageExit";
-import { slideLeft, slideRight, slideUp } from "@/animations/motionVariants";
+import {
+  rotate90Left,
+  slideLeft,
+  slideRight,
+  slideUp,
+} from "@/animations/motionVariants";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    rotateY: 90,
+  },
+  visible: {
+    opacity: 1,
+    rotateY: 0,
+    transition: {
+      duration: 1.4,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 
 /**
  * ------------------------------------------------------------------
@@ -30,52 +62,71 @@ import { slideLeft, slideRight, slideUp } from "@/animations/motionVariants";
 
 export default function Hero() {
   const t = useTranslations("home");
+  const isMobile = useIsMobile();
   const { exit, onAnimationComplete } = usePageExit();
 
   return (
     <section className="relative flex items-start lg:items-center justify-center h-dvh min-h-120 w-full overflow-hidden">
       {/* MAIN CONTAINER */}
-      <div className="container flex flex-col items-start justify-center px-6 mx-auto max-lg:mt-48">
+      <motion.div
+        // variants={itemVariants}
+        // initial="hidden"
+        // animate="visible"
+        className="container max-w-7xl flex flex-col items-start justify-center px-6 mx-auto max-lg:mt-48"
+      >
         {/* HERO CTA */}
         <motion.div
           initial={slideLeft.initial}
           animate={exit ? slideLeft.exit : slideLeft.enter}
           transition={slideLeft.enter.transition}
           onAnimationComplete={onAnimationComplete}
-          className="max-w-xl text-n-1"
+          className="max-w-xl text-n-1 perspective-[2000px]"
         >
-          <h1 className="mb-4 text-4xl font-bold md:text-6xl font-michroma">
+          <motion.h1
+            initial={rotate90Left.initial}
+            animate={rotate90Left.enter}
+            className="mb-4 text-[16vw] font-black md:text-[6vw] uppercase tracking-tighter leading-[0.8] transform-3d"
+          >
             {t("hero.greeting")}
-          </h1>
+          </motion.h1>
 
-          <p className="mb-6 text-lg md:text-2xl font-michroma">
+          <motion.p
+            initial={rotate90Left.initial}
+            animate={rotate90Left.enter}
+            className="mb-6 text-lg md:text-xl font-michroma"
+          >
             {t("hero.subtitle")}
-          </p>
+          </motion.p>
 
-          <TransitionLink href="/about">
-            <Button className="text-xl">{t("hero.ctaButton")}</Button>
-          </TransitionLink>
+          <motion.div
+            initial={rotate90Left.initial}
+            animate={rotate90Left.enter}
+          >
+            <TransitionLink href="/about">
+              <Button className="text-xl">{t("hero.ctaButton")}</Button>
+            </TransitionLink>
+          </motion.div>
         </motion.div>
-      </div>
 
-      {/* RIGHT SIDE CONTENT */}
-      <motion.div
-        initial={slideRight.initial}
-        animate={exit ? slideRight.exit : slideRight.enter}
-        transition={slideRight.enter.transition}
-        onAnimationComplete={onAnimationComplete}
-        className="absolute z-10 space-y-16 xl:space-y-20 right-8 md:right-16 xl:right-32 bottom-8 lg:bottom-24 xl:bottom-32"
-      >
-        <PortfolioPreview
-          action={t("portfolioPreview.verticalTag.action")}
-          subject={t("portfolioPreview.verticalTag.subject")}
-        />
-        <InterfacesBlock
-          className="hidden lg:block"
-          header={t("portfolioPreview.header")}
-          description={t("portfolioPreview.description")}
-          footer={t("portfolioPreview.footer")}
-        />
+        {/* RIGHT SIDE CONTENT */}
+        <motion.div
+          initial={slideRight.initial}
+          animate={exit ? slideRight.exit : slideRight.enter}
+          transition={slideRight.enter.transition}
+          onAnimationComplete={onAnimationComplete}
+          className="absolute z-10 space-y-16 xl:space-y-20 right-0 top-1/2 -translate-y-1/2"
+        >
+          <PortfolioPreview
+            action={t("portfolioPreview.verticalTag.action")}
+            subject={t("portfolioPreview.verticalTag.subject")}
+          />
+          <InterfacesBlock
+            className="hidden lg:block"
+            header={t("portfolioPreview.header")}
+            description={t("portfolioPreview.description")}
+            footer={t("portfolioPreview.footer")}
+          />
+        </motion.div>
       </motion.div>
 
       {/* SOCIAL LINKS */}
@@ -144,13 +195,13 @@ function PortfolioPreview({ action, subject }) {
 
 function InterfacesBlock({ className, header, description, footer }) {
   return (
-    <div className={`flex items-start max-w-md space-x-4 ${className}`}>
-      <div className="flex justify-start items-center">
-        <span className="pr-2 text-xl">›</span>
+    <div className={`flex items-start max-w-md space-y-4 ${className}`}>
+      <div className="flex items-center gap-4">
+        <div className="w-8 h-px bg-primary-pink" />
         <h3 className="font-normal leading-snug font-michroma">{header}</h3>
       </div>
 
-      <p className="mt-3 text-sm leading-relaxed font-michroma whitespace-pre-line">
+      <p className="text-sm font-michroma leading-relaxed text-n-1/60 font-light">
         {description}
         <br />
         {footer}

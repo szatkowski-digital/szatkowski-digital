@@ -1,3 +1,5 @@
+import { delay } from "framer-motion";
+
 export const slideLeft = {
   initial: {
     scale: 0.95,
@@ -19,6 +21,33 @@ export const slideLeft = {
     scale: 0.95,
     opacity: 0,
     x: -40,
+    transition: {
+      duration: 0.3,
+      ease: [0.4, 0, 1, 1],
+    },
+  },
+};
+
+export const rotate90Left = {
+  initial: {
+    opacity: 0,
+    rotateY: 90,
+    transformOrigin: "left center",
+  },
+  enter: {
+    opacity: 1,
+    rotateY: 0,
+    transformOrigin: "left center",
+    transition: {
+      duration: 1.4,
+      ease: [0.22, 1, 0.36, 1],
+      delay: 0.6,
+    },
+  },
+  exit: {
+    opacity: 0,
+    rotateY: 90,
+    transformOrigin: "left center",
     transition: {
       duration: 0.3,
       ease: [0.4, 0, 1, 1],

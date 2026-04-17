@@ -34,16 +34,16 @@ export const rotate90Left = {
     rotateY: 90,
     transformOrigin: "left center",
   },
-  enter: {
+  enter: (delay = 0) => ({
     opacity: 1,
     rotateY: 0,
     transformOrigin: "left center",
     transition: {
       duration: 1.4,
       ease: [0.22, 1, 0.36, 1],
-      delay: 0.6,
+      delay: delay,
     },
-  },
+  }),
   exit: {
     opacity: 0,
     rotateY: 90,
@@ -62,15 +62,16 @@ export const slideRight = {
     x: 60,
   },
 
-  enter: {
+  enter: (delay = 0) => ({
     scale: 1,
     opacity: 1,
     x: 0,
     transition: {
       duration: 0.6,
       ease: [0.3, 0, 0.6, 1],
+      delay: delay,
     },
-  },
+  }),
 
   exit: {
     scale: 0.95,

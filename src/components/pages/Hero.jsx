@@ -32,21 +32,6 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-    rotateY: 90,
-  },
-  visible: {
-    opacity: 1,
-    rotateY: 0,
-    transition: {
-      duration: 1.4,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
 /**
  * ------------------------------------------------------------------
  * HERO SECTION
@@ -66,71 +51,93 @@ export default function Hero() {
   const { exit, onAnimationComplete } = usePageExit();
 
   return (
-    <section className="relative flex items-start lg:items-center justify-center h-dvh min-h-120 w-full overflow-hidden">
+    <section className="relative flex items-center justify-center h-dvh min-h-120 w-full overflow-hidden">
       {/* MAIN CONTAINER */}
       <motion.div
         // variants={itemVariants}
         // initial="hidden"
         // animate="visible"
-        className="container max-w-7xl flex flex-col items-start justify-center px-6 mx-auto max-lg:mt-48"
+        className="container max-w-7xl flex max-md:flex-col items-start justify-between px-6 max-md:space-y-12"
       >
         {/* HERO CTA */}
         <motion.div
           initial={slideLeft.initial}
           animate={exit ? slideLeft.exit : slideLeft.enter}
-          transition={slideLeft.enter.transition}
           onAnimationComplete={onAnimationComplete}
-          className="max-w-xl text-n-1 perspective-[2000px]"
+          className="max-w-xl text-n-1 perspective-[2000px] space-y-6"
         >
           <motion.h1
+            custom={0.2}
             initial={rotate90Left.initial}
             animate={rotate90Left.enter}
-            className="mb-4 text-[16vw] font-black md:text-[6vw] uppercase tracking-tighter leading-[0.8] transform-3d"
+            className="text-[10vh] font-black md:text-[6vw] uppercase tracking-tighter leading-[0.8] transform-3d"
           >
             {t("hero.greeting")}
           </motion.h1>
 
           <motion.p
+            custom={0.4}
             initial={rotate90Left.initial}
             animate={rotate90Left.enter}
-            className="mb-6 text-lg md:text-xl font-michroma"
+            className="text-lg md:text-xl font-michroma transform-3d"
           >
             {t("hero.subtitle")}
           </motion.p>
 
           <motion.div
+            custom={0.6}
             initial={rotate90Left.initial}
             animate={rotate90Left.enter}
+            className="transform-3d"
           >
             <TransitionLink href="/about">
               <Button className="text-xl">{t("hero.ctaButton")}</Button>
             </TransitionLink>
           </motion.div>
+
+          {isMobile && (
+            <motion.div
+              custom={0.8}
+              initial={rotate90Left.initial}
+              animate={rotate90Left.enter}
+              className="transform-3d"
+            >
+              <TransitionLink href="/portfolio">
+                <Button className="text-xl">
+                  {t("hero.ctaPortfolioButton")}
+                </Button>
+              </TransitionLink>
+            </motion.div>
+          )}
         </motion.div>
 
         {/* RIGHT SIDE CONTENT */}
-        <motion.div
-          initial={slideRight.initial}
-          animate={exit ? slideRight.exit : slideRight.enter}
-          transition={slideRight.enter.transition}
-          onAnimationComplete={onAnimationComplete}
-          className="absolute z-10 space-y-16 xl:space-y-20 right-0 top-1/2 -translate-y-1/2"
-        >
-          <PortfolioPreview
-            action={t("portfolioPreview.verticalTag.action")}
-            subject={t("portfolioPreview.verticalTag.subject")}
-          />
-          <InterfacesBlock
-            className="hidden lg:block"
-            header={t("portfolioPreview.header")}
-            description={t("portfolioPreview.description")}
-            footer={t("portfolioPreview.footer")}
-          />
-        </motion.div>
+        {!isMobile && (
+          <motion.div
+            custom={0.8}
+            initial={slideRight.initial}
+            animate={exit ? slideRight.exit : slideRight.enter}
+            onAnimationComplete={onAnimationComplete}
+            className="max-w-xl transform-3d md:space-y-16 xl:space-y-20"
+          >
+            <PortfolioPreview
+              action={t("portfolioPreview.verticalTag.action")}
+              subject={t("portfolioPreview.verticalTag.subject")}
+            />
+            <InterfacesBlock
+              className="hidden lg:block"
+              header={t("portfolioPreview.header")}
+              description={t("portfolioPreview.description")}
+              footer={t("portfolioPreview.footer")}
+            />
+          </motion.div>
+        )}
       </motion.div>
 
       {/* SOCIAL LINKS */}
-      <SocialsHero exit={exit} onAnimationComplete={onAnimationComplete} />
+      {!isMobile && (
+        <SocialsHero exit={exit} onAnimationComplete={onAnimationComplete} />
+      )}
 
       {/* BACKGROUND */}
       <HomeBg exit={exit} onAnimationComplete={onAnimationComplete} />
@@ -147,7 +154,7 @@ export default function Hero() {
 
 function PortfolioPreview({ action, subject }) {
   return (
-    <div className="relative flex w-full pb-10 xl:pb-12">
+    <div className="relative flex">
       {/* LEFT LABEL */}
       <div className="relative flex items-center justify-center w-[30%] lg:w-[25%]">
         <div className="absolute -rotate-90 -left-6 xl:-left-14 bottom-4 xl:bottom-8">
@@ -178,7 +185,7 @@ function PortfolioPreview({ action, subject }) {
             width={500}
             height={300}
             priority
-            className="relative z-10 h-auto pl-4 transition-transform duration-300 ease-out w-[260px] xl:w-[340px] 2xl:w-[380px] hover:scale-110 cursor-pointer"
+            className="relative z-10 h-auto pl-4 transition-transform duration-300 ease-out w-[260px] lg:w-[300px] xl:w-[320px] 2xl:w-[380px] hover:scale-110 cursor-pointer"
           />
         </TransitionLink>
       </div>
@@ -201,7 +208,7 @@ function InterfacesBlock({ className, header, description, footer }) {
         <h3 className="font-normal leading-snug font-michroma">{header}</h3>
       </div>
 
-      <p className="text-sm font-michroma leading-relaxed text-n-1/60 font-light">
+      <p className="text-sm font-michroma leading-relaxed text-n-1/70 font-light">
         {description}
         <br />
         {footer}

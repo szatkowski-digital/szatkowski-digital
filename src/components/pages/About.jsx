@@ -143,7 +143,7 @@ function AboutSection() {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="text-2xl md:text-4xl font-light leading-tight"
+          className="text-2xl md:text-4xl font-light leading-tight font-inter"
         >
           I am a frontend specialist dedicated to the craft of building digital
           products that are as fast as they are beautiful.

@@ -64,11 +64,6 @@
     will-change: transform, opacity;
   }
 
-  /* .page-transition {
-    opacity: 0;
-    transform: translateY(-48px);
-  } */
-
   img,
   video {
     user-select: none;
@@ -85,22 +80,12 @@
     padding-inline: var(--container-padding);
   }
 
-  /* .container {
-    @apply relative max-w-310 xl:max-w-350 mx-auto px-4 sm:px-6 md:px-10;
-  } */
-  /* 
-  .container-lg {
-    @apply relative max-w-350 xl:max-w-390 mx-auto px-4 sm:px-6 md:px-10;
-  } */
   .container-lg {
     @apply relative mx-auto;
     max-width: min(1440px, 94vw);
     padding-inline: var(--container-padding);
   }
 
-  /* .container-xl {
-    @apply relative max-w-350 xl:max-w-390 mx-auto px-4 sm:px-6 md:px-5;
-  } */
   .container-xl {
     @apply relative mx-auto;
     max-width: min(1600px, 96vw);
@@ -143,51 +128,6 @@
     font-family: var(--font-michroma);
     font-size: clamp(0.95rem, 1.2vw, 1.25rem);
   }
-
-  /* .h1 {
-    @apply text-[2.25rem] md:text-[3rem] lg:text-[4rem] leading-tight tracking-tight text-n-1;
-    font-family: var(--font-michroma);
-  } */
-
-  /* .h2 {
-    @apply text-[1.5rem] md:text-[1.75rem] lg:text-[2.25rem] xl:text-[3rem] leading-snug text-n-1;
-    font-family: var(--font-michroma);
-  }
-
-  .h3 {
-    @apply text-[1.25rem] md:text-[1.5rem] lg:text-[1.75rem] xl:text-[2rem] leading-snug text-n-1;
-    font-family: var(--font-michroma);
-  }
-
-  .h4 {
-    @apply text-[1.25rem] md:text-[1.5rem] lg:text-[1.75rem] leading-snug text-n-1;
-    font-family: var(--font-michroma);
-  }
-
-  .h5 {
-    @apply text-[1.125rem] md:text-[1.25rem] lg:text-[1.5rem] leading-snug text-n-1;
-    font-family: var(--font-michroma);
-  }
-
-  .h6 {
-    @apply text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] leading-snug tracking-wide text-n-1;
-    font-family: var(--font-michroma);
-  } */
-
-  /* .body-lg {
-    @apply text-[1rem] md:text-[1.125rem] lg:text-[1.25rem] leading-relaxed text-n-1;
-    font-family: var(--font-inter);
-  }
-
-  .body-sm {
-    @apply font-medium text-[0.875rem] md:text-[1rem] lg:text-[1.125rem] leading-relaxed text-n-4;
-    font-family: var(--font-inter);
-  }
-
-  .menu-text {
-    @apply font-medium text-[0.875rem] md:text-[1rem] tracking-wide text-n-1;
-    font-family: var(--font-inter);
-  } */
 
   /* BODY TEXT */
   .body-lg {

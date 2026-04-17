@@ -17,7 +17,8 @@
     "hero": {
       "greeting": "Hi! I'm Paweł",
       "subtitle": "Full-stack developer",
-      "ctaButton": "See more about me"
+      "ctaButton": "See more about me",
+      "ctaPortfolioButton": "See my portfolio"
     },
     "portfolioPreview": {
       "verticalTag": {

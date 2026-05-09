@@ -15,7 +15,7 @@
 
   "home": {
     "hero": {
-      "greeting": "Jestem Paweł",
+      "greeting": ["Jestem", "Paweł"],
       "subtitle": "Full-stack developer",
       "ctaButton": "Poznajmy się lepiej",
       "ctaPortfolioButton": "Zobacz moje portfolio"
@@ -33,49 +33,148 @@
 
   "about": {
     "hero": {
-      "header": "Paweł Szatkowski",
-      "title": "Full-Stack Developer",
-      "intro": "Driven to create refined, inclusive digital experiences that are both visually precise and user-centered.",
-      "paragraphs": [
-        "I have gained valuable experience working on freelance projects, where each assignment allows me to blend creativity with technology to deliver intuitive and user-friendly solutions.",
-        "Currently, I also work as a data analyst, which lets me combine analytical thinking with my development skills. This background enables me to create projects that are not only visually appealing but also functional and user-centered."
-      ],
-      "button": "Skontaktuj się z nami"
+      "title_line1": "Tworzę",
+      "title_gradient": "Interfejsy",
+      "title_line2": "gotowe na jutro.",
+      "description": "Wykorzystuję nowoczesne frameworki full-stack i zasady projektowania tech-first, aby budować produkty cyfrowe na lata."
     },
-    "modernWeb": {
-      "title": "Building modern web experiences powered by AI.",
-      "points": [
-        "I specialize in crafting clean, scalable applications with React, JavaScript, and Tailwind CSS, supported by Python on the backend.",
-        "My workflow is enhanced by AI tools that speed up coding, testing, and problem-solving, letting me focus on what matters most: building great user experiences.",
-        "Always learning, always experimenting, always creating."
+    "whoAmI": {
+      "header": {
+        "number": "01",
+        "title": "O mnie"
+      },
+      "main_statement": "Jestem inżynierem oprogramowania full-stack, skoncentrowanym na budowaniu wydajnych produktów cyfrowych, w których solidna logika spotyka się z płynnym doświadczeniem użytkownika.",
+      "paragraph_1": "Moja praca to punkt styku złożonej architektury systemów i intuicyjnego designu. Nie tylko piszę kod – projektuję kompleksowe rozwiązania, które stawiają na skalowalność, bezpieczeństwo i łatwość utrzymania.",
+      "paragraph_2": "Mając solidne podstawy w ekosystemie JavaScript – od zoptymalizowanych interfejsów React po odporne backendy w Node.js/Next.js – skupiam się na tworzeniu płynnych aplikacji, które działają niezawodnie w dużej skali. Każda linia logiki serwerowej i każda milisekunda opóźnienia ma znaczenie."
+    },
+    "skills": {
+      "header": {
+        "number": "02",
+        "title": "Możliwości"
+      },
+      "items": [
+        {
+          "title": "Architektura Full-Stack",
+          "desc": "Projektowanie skalowalnych, kompleksowych systemów przy użyciu Next.js i Node.js, które rosną wraz z biznesem.",
+          "icon": "Layers"
+        },
+        {
+          "title": "Inżynieria API",
+          "desc": "Budowanie solidnych, bezpiecznych i dobrze udokumentowanych API RESTful oraz GraphQL dla płynnego przepływu danych.",
+          "icon": "Cpu"
+        },
+        {
+          "title": "Frontend Excellence",
+          "desc": "Przekuwanie złożonych projektów w perfekcyjne, wydajne interfejsy przy użyciu Reacta i Framer Motion.",
+          "icon": "Layout"
+        },
+        {
+          "title": "Projektowanie Baz Danych",
+          "desc": "Modelowanie wydajnych struktur danych i optymalizacja zapytań w PostgreSQL oraz MongoDB dla maksymalnej niezawodności.",
+          "icon": "Database"
+        },
+        {
+          "title": "Optymalizacja Wydajności",
+          "desc": "Analiza Core Web Vitals, renderowania po stronie serwera i strategii cache'owania dla błyskawicznego działania.",
+          "icon": "Zap"
+        },
+        {
+          "title": "Inżynieria Produktu",
+          "desc": "Więcej niż kod: zrozumienie logiki biznesowej i potrzeb użytkowników, by dostarczać kompletne produkty.",
+          "icon": "Code2"
+        }
       ]
     },
-    "skills": [
-      {
-        "id": "frontend",
-        "title": "Frontend",
-        "subtitle": "React.js • HTML • CSS\nTailwind"
-      },
-      {
-        "id": "backend",
-        "title": "Backend",
-        "subtitle": "Python • Node.js\nAPIs • Automation"
-      },
-      {
-        "id": "ai",
-        "title": "AI-Driven",
-        "subtitle": "Code assist • Prototyping\nOptimization"
-      },
-      {
-        "id": "security",
-        "title": "Security",
-        "subtitle": "Secure code • Privacy-first\nReliable apps"
+    "techStack": {
+      "header": {
+        "number": "03",
+        "title": "Technologie"
       }
-    ],
-    "CTA": {
-      "tagline": "Code smarter. Build faster. Stay creative.",
-      "title": "Ideas are cool. Execution is better. Here’s mine.",
-      "button": "Portfolio"
+    },
+    "philosophy": {
+      "items": [
+        {
+          "label": "Doświadczenie",
+          "q": "Interfejs to emocje.",
+          "s": "Tworzę systemy, które nie tylko działają, ale zachwycają płynnością. Każdy ruch kursora i przejście mają swój cel i rytm."
+        },
+        {
+          "label": "Wydajność",
+          "q": "Szybkość to fundament.",
+          "s": "Zero zbędnego oczekiwania. Optymalizuję kod tak, aby interakcja była natychmiastowa, a backend niewidoczny dla użytkownika."
+        },
+        {
+          "label": "Prostota",
+          "q": "Mniej znaczy więcej.",
+          "s": "Usuwam szum, zostawiam czystą wartość. Projektuję logiczne, intuicyjne ścieżki, w których użytkownik nigdy się nie gubi."
+        },
+        {
+          "label": "Ruch",
+          "q": "Ożywiona technologia.",
+          "s": "Dyskretne animacje i mikrointerakcje to moja specjalność. Nadaję aplikacjom ludzki charakter poprzez dopracowany motion design."
+        }
+      ],
+      "explore": "Eksploruj",
+      "discover": "Przejdź dalej"
+    },
+    "cta": {
+      "title_1": "Zbudujmy razem coś",
+      "title_2": "wyjątkowego.",
+      "button": "Rozpocznijmy projekt",
+      "footer": {
+        "left": "Dedykowana Architektura",
+        "middle": "Skalowalne Systemy",
+        "right": "Wysoka Wydajność"
+      }
+    },
+    "personal": {
+      "subtitle": "Wysokie osiągi",
+      "quote": "Dla mnie kod jest jak wyczynowa maszyna. Backend to surowa moc pod maską, a frontend to aerodynamika doświadczenia. Usuwam zbędny opór, by każda interakcja była natychmiastowa i płynna."
+    }
+  },
+
+  "contact": {
+    "badge": "Kontakt",
+    "title_line1": "Napisz",
+    "title_line2": "Do mnie!",
+    "description": "Niezależnie od tego, czy masz gotowy plan, czy tylko ogólny zarys wizji, pomogę Ci zbudować coś wyjątkowego.",
+    "labels": {
+      "email": "Email",
+      "phone": "Telefon",
+      "location": "Lokalizacja",
+      "status": "Dostępny"
+    },
+    "city": "Wrocław, Polska",
+    "form": {
+      "name": {
+        "question": "Nazywam się...",
+        "placeholder": "Imię lub nazwa firmy"
+      },
+      "email": {
+        "question": "Mój e-mail to...",
+        "placeholder": "email@przyklad.pl"
+      },
+      "service": {
+        "question": "Interesuje mnie...",
+        "options": {
+          "product": "Budowa produktu",
+          "engineering": "Inżynieria oprogramowania",
+          "consulting": "Konsultacje techniczne"
+        }
+      },
+      "message": {
+        "question": "Moja wizja...",
+        "placeholder": "Opisz krótko projekt lub rolę..."
+      },
+      "step": "Krok",
+      "back": "Wstecz",
+      "continue": "Dalej",
+      "dispatch": "Wysyłanie...",
+      "send": "Wyślij wiadomość",
+      "success_title_1": "Wiadomość",
+      "success_title_2": "Otrzymana.",
+      "success_desc": "Dziękujemy, {name}. Przejrzę Twoją wizję dla {service} i odpowiem w ciągu 24 godzin.",
+      "reset": "Wróć do formularza"
     }
   },
 

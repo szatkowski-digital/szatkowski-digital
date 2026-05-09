@@ -46,7 +46,8 @@
 @layer base {
   :root {
     color-scheme: dark;
-    --container-padding: clamp(1rem, 3vw, 2.5rem);
+    --container-padding: clamp(1rem, 0.5rem + 5.5vw, 8rem);
+    --container-max-width: 1440px;
   }
 
   * {
@@ -73,14 +74,39 @@
 
 @layer components {
 
+  /* SCREENS */
+  .app-screen {
+    @apply relative flex w-full items-center justify-center overflow-x-hidden;
+    min-height: 100dvh;
+    height: auto;
+    min-height: clamp(500px, 100dvh, 100dvh);
+
+    @supports (-webkit-touch-callout: none) {
+      min-height: -webkit-fill-available;
+    }
+  }
+
   /* CONTAINERS */
-  .container {
-    @apply relative mx-auto;
-    max-width: min(1280px, 92vw);
+  .shell {
+    @apply relative mx-auto w-full;
+    max-width: var(--container-max-width);
     padding-inline: var(--container-padding);
   }
 
-  .container-lg {
+  .shell-bleed {
+    @apply relative;
+    width: 100vw;
+    margin-inline-start: calc(50% - 50vw);
+    padding-inline: var(--container-padding);
+  }
+
+  .shell-prose {
+    @apply relative mx-auto w-full;
+    max-width: 768px;
+    padding-inline: var(--container-padding);
+  }
+
+  /* .container-lg {
     @apply relative mx-auto;
     max-width: min(1440px, 94vw);
     padding-inline: var(--container-padding);
@@ -90,7 +116,7 @@
     @apply relative mx-auto;
     max-width: min(1600px, 96vw);
     padding-inline: var(--container-padding);
-  }
+  } */
 
   /* TYPOGRAPHY */
   .h1 {

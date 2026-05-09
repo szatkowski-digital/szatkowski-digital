@@ -109,3 +109,12 @@ export const slideUp = {
     },
   },
 };
+
+export const slideUpFast = {
+  initial: { opacity: 0, y: 100 },
+  enter: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+  },
+};

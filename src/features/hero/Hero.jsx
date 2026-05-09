@@ -21,28 +21,10 @@ import {
   slideUp,
 } from "@/animations/motionVariants";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-    },
-  },
-};
-
 /**
  * ------------------------------------------------------------------
  * HERO SECTION
  * ------------------------------------------------------------------
- * Main landing section of the homepage.
- * Contains:
- * - introduction CTA
- * - portfolio preview
- * - supporting interface description
- * - social links
- * - animated background
  */
 
 export default function Hero() {
@@ -51,14 +33,9 @@ export default function Hero() {
   const { exit, onAnimationComplete } = usePageExit();
 
   return (
-    <section className="relative flex items-center justify-center h-dvh min-h-120 w-full overflow-hidden">
+    <section className="app-screen">
       {/* MAIN CONTAINER */}
-      <motion.div
-        // variants={itemVariants}
-        // initial="hidden"
-        // animate="visible"
-        className="container max-w-7xl flex max-md:flex-col items-start justify-between px-6 max-md:space-y-12"
-      >
+      <div className="shell flex max-md:flex-col items-start justify-between max-md:space-y-12">
         {/* HERO CTA */}
         <motion.div
           initial={slideLeft.initial}
@@ -70,28 +47,34 @@ export default function Hero() {
             custom={0.2}
             initial={rotate90Left.initial}
             animate={rotate90Left.enter}
-            className="text-[10vh] font-black md:text-[6vw] uppercase tracking-tighter leading-[0.8] transform-3d"
+            className="text-[10vh] font-extrabold md:text-[6vw] uppercase tracking-tighter leading-[0.8] transform-3d"
           >
-            {t("hero.greeting")}
+            {t.raw("hero.greeting").map((line, index) => (
+              <motion.span key={`greeting-line-${index}`} className="block">
+                {line}
+              </motion.span>
+            ))}
           </motion.h1>
 
-          <motion.p
+          <motion.div
             custom={0.4}
             initial={rotate90Left.initial}
             animate={rotate90Left.enter}
-            className="text-lg md:text-xl font-michroma transform-3d"
+            className="font-michroma text-xs md:text-sm tracking-[0.3em] text-n-1 uppercase mb-4 block transform-3d"
           >
-            {t("hero.subtitle")}
-          </motion.p>
+            <span>{t("hero.subtitle")}</span>
+          </motion.div>
 
           <motion.div
             custom={0.6}
             initial={rotate90Left.initial}
             animate={rotate90Left.enter}
-            className="transform-3d"
+            className="pt-3 transform-3d"
           >
             <TransitionLink href="/about">
-              <Button className="text-xl">{t("hero.ctaButton")}</Button>
+              <Button className="text-xl lg:text-lg 2xl:text-xl">
+                {t("hero.ctaButton")}
+              </Button>
             </TransitionLink>
           </motion.div>
 
@@ -103,7 +86,10 @@ export default function Hero() {
               className="transform-3d"
             >
               <TransitionLink href="/portfolio">
-                <Button className="text-xl">
+                <Button
+                  color="primary-aqua"
+                  className="text-xl lg:text-lg 2xl:text-xl"
+                >
                   {t("hero.ctaPortfolioButton")}
                 </Button>
               </TransitionLink>
@@ -118,21 +104,21 @@ export default function Hero() {
             initial={slideRight.initial}
             animate={exit ? slideRight.exit : slideRight.enter}
             onAnimationComplete={onAnimationComplete}
-            className="max-w-xl transform-3d md:space-y-16 xl:space-y-20"
+            className="transform-3d md:space-y-8 xl:space-y-12 w-[clamp(20rem,30vw,35rem)]"
           >
             <PortfolioPreview
               action={t("portfolioPreview.verticalTag.action")}
               subject={t("portfolioPreview.verticalTag.subject")}
             />
             <InterfacesBlock
-              className="hidden lg:block"
+              className=""
               header={t("portfolioPreview.header")}
               description={t("portfolioPreview.description")}
               footer={t("portfolioPreview.footer")}
             />
           </motion.div>
         )}
-      </motion.div>
+      </div>
 
       {/* SOCIAL LINKS */}
       {!isMobile && (
@@ -149,19 +135,20 @@ export default function Hero() {
  * ------------------------------------------------------------------
  * PORTFOLIO PREVIEW
  * ------------------------------------------------------------------
- * Small preview directing the user to the portfolio section.
  */
 
 function PortfolioPreview({ action, subject }) {
   return (
-    <div className="relative flex">
+    <div className="relative flex space-x-4 xl:space-x-6 w-full">
       {/* LEFT LABEL */}
-      <div className="relative flex items-center justify-center w-[30%] lg:w-[25%]">
-        <div className="absolute -rotate-90 -left-6 xl:-left-14 bottom-4 xl:bottom-8">
+      <div className="relative flex items-end justify-start">
+        <div
+          className="inline-block"
+          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+        >
           <h4 className="text-xl font-bold tracking-wider xl:text-3xl font-michroma whitespace-nowrap">
             {action}
           </h4>
-
           <p className="text-lg xl:text-2xl font-michroma whitespace-nowrap">
             {subject}
           </p>
@@ -169,25 +156,28 @@ function PortfolioPreview({ action, subject }) {
       </div>
 
       {/* RIGHT IMAGE */}
-      <div className="relative flex items-center justify-center w-[70%] lg:w-[75%]">
-        <Image
-          src="/portfolio_stripes.svg"
-          alt="Decorative portfolio background stripes"
-          width={100}
-          height={100}
-          className="absolute -bottom-10 xl:-bottom-12 -left-2 xl:-left-4 w-[5rem] xl:w-[8rem] -z-10"
-        />
-
-        <TransitionLink href="/portfolio">
+      <div className="relative group w-full">
+        <TransitionLink
+          href="/portfolio"
+          className="pl-[clamp(1rem,3vw,4rem)] pb-[clamp(1rem,3vw,4rem)] block relative z-10 w-full overflow-visible"
+        >
           <Image
             src="/images/Anyfab.webp"
             alt="Preview of portfolio project"
             width={500}
             height={300}
             priority
-            className="relative z-10 h-auto pl-4 transition-transform duration-300 ease-out w-[260px] lg:w-[300px] xl:w-[320px] 2xl:w-[380px] hover:scale-110 cursor-pointer"
+            className="w-[clamp(260px,25vw,420px)] h-auto transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-110 group-hover:-translate-y-2 cursor-pointer drop-shadow-2xl"
           />
         </TransitionLink>
+
+        <Image
+          src="/portfolio_stripes.svg"
+          alt="Decorative portfolio background stripes"
+          width={100}
+          height={100}
+          className="absolute bottom-0 left-0 w-[clamp(5rem,8vw,9rem)] h-auto -z-10"
+        />
       </div>
     </div>
   );
@@ -197,12 +187,11 @@ function PortfolioPreview({ action, subject }) {
  * ------------------------------------------------------------------
  * INTERFACES BLOCK
  * ------------------------------------------------------------------
- * Supporting marketing message about the developer's work.
  */
 
 function InterfacesBlock({ className, header, description, footer }) {
   return (
-    <div className={`flex items-start max-w-md space-y-4 ${className}`}>
+    <div className={`flex flex-col items-start w-full space-y-4 ${className}`}>
       <div className="flex items-center gap-4">
         <div className="w-8 h-px bg-primary-pink" />
         <h3 className="font-normal leading-snug font-michroma">{header}</h3>
@@ -221,41 +210,34 @@ function InterfacesBlock({ className, header, description, footer }) {
  * ------------------------------------------------------------------
  * SOCIAL LINKS
  * ------------------------------------------------------------------
- * Vertical social links displayed on the left side of the hero.
  */
+
+const SOCIAL_LINKS = [
+  { icon: Linkedin, href: "https://linkedin.com/", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/", label: "GitHub" },
+  { icon: Instagram, href: "https://instagram.com/", label: "Instagram" },
+];
 
 function SocialsHero({ exit, onAnimationComplete }) {
   return (
     <motion.aside
-      initial={slideUp.initial}
-      animate={exit ? slideUp.exit : slideUp.enter}
-      transition={slideUp.enter.transition}
+      variants={slideUp}
+      initial="initial"
+      animate={exit ? "exit" : "enter"}
       onAnimationComplete={onAnimationComplete}
-      className="absolute flex flex-col items-center gap-6 bottom-12 left-6 md:left-12 xl:left-24 text-n-1"
+      className="absolute flex flex-col items-center gap-6 bottom-12 left-(--container-padding) text-n-1"
     >
-      <Link
-        href="https://linkedin.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Linkedin className="w-6 h-6 transition-opacity cursor-pointer hover:opacity-70" />
-      </Link>
-
-      <Link
-        href="https://github.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Github className="w-6 h-6 transition-opacity cursor-pointer hover:opacity-70" />
-      </Link>
-
-      <Link
-        href="https://instagram.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Instagram className="w-6 h-6 transition-opacity cursor-pointer hover:opacity-70" />
-      </Link>
+      {SOCIAL_LINKS.map(({ icon: Icon, href, label }) => (
+        <Link
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noopener"
+          className="hover:opacity-70 transition-opacity"
+        >
+          <Icon className="w-6 h-6" />
+        </Link>
+      ))}
 
       <div className="w-px h-6 rounded bg-n-1" />
 

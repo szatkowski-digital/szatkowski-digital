@@ -1,5 +1,5 @@
 "use client";
-import Hero from "@/components/pages/Hero";
+import Hero from "@/features/hero/Hero";
 
 export default function HomeClient() {
   return (

@@ -88,17 +88,17 @@ export default function Header() {
         fixed top-0 lg:top-6 left-0 w-full z-100
         h-16 lg:h-20
         transition-all duration-300
-        ${scrolled ? "lg:px-32 xl:px-48 2xl:px-64 max-lg:bg-n-8" : "xl:px-10"}
+        px-(--container-padding)
+        ${scrolled ? "lg:px-32 xl:px-48 2xl:px-64 max-lg:bg-n-8" : ""}
       `}
     >
       {/* NAVBAR CONTAINER */}
       <div
         className={`
-          flex items-center justify-between h-full
-          px-8 lg:px-12
+          relative flex items-center justify-between h-full
           rounded-full
           transition-all duration-300
-          ${scrolled ? "lg:backdrop-blur-md lg:bg-n-8/30" : ""}
+          ${scrolled ? "lg:backdrop-blur-md lg:bg-n-8/30 lg:px-12" : ""}
         `}
       >
         {/* LOGO */}
@@ -213,7 +213,7 @@ function MobileNavButton({ open, toggleNav }) {
     <button
       aria-label="Toggle navigation"
       onClick={toggleNav}
-      className="absolute text-2xl text-white right-8 lg:hidden z-60"
+      className="absolute text-2xl text-white right-0 lg:hidden z-60"
     >
       <MenuSvg openNavigation={open} />
     </button>

@@ -34,6 +34,7 @@ export default function TechStackSection() {
         >
           <div>
             <strong className="block mb-2">01 Design & Strategy</strong>
+
             <p className="body-sm">
               UI/UX Design, Interactive Prototyping, Brand Identity
             </p>
@@ -41,6 +42,7 @@ export default function TechStackSection() {
 
           <div>
             <strong className="block mb-2">02 Technical Stack</strong>
+
             <p className="body-sm">
               React Native, Expo SDK, JavaScript (ES6), NativeWind
             </p>
@@ -48,6 +50,7 @@ export default function TechStackSection() {
 
           <div>
             <strong className="block mb-2">03 Backend & Infrastructure</strong>
+
             <p className="body-sm">
               Firebase / Google Cloud, Auth, Database, Deployment
             </p>

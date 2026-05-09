@@ -15,7 +15,7 @@
 
   "home": {
     "hero": {
-      "greeting": "Hi! I'm Paweł",
+      "greeting": ["Hi! I'm", "Paweł"],
       "subtitle": "Full-stack developer",
       "ctaButton": "See more about me",
       "ctaPortfolioButton": "See my portfolio"
@@ -33,49 +33,148 @@
 
   "about": {
     "hero": {
-      "header": "Paweł Szatkowski",
-      "title": "Full-Stack Developer",
-      "intro": "Driven to create refined, inclusive digital experiences that are both visually precise and user-centered.",
-      "paragraphs": [
-        "I have gained valuable experience working on freelance projects, where each assignment allows me to blend creativity with technology to deliver intuitive and user-friendly solutions.",
-        "Currently, I also work as a data analyst, which lets me combine analytical thinking with my development skills. This background enables me to create projects that are not only visually appealing but also functional and user-centered."
-      ],
-      "button": "Skontaktuj się z nami"
+      "title_line1": "Building",
+      "title_gradient": "Interfaces",
+      "title_line2": "ready for tomorrow.",
+      "description": "Utilizing modern full-stack frameworks and tech-first design principles to build digital products that last."
     },
-    "modernWeb": {
-      "title": "Building modern web experiences powered by AI.",
-      "points": [
-        "I specialize in crafting clean, scalable applications with React, JavaScript, and Tailwind CSS, supported by Python on the backend.",
-        "My workflow is enhanced by AI tools that speed up coding, testing, and problem-solving, letting me focus on what matters most: building great user experiences.",
-        "Always learning, always experimenting, always creating."
+    "whoAmI": {
+      "header": {
+        "number": "01",
+        "title": "Who I Am"
+      },
+      "main_statement": "I am a full-stack software engineer dedicated to building high-performance digital products where robust logic meets seamless user experience.",
+      "paragraph_1": "My work exists at the intersection of complex system architecture and intuitive design. I don't just write code; I architect end-to-end solutions that prioritize scalability, security, and maintainability.",
+      "paragraph_2": "With deep roots in the JavaScript ecosystem—from optimized React interfaces to resilient Node.js/Next.js backends—I focus on creating fluid applications that feel natural and perform at scale. Every line of server logic and every millisecond of latency matters."
+    },
+    "skills": {
+      "header": {
+        "number": "02",
+        "title": "Capabilities"
+      },
+      "items": [
+        {
+          "title": "Full-Stack Architecture",
+          "desc": "Designing scalable, end-to-end systems using Next.js, Node.js, and modern databases that scale with your business.",
+          "icon": "Layers"
+        },
+        {
+          "title": "API Engineering",
+          "desc": "Building robust, secure, and well-documented RESTful and GraphQL APIs to power seamless data flow.",
+          "icon": "Cpu"
+        },
+        {
+          "title": "Frontend Excellence",
+          "desc": "Translating complex designs into pixel-perfect, high-performance interfaces with React and Framer Motion.",
+          "icon": "Layout"
+        },
+        {
+          "title": "Database Design",
+          "desc": "Architecting efficient data models and optimizing queries in PostgreSQL and MongoDB for maximum reliability.",
+          "icon": "Database"
+        },
+        {
+          "title": "Performance Ops",
+          "desc": "Deep-diving into Core Web Vitals, server-side rendering, and caching strategies for lightning-fast loads.",
+          "icon": "Zap"
+        },
+        {
+          "title": "Product Engineering",
+          "desc": "Beyond coding: understanding business logic and user needs to deliver complete, value-driven products.",
+          "icon": "Code2"
+        }
       ]
     },
-    "skills": [
-      {
-        "id": "frontend",
-        "title": "Frontend",
-        "subtitle": "React.js • HTML • CSS\nTailwind"
-      },
-      {
-        "id": "backend",
-        "title": "Backend",
-        "subtitle": "Python • Node.js\nAPIs • Automation"
-      },
-      {
-        "id": "ai",
-        "title": "AI-Driven",
-        "subtitle": "Code assist • Prototyping\nOptimization"
-      },
-      {
-        "id": "security",
-        "title": "Security",
-        "subtitle": "Secure code • Privacy-first\nReliable apps"
+    "techStack": {
+      "header": {
+        "number": "03",
+        "title": "The Stack"
       }
-    ],
-    "CTA": {
-      "tagline": "Code smarter. Build faster. Stay creative.",
-      "title": "Ideas are cool. Execution is better. Here’s mine.",
-      "button": "Portfolio"
+    },
+    "philosophy": {
+      "items": [
+        {
+          "label": "Experience",
+          "q": "Interface is emotion.",
+          "s": "I build systems that don't just work, but delight with their fluidity. Every cursor movement and transition has a purpose and rhythm."
+        },
+        {
+          "label": "Performance",
+          "q": "Speed is the foundation.",
+          "s": "Zero unnecessary waiting. I optimize code so that interactions are instant, keeping the backend invisible to the user."
+        },
+        {
+          "label": "Simplicity",
+          "q": "Less is more.",
+          "s": "I remove the noise and leave pure value. I design logical, intuitive paths where the user never gets lost."
+        },
+        {
+          "label": "Motion",
+          "q": "Technology brought to life.",
+          "s": "Subtle animations and micro-interactions are my specialty. I give applications a human touch through refined motion design."
+        }
+      ],
+      "explore": "Explore",
+      "discover": "Discover More"
+    },
+    "cta": {
+      "title_1": "Let’s build something",
+      "title_2": "exceptional.",
+      "button": "Get in touch",
+      "footer": {
+        "left": "Custom Architecture",
+        "middle": "Scalable Systems",
+        "right": "High Performance Design"
+      }
+    },
+    "personal": {
+      "subtitle": "High performance",
+      "quote": "I see code as a high-performance machine—beneath. Backend is the raw power under the hood; frontend is the aerodynamics of the experience. I eliminate drag to ensure every interaction is instant and fluid."
+    }
+  },
+
+  "contact": {
+    "badge": "Get in touch",
+    "title_line1": "Let's",
+    "title_line2": "Talk.",
+    "description": "Whether you have a fully-formed idea or just a spark of a vision, I'm here to help you build the exceptional.",
+    "labels": {
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "status": "Available Now"
+    },
+    "city": "Wroclaw, Poland",
+    "form": {
+      "name": {
+        "question": "I am...",
+        "placeholder": "Your name or company"
+      },
+      "email": {
+        "question": "Reach me at...",
+        "placeholder": "email@example.com"
+      },
+      "service": {
+        "question": "I'm looking for...",
+        "options": {
+          "product": "Full Product Build",
+          "engineering": "Software Engineering",
+          "consulting": "Technical Consulting"
+        }
+      },
+      "message": {
+        "question": "The vision is...",
+        "placeholder": "Tell me about your project or role..."
+      },
+      "step": "Step",
+      "back": "Back",
+      "continue": "Continue",
+      "dispatch": "Dispatching...",
+      "send": "Send Message",
+      "success_title_1": "Message",
+      "success_title_2": "Received.",
+      "success_desc": "Thank you, {name}. I'll review your vision for {service} and get back to you within 24 hours.",
+      "reset": "Send another message"
     }
   },
 

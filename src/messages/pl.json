@@ -165,17 +165,27 @@
       "message": {
         "question": "Moja wizja...",
         "placeholder": "Opisz krótko projekt lub rolę..."
-      },
-      "step": "Krok",
-      "back": "Wstecz",
-      "continue": "Dalej",
-      "dispatch": "Wysyłanie...",
-      "send": "Wyślij wiadomość",
-      "success_title_1": "Wiadomość",
-      "success_title_2": "Otrzymana.",
-      "success_desc": "Dziękujemy, {name}. Przejrzę Twoją wizję dla {service} i odpowiem w ciągu 24 godzin.",
-      "reset": "Wróć do formularza"
-    }
+      }
+    },
+    "success": {
+      "title_1": "Wiadomość",
+      "title_2": "Otrzymana.",
+      "description": "Dziękuję, {name}. Przejrzę Twoją wizję dla {service} i odpowiem w ciągu 24 godzin.",
+      "reset": "Wróć do formularza",
+      "errorTitle": "Coś poszło nie tak.",
+      "errorSubtitle": "Wystąpił problem podczas wysyłania Twojej wiadomości.",
+      "tryAgain": "Spróbuj ponownie",
+      "errors": {
+        "requiredFields": "Proszę wypełnić wszystkie wymagane pola.",
+        "sendFailed": "Wystąpił błąd serwera. Spróbuj ponownie później.",
+        "unknown": "Wystąpił nieznany błąd."
+      }
+    },
+    "step": "Krok",
+    "back": "Wstecz",
+    "continue": "Dalej",
+    "dispatch": "Wyślij...",
+    "send": "Wyślij wiadomość"
   },
 
   "portfolio": {

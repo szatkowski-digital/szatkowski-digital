@@ -3,20 +3,31 @@
 import { useState } from "react";
 import { ArrowSvg } from "../design/ArrowSvg";
 
-const Button = ({ className, href, onClick, children, color = "white" }) => {
+const Button = ({
+  className,
+  href,
+  onClick,
+  children,
+  color = "white",
+  disabled,
+}) => {
   const [active, setActive] = useState(false);
   const isAqua = color === "primary-aqua";
   const isPink = color === "primary-pink";
 
-  const classes = `button relative inline-flex items-center justify-center py-3 md:py-4 px-5 md:px-7 text-n-1 space-x-1  rounded-full transition-colors whitespace-nowrap shrink-0 ${className || ""}
-  ${isAqua ? "bg-primary-aqua hover:bg-primary-aqua/10" : ""}
-  ${isPink ? "bg-primary-pink hover:bg-primary-pink/10" : ""}
-  ${!isAqua && !isPink ? "border border-white hover:bg-n-1/10" : ""}
+  const classes = `button relative inline-flex items-center justify-center py-3 md:py-4 px-5 md:px-7 space-x-1 rounded-full transition-colors duration-300 whitespace-nowrap shrink-0 
+  ${className || ""}
+  ${isAqua ? "bg-n-1 hover:bg-primary-aqua text-n-8 hover:text-n-1" : ""}
+  ${isPink ? "bg-n-1 hover:bg-primary-pink text-n-8 hover:text-n-1" : ""}
+  ${!isAqua && !isPink ? "border border-white hover:bg-n-1/10 text-n-1" : ""}
+  ${disabled ? "border border-white/10 cursor-not-allowed text-n-1/10 hover:bg-transparent" : ""}
   `;
-  const spanClasses = "relative z-10 flex items-center uppercase";
+  const spanClasses =
+    "relative z-10 flex items-center font-mono tracking-widest uppercase";
 
   const renderButton = () => (
     <button
+      disabled={disabled}
       className={classes}
       onClick={onClick}
       onMouseEnter={() => setActive(true)}

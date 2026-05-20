@@ -63,6 +63,7 @@
 
   main {
     will-change: transform, opacity;
+    overflow-x: clip;
   }
 
   img,
@@ -97,7 +98,6 @@
     @apply relative;
     width: 100vw;
     margin-inline-start: calc(50% - 50vw);
-    padding-inline: var(--container-padding);
   }
 
   .shell-prose {
@@ -105,18 +105,6 @@
     max-width: 768px;
     padding-inline: var(--container-padding);
   }
-
-  /* .container-lg {
-    @apply relative mx-auto;
-    max-width: min(1440px, 94vw);
-    padding-inline: var(--container-padding);
-  }
-
-  .container-xl {
-    @apply relative mx-auto;
-    max-width: min(1600px, 96vw);
-    padding-inline: var(--container-padding);
-  } */
 
   /* TYPOGRAPHY */
   .h1 {

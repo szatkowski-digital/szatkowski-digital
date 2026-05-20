@@ -1,16 +1,23 @@
-export const ArrowSvg = ({ active }) => {
+export const ArrowSvg = ({ active, ...props }) => {
   return (
-    <svg className="overflow-visible" width="18" height="14" viewBox="0 0 14 8">
+    <svg
+      className={`overflow-visible transition-all duration-300 ${props.className || ""}`}
+      width="18"
+      height="14"
+      viewBox="0 0 14 8"
+      {...props}
+    >
       {/* Arrow Head */}
       <path
         d="M9 0 L14 4 L9 8"
-        strokeWidth="2"
+        strokeWidth="1.8"
         strokeLinecap="round"
-        className="transition-all"
         fill="none"
-        stroke="white"
+        stroke="currentColor"
+        // Używamy transition-transform dla płynności
+        className="transition-transform duration-300 ease-in-out"
         style={{
-          transform: `translateX(${active ? "4px" : "0px"})`,
+          transform: active ? "translateX(4px)" : "translateX(0px)",
         }}
       />
       {/* Sliding Line */}
@@ -19,51 +26,17 @@ export const ArrowSvg = ({ active }) => {
         y1="4"
         x2="14"
         y2="4"
-        className="transition-all"
-        strokeWidth="2"
+        strokeWidth="1.8"
         strokeLinecap="round"
-        stroke="white"
+        stroke="currentColor"
+        // Dodajemy will-change, żeby GPU przygotowało się na animację
+        className="transition-all duration-300 ease-in-out"
         style={{
-          transform: `${active ? "scaleX(1)" : "scaleX(0)"} translateX(${
-            active ? "4px" : "0px"
-          })`,
+          transform: active
+            ? "translateX(4px) scaleX(1)"
+            : "translateX(0px) scaleX(0)",
           transformOrigin: "right",
-        }}
-      />
-    </svg>
-  );
-};
-
-export const ArrowBackSvg = ({ active }) => {
-  return (
-    <svg className="overflow-visible" width="18" height="14" viewBox="0 0 14 8">
-      {/* Arrow Head */}
-      <path
-        d="M5 0 L0 4 L5 8"
-        strokeWidth="2"
-        strokeLinecap="round"
-        className="transition-all"
-        fill="none"
-        stroke="white"
-        style={{
-          transform: `translateX(${active ? "-4px" : "0px"})`, // Przesunięcie w lewo
-        }}
-      />
-      {/* Sliding Line */}
-      <line
-        x1="0"
-        y1="4"
-        x2="8"
-        y2="4"
-        className="transition-all"
-        strokeWidth="2"
-        strokeLinecap="round"
-        stroke="white"
-        style={{
-          transform: `${active ? "scaleX(1)" : "scaleX(0)"} translateX(${
-            active ? "-4px" : "0px"
-          })`, // Skalowanie i przesunięcie w lewo
-          transformOrigin: "left", // Punkt początkowy przesunięcia to lewa strona
+          willChange: "transform",
         }}
       />
     </svg>

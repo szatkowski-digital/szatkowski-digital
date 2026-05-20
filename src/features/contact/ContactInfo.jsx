@@ -52,7 +52,7 @@ const ContactLink = ({ label, href, content }) => {
 
 const LocationInfo = ({ labels, city, localTime }) => {
   return (
-    <div className="flex justify-between items-end pt-8 border-t border-n-1/5">
+    <div className="flex justify-between items-end pt-8 border-t border-n-1/10">
       <div className="space-y-2">
         <span className="font-michroma text-[10px] tracking-widest uppercase text-n-1/50 block">
           {labels.location}

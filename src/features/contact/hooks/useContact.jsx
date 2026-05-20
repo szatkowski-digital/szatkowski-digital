@@ -1,7 +1,6 @@
-import { getContactSteps } from "@/data/contact";
 import { useCallback, useEffect, useState } from "react";
 
-export const useContact = ({ t }) => {
+export const useContact = ({ steps }) => {
   const [step, setStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -10,7 +9,6 @@ export const useContact = ({ t }) => {
     service: "",
     message: "",
   });
-  const steps = getContactSteps(t);
 
   const handleNext = useCallback(() => {
     if (step < steps.length - 1) {
@@ -48,7 +46,6 @@ export const useContact = ({ t }) => {
   return {
     step,
     setStep,
-    steps,
     formData,
     setFormData,
     handleNext,

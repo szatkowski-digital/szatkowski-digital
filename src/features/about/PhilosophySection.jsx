@@ -1,27 +1,42 @@
 "use client";
 
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight } from "lucide-react";
 
 export const PhilosophySection = ({ t }) => {
   const containerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(-1);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 40,
-    damping: 20,
-    restDelta: 0.001,
-  });
+  useEffect(() => {
+    const update = (latest) => {
+      if (latest <= 0 || latest >= 1) {
+        setActiveIndex(-1);
+      } else if (latest < 0.25) {
+        setActiveIndex(0);
+      } else if (latest < 0.5) {
+        setActiveIndex(1);
+      } else if (latest < 0.75) {
+        setActiveIndex(2);
+      } else {
+        setActiveIndex(3);
+      }
+    };
+
+    update(scrollYProgress.get());
+    const unsubscribe = scrollYProgress.on("change", update);
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   return (
     <section
       ref={containerRef}
-      className="relative h-auto md:h-[400vh] w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]"
+      className="shell-bleed relative h-auto md:h-[400vh]"
     >
       <div className="relative md:sticky top-0 h-auto md:h-screen w-full flex flex-col md:flex-row overflow-hidden">
         <div className="hidden md:flex w-full h-full">
@@ -30,7 +45,7 @@ export const PhilosophySection = ({ t }) => {
               key={i}
               item={item}
               index={i}
-              scrollYProgress={smoothProgress}
+              activeIndex={activeIndex}
               discoverLabel={t.discoverLabel}
             />
           ))}
@@ -72,95 +87,54 @@ export const PhilosophySection = ({ t }) => {
   );
 };
 
-const PhilosophyPanel = ({ item, index, scrollYProgress, discoverLabel }) => {
-  const width = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.4, 0.7, 1],
-    index === 0
-      ? ["25%", "55%", "15%", "15%", "15%"]
-      : index === 1
-        ? ["25%", "15%", "55%", "15%", "15%"]
-        : index === 2
-          ? ["25%", "15%", "15%", "55%", "15%"]
-          : ["25%", "15%", "15%", "15%", "55%"]
-  );
+const PhilosophyPanel = ({ item, index, activeIndex, discoverLabel }) => {
+  const isActive = activeIndex === index;
+  const isStarted = activeIndex !== -1;
 
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.4, 0.7, 1],
-    index === 0
-      ? [1, 1, 0.3, 0.2, 0.2]
-      : index === 1
-        ? [0.8, 0.3, 1, 0.3, 0.2]
-        : index === 2
-          ? [0.6, 0.2, 0.3, 1, 0.3]
-          : [0.4, 0.2, 0.2, 0.3, 1]
-  );
-
-  const contentOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.4, 0.7, 1],
-    index === 0
-      ? [1, 1, 0, 0, 0]
-      : index === 1
-        ? [0, 0, 1, 0, 0]
-        : index === 2
-          ? [0, 0, 0, 1, 0]
-          : [0, 0, 0, 0, 1]
-  );
-
-  const contentY = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.4, 0.7, 1],
-    index === 0
-      ? [0, 0, 40, 40, 40]
-      : index === 1
-        ? [40, 40, 0, 40, 40]
-        : index === 2
-          ? [40, 40, 40, 0, 40]
-          : [40, 40, 40, 40, 0]
-  );
-
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.4, 0.7, 1],
-    index === 0
-      ? [1, 1, 0.85, 0.8, 0.8]
-      : index === 1
-        ? [0.9, 0.85, 1, 0.85, 0.8]
-        : index === 2
-          ? [0.85, 0.8, 0.85, 1, 0.85]
-          : [0.8, 0.8, 0.8, 0.85, 1]
-  );
+  // Determine width based on state
+  // If not started: 25%
+  // If started: active 55%, others 15%
+  const targetWidth = !isStarted ? "25%" : isActive ? "55%" : "15%";
+  const targetOpacity = !isStarted ? 0.6 : isActive ? 1 : 0.3;
+  const targetContentOpacity = isActive ? 1 : 0;
+  const targetScale = isActive ? 1 : 0.9;
+  const targetContentY = isActive ? 0 : 30;
 
   return (
     <motion.div
-      style={{ width, opacity }}
-      className="relative h-full flex flex-col border-r border-n-1/5 overflow-hidden group"
+      initial={false}
+      animate={{
+        width: targetWidth,
+        opacity: targetOpacity,
+      }}
+      transition={{
+        duration: 3,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="relative h-full flex flex-col border-r border-y border-n-1/10 overflow-hidden group"
     >
       {/* Background Accent Glow */}
       <motion.div
-        style={{ opacity: contentOpacity }}
-        className="absolute inset-0 bg-linear-to-br from-primary-pink/5 to-transparent pointer-events-none"
+        animate={{ opacity: targetContentOpacity }}
+        className="absolute inset-0 bg-linear-to-br from-primary-pink/10 to-transparent pointer-events-none"
       />
 
       {/* Main Container */}
-      <div className="absolute top-0 left-0 h-full w-screen md:w-[55vw] p-8 md:p-20 lg:pt-48 flex flex-col justify-between z-10">
+      <div className="absolute top-0 left-0 h-full w-full md:w-[55vw] p-8 md:p-20 lg:pt-32 flex flex-col justify-between z-10">
         <div className="flex justify-start items-center gap-2 w-full md:w-auto">
-          <item.icon
-            style={{ opacity: useTransform(opacity, [0.2, 1], [0.2, 1]) }}
-            className="w-4 h-4 text-primary-aqua/40 group-hover:text-primary-aqua transition-colors duration-500"
-          />
-
           <motion.span
-            style={{ opacity: useTransform(opacity, [0.2, 1], [0.2, 1]) }}
-            className="font-mono text-[10px] tracking-[0.5em] text-primary-aqua/40 group-hover:text-primary-aqua uppercase transition-colors duration-500"
+            animate={{ opacity: targetOpacity }}
+            className="font-mono text-[10px] tracking-[0.5em] text-primary-aqua group-hover:text-primary-aqua/50 uppercase transition-colors duration-500"
           >
             {item.label}
           </motion.span>
         </div>
 
-        <motion.div style={{ scale, y: contentY }} className="origin-left">
+        <motion.div
+          animate={{ scale: targetScale, y: targetContentY }}
+          className="origin-left"
+          transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
+        >
           <h3 className="text-4xl md:text-[clamp(3rem,6vw,8rem)] font-display font-bold uppercase tracking-tighter leading-[0.8] mb-10">
             {item.q.split(" ").map((word, i) => (
               <span key={i} className="block">
@@ -169,7 +143,11 @@ const PhilosophyPanel = ({ item, index, scrollYProgress, discoverLabel }) => {
             ))}
           </h3>
 
-          <motion.div style={{ opacity: contentOpacity }} className="space-y-6">
+          <motion.div
+            animate={{ opacity: targetContentOpacity }}
+            className="space-y-6"
+            transition={{ duration: 0.5 }}
+          >
             <p className="text-sm md:text-xl text-n-1/50 font-light max-w-md leading-relaxed">
               {item.s}
             </p>
@@ -185,7 +163,7 @@ const PhilosophyPanel = ({ item, index, scrollYProgress, discoverLabel }) => {
         <div className="flex items-center gap-6">
           <div className="h-px grow bg-n-1/10" />
 
-          <span className="font-mono text-xs text-white/30 tabular-nums">
+          <span className="font-mono text-xs text-n-1/30 tabular-nums">
             0{index + 1}
           </span>
         </div>
@@ -193,8 +171,12 @@ const PhilosophyPanel = ({ item, index, scrollYProgress, discoverLabel }) => {
 
       {/* Active Indicator Line */}
       <motion.div
-        style={{ opacity: contentOpacity }}
-        className="absolute bottom-0 left-0 right-0 h-1.5 bg-linear-to-r from-primary-pink via-primary-aqua to-primary-pink bg-size-[200%_100%] animate-gradient-x"
+        animate={{
+          opacity: targetContentOpacity,
+          scaleX: isActive ? 1 : 0,
+        }}
+        transition={{ duration: 3, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute bottom-0 left-0 right-0 h-1.5 bg-linear-to-r from-primary-pink via-primary-aqua to-primary-pink bg-size-[200%_100%] animate-gradient-x origin-left"
       />
     </motion.div>
   );

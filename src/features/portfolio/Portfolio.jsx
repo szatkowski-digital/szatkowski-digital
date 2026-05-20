@@ -27,12 +27,12 @@ export default function Portfolio() {
   } = usePortfolio(projects.length);
 
   return (
-    <section className="app-screen pt-20 pb-28 md:py-[clamp(6.5rem,20dvh,20rem)]">
+    <section className="app-screen pt-20 pb-30 md:py-[clamp(5.5rem,15dvh,10rem)]">
       <motion.div
         variants={slideUpFast}
         initial="initial"
         animate="enter"
-        className="shell relative h-[clamp(30rem,75dvh,50rem)] md:h-[clamp(25rem,60dvh,50rem)] flex flex-col items-center justify-center gap-[clamp(1rem,3dvh,2rem)]"
+        className="shell relative h-[clamp(30rem,75dvh,50rem)] md:h-[clamp(25rem,70dvh,40rem)] flex flex-col items-center justify-center gap-[clamp(1rem,3dvh,2rem)]"
       >
         <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <motion.div

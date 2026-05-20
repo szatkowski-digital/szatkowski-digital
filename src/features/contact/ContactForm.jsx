@@ -1,6 +1,6 @@
+import Button from "@/components/ui/Button";
 import { AnimatePresence, motion } from "framer-motion";
-import { CheckCircle2, ChevronRight } from "lucide-react";
-import { useRef, useState } from "react";
+import { CheckCircle2, XCircle } from "lucide-react";
 
 export const ContactForm = ({
   step,
@@ -10,6 +10,7 @@ export const ContactForm = ({
   isSubmitted,
   setFormData,
   formData,
+  formUi,
   handleNext,
   handlePrev,
   updateField,
@@ -17,7 +18,7 @@ export const ContactForm = ({
   isSending,
 }) => {
   return (
-    <div className="lg:col-span-7 w-full glass-card rounded-[40px] p-12 md:p-24 relative overflow-hidden">
+    <div className="lg:col-span-7 w-full glass-card rounded-[40px] p-12 md:p-20 lg:p-24 relative overflow-hidden">
       {/* PROGRESS BAR */}
       <div className="absolute top-0 left-0 h-1 bg-n-1/5 w-full">
         <motion.div
@@ -40,7 +41,7 @@ export const ContactForm = ({
           >
             <div className="flex flex-col space-y-2">
               <span className="font-mono text-[10px] tracking-[0.5em] text-n-1/50 uppercase">
-                Step 0{step + 1} / 04
+                {formUi.stepLabel} 0{step + 1} / 04
               </span>
 
               <h2 className="text-4xl md:text-[clamp(2rem,4.5vw,4rem)] font-display font-bold uppercase tracking-tighter leading-none">
@@ -104,33 +105,29 @@ export const ContactForm = ({
               <button
                 onClick={handlePrev}
                 disabled={step === 0}
-                className={`text-[10px] tracking-widest uppercase transition-opacity ${
+                className={`text-[10px] font-mono tracking-widest uppercase transition-opacity ${
                   step === 0
                     ? "opacity-0 pointer-events-none"
                     : "opacity-50 hover:opacity-100"
                 }`}
               >
-                Back
+                {formUi.back}
               </button>
 
-              <button
+              <Button
                 onClick={handleNext}
                 disabled={!isStepValid && !steps[step].options}
-                className={`flex items-center gap-4 px-10 py-5 rounded-full font-mono text-xs tracking-widest uppercase transition-all duration-500 ${
-                  isStepValid || steps[step].options
-                    ? "bg-n-1 text-black hover:bg-primary-aqua hover:text-white"
-                    : "bg-n-1/5 text-n-1/20 cursor-not-allowed"
-                }`}
+                className={"text-sm md:text-base"}
               >
-                <span>
-                  {step === steps.length - 1 ? "Dispatch" : "Continue"}
-                </span>
-                <ChevronRight className="w-4 h-4" />
-              </button>
+                {step === steps.length - 1
+                  ? formUi.dispatching
+                  : formUi.continue}
+              </Button>
             </div>
           </motion.div>
         ) : (
           <ContacFormSuccess
+            t={formUi.success}
             formData={formData}
             setFormData={setFormData}
             setStep={setStep}
@@ -143,6 +140,7 @@ export const ContactForm = ({
 };
 
 const ContacFormSuccess = ({
+  t,
   formData,
   setFormData,
   setStep,
@@ -152,18 +150,21 @@ const ContacFormSuccess = ({
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="text-center space-y-12 py-12"
+      className="text-center space-y-6"
     >
-      <div className="w-24 h-24 rounded-full text-primary-aqua/10 flex items-center justify-center mx-auto mb-8">
+      <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
         <CheckCircle2 className="w-12 h-12 text-primary-aqua" />
       </div>
-      <h2 className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter">
-        Message <br /> <span className="text-primary-aqua">Received.</span>
+
+      <h2 className="text-4xl md:text-[clamp(2rem,4.5vw,4rem)]  font-display font-bold uppercase tracking-tighter">
+        {t.title_1} <br />{" "}
+        <span className="text-primary-aqua">{t.title_2}</span>
       </h2>
+
       <p className="text-n-1/50 text-xl font-light max-w-md mx-auto leading-relaxed">
-        Thank you, {formData.name.split(" ")[0]}. I'll review your vision for{" "}
-        {formData.service} and get back to you within 24 hours.
+        {t.description(formData.name, formData.service)}
       </p>
+
       <button
         onClick={() => {
           setIsSubmitted(false);
@@ -177,7 +178,47 @@ const ContacFormSuccess = ({
         }}
         className="font-mono text-[10px] tracking-widest uppercase text-primary-pink hover:text-white transition-colors"
       >
-        Send another message
+        {t.resetLabel}
+      </button>
+    </motion.div>
+  );
+};
+
+const ContactFormError = ({ errorKey, resetForm, t }) => {
+  const validKeys = ["requiredFields", "sendFailed"];
+  const finalKey = validKeys.includes(errorKey) ? errorKey : "unknown";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="text-center space-y-6"
+    >
+      <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+        <XCircle className="w-12 h-12 text-primary-pink" />
+      </div>
+
+      <h2 className="text-5xl md:text-8xl font-display font-bold uppercase tracking-tighter">
+        {t("errorTitle").split(".")[0]} <br />
+        <span className="text-primary-pink">
+          {t("errorTitle").split(".")[1] || "Error."}
+        </span>
+      </h2>
+
+      <div className="space-y-2 max-w-md mx-auto">
+        <p className="text-n-1/50 text-xl font-light leading-relaxed">
+          {t("errorSubtitle")}
+        </p>
+        <p className="text-primary-pink/80 font-mono text-xs uppercase tracking-wider">
+          {t(`errors.${finalKey}`)}
+        </p>
+      </div>
+
+      <button
+        onClick={resetForm}
+        className="block mx-auto font-mono text-[10px] tracking-widest uppercase text-primary-aqua hover:text-white transition-colors pt-4"
+      >
+        {t("tryAgain")}
       </button>
     </motion.div>
   );

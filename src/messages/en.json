@@ -22,7 +22,7 @@
     },
     "portfolioPreview": {
       "verticalTag": {
-        "action": "Let’s See",
+        "action": "Let's See",
         "subject": "My Portfolio"
       },
       "header": "Making the web look easy.",
@@ -165,17 +165,27 @@
       "message": {
         "question": "The vision is...",
         "placeholder": "Tell me about your project or role..."
-      },
-      "step": "Step",
-      "back": "Back",
-      "continue": "Continue",
-      "dispatch": "Dispatching...",
-      "send": "Send Message",
-      "success_title_1": "Message",
-      "success_title_2": "Received.",
-      "success_desc": "Thank you, {name}. I'll review your vision for {service} and get back to you within 24 hours.",
-      "reset": "Send another message"
-    }
+      }
+    },
+    "success": {
+      "title_1": "Message",
+      "title_2": "Received.",
+      "description": "Thank you, {name}. I'll review your vision for {service} and get back to you within 24 hours.",
+      "reset": "Send another message",
+      "errorTitle": "Something went wrong.",
+      "errorSubtitle": "There was a problem delivering your message.",
+      "tryAgain": "Try again",
+      "errors": {
+        "requiredFields": "Please fill in all required fields.",
+        "sendFailed": "Server error occurred. Please try again later.",
+        "unknown": "An unknown error occurred."
+      }
+    },
+    "step": "Step",
+    "back": "Back",
+    "continue": "Continue",
+    "dispatch": "Dispatch...",
+    "send": "Send Message"
   },
 
   "portfolio": {

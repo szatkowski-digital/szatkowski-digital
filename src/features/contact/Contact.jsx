@@ -6,26 +6,15 @@ import { getContactData } from "@/data/contact";
 import { ContactForm } from "./ContactForm";
 import { ContactInfo } from "./ContactInfo";
 import { useContact, useLocalTime } from "./hooks/useContact";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { slideUpFast } from "@/animations/motionVariants";
 
 /* CONTACT PAGE */
 export default function Contact() {
   const t = useTranslations("contact");
+  const locale = useLocale();
   const { steps, info, formUi } = getContactData(t);
-  const {
-    step,
-    setStep,
-    isSubmitted,
-    setIsSubmitted,
-    formData,
-    setFormData,
-    handleNext,
-    handlePrev,
-    updateField,
-    isStepValid,
-    isSending,
-  } = useContact({ steps });
+  const contact = useContact({ steps, locale });
   const { localTime } = useLocalTime();
 
   return (
@@ -38,21 +27,7 @@ export default function Contact() {
       >
         <ContactInfo localTime={localTime} t={info} />
 
-        <ContactForm
-          step={step}
-          setStep={setStep}
-          steps={steps}
-          isSubmitted={isSubmitted}
-          setIsSubmitted={setIsSubmitted}
-          formData={formData}
-          formUi={formUi}
-          setFormData={setFormData}
-          handleNext={handleNext}
-          handlePrev={handlePrev}
-          updateField={updateField}
-          isStepValid={isStepValid}
-          isSending={isSending}
-        />
+        <ContactForm contact={contact} steps={steps} formUi={formUi} />
       </motion.div>
     </section>
   );

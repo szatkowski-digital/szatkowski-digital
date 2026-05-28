@@ -50,7 +50,7 @@
     "skills": {
       "header": {
         "number": "02",
-        "title": "Capabilities"
+        "title": "Core capabilities"
       },
       "items": [
         {
@@ -94,24 +94,24 @@
     "philosophy": {
       "items": [
         {
-          "label": "Experience",
-          "q": "Interface is emotion.",
-          "s": "I build systems that don't just work, but delight with their fluidity. Every cursor movement and transition has a purpose and rhythm."
+          "label": "Performance-First",
+          "q": "Uncompromised Speed",
+          "s": "No bloated page builders. I leverage Next.js (SSR/SSG) to hit peak Core Web Vitals. It means better organic reach for businesses and a reliable, optimized codebase for technical teams."
         },
         {
-          "label": "Performance",
-          "q": "Speed is the foundation.",
-          "s": "Zero unnecessary waiting. I optimize code so that interactions are instant, keeping the backend invisible to the user."
+          "label": "Intuitive UX & Motion",
+          "q": "Frictionless interactions",
+          "s": "I design logical user flows enhanced by purposeful motion design. Every transition and micro-interaction is engineered to elevate the product and drive user conversion."
         },
         {
-          "label": "Simplicity",
-          "q": "Less is more.",
-          "s": "I remove the noise and leave pure value. I design logical, intuitive paths where the user never gets lost."
+          "label": "Scalable Architecture",
+          "q": "Built for heavy lifting",
+          "s": "A beautiful frontend is useless if the database crashes. I build secure APIs and optimize data structures (PostgreSQL, MongoDB) to ensure the system withstands sudden traffic spikes."
         },
         {
-          "label": "Motion",
-          "q": "Technology brought to life.",
-          "s": "Subtle animations and micro-interactions are my specialty. I give applications a human touch through refined motion design."
+          "label": "End-to-End Ownership",
+          "q": "Production is just the beginning",
+          "s": "Deployment is day zero. Whether I'm building for a client or working within a product team, I take full accountability for code quality, monitoring, and long-term maintainability."
         }
       ],
       "explore": "Explore",
@@ -180,6 +180,12 @@
         "sendFailed": "Server error occurred. Please try again later.",
         "unknown": "An unknown error occurred."
       }
+    },
+    "email": {
+      "subject": "New Inquiry from Szatkowski Digital",
+      "labelName": "Name",
+      "labelService": "Service",
+      "labelMessage": "Message"
     },
     "step": "Step",
     "back": "Back",

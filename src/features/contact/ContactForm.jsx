@@ -2,31 +2,23 @@ import Button from "@/components/ui/Button";
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle2, XCircle } from "lucide-react";
 
-export const ContactForm = ({
-  step,
-  setStep,
-  steps,
-  setIsSubmitted,
-  isSubmitted,
-  setFormData,
-  formData,
-  formUi,
-  handleNext,
-  handlePrev,
-  updateField,
-  isStepValid,
-  isSending,
-}) => {
+export const ContactForm = ({ contact, steps, formUi }) => {
+  const {
+    step,
+    isSubmitted,
+    setStep,
+    setIsSubmitted,
+    formData,
+    setFormData,
+    handlePrev,
+    handleNext,
+    isStepValid,
+  } = contact;
+  const currentStepData = steps[step];
+
   return (
-    <div className="lg:col-span-7 w-full glass-card rounded-[40px] p-12 md:p-20 lg:p-24 relative overflow-hidden">
-      {/* PROGRESS BAR */}
-      <div className="absolute top-0 left-0 h-1 bg-n-1/5 w-full">
-        <motion.div
-          className="h-full bg-primary-pink"
-          initial={{ width: 0 }}
-          animate={{ width: `${((step + 1) / steps.length) * 100}%` }}
-        />
-      </div>
+    <div className="relative lg:col-span-7 w-full glass-card rounded-[40px] p-12 md:p-20 lg:p-24 overflow-hidden">
+      <FormProgressBar step={step} steps={steps} />
 
       {/* FORM SECTION */}
       <AnimatePresence mode="wait">
@@ -41,89 +33,25 @@ export const ContactForm = ({
           >
             <div className="flex flex-col space-y-2">
               <span className="font-mono text-[10px] tracking-[0.5em] text-n-1/50 uppercase">
-                {formUi.stepLabel} 0{step + 1} / 04
+                {formUi.stepLabel} 0{step + 1} / 0{steps.length}
               </span>
 
               <h2 className="text-4xl md:text-[clamp(2rem,4.5vw,4rem)] font-display font-bold uppercase tracking-tighter leading-none">
-                {steps[step].question}
+                {currentStepData.question}
               </h2>
             </div>
 
-            <div className="relative">
-              {steps[step].options ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {steps[step].options.map((opt) => (
-                    <button
-                      key={opt}
-                      onClick={() => {
-                        updateField(opt);
-                        setTimeout(handleNext, 300);
-                      }}
-                      className={`p-6 rounded-2xl border transition-all duration-500 text-center group relative overflow-hidden ${
-                        formData.service === opt
-                          ? "border-primary-pink bg-primary-pink/10"
-                          : "border-n-1/10 bg-n-1/5 hover:border-n-1/30"
-                      }`}
-                    >
-                      <span className="relative z-10 text-sm uppercase tracking-wider">
-                        {opt}
-                      </span>
-                      {formData.service === opt && (
-                        <motion.div
-                          layoutId="active-opt"
-                          className="absolute inset-0 bg-primary-pink/10"
-                        />
-                      )}
-                    </button>
-                  ))}
-                </div>
-              ) : steps[step].type === "textarea" ? (
-                <textarea
-                  autoFocus
-                  value={formData[steps[step].field]}
-                  onChange={(e) => updateField(e.target.value)}
-                  placeholder={steps[step].placeholder}
-                  className="w-full bg-transparent border-b-2 border-white/10 py-4 text-2xl md:text-4xl font-light focus:outline-none focus:border-primary-pink transition-colors resize-none h-32"
-                />
-              ) : (
-                <input
-                  autoFocus={steps[step].id !== "name"}
-                  type={steps[step].type}
-                  value={formData[steps[step].field]}
-                  onChange={(e) => updateField(e.target.value)}
-                  onKeyDown={(e) =>
-                    e.key === "Enter" && isStepValid && handleNext()
-                  }
-                  placeholder={steps[step].placeholder}
-                  className="w-full bg-transparent border-b-2 border-white/10 py-4 text-2xl md:text-4xl font-light focus:outline-none focus:border-primary-pink transition-colors"
-                />
-              )}
-            </div>
+            <FormFields contact={contact} currentStep={currentStepData} />
 
-            {/* BUTTONS */}
-            <div className="flex items-center justify-between pt-4 md:pt-6">
-              <button
-                onClick={handlePrev}
-                disabled={step === 0}
-                className={`text-[10px] font-mono tracking-widest uppercase transition-opacity ${
-                  step === 0
-                    ? "opacity-0 pointer-events-none"
-                    : "opacity-50 hover:opacity-100"
-                }`}
-              >
-                {formUi.back}
-              </button>
-
-              <Button
-                onClick={handleNext}
-                disabled={!isStepValid && !steps[step].options}
-                className={"text-sm md:text-base"}
-              >
-                {step === steps.length - 1
-                  ? formUi.dispatching
-                  : formUi.continue}
-              </Button>
-            </div>
+            <FormNav
+              step={step}
+              steps={steps}
+              handlePrev={handlePrev}
+              handleNext={handleNext}
+              isStepValid={isStepValid}
+              currentStepData={currentStepData}
+              formUi={formUi}
+            />
           </motion.div>
         ) : (
           <ContacFormSuccess
@@ -221,5 +149,120 @@ const ContactFormError = ({ errorKey, resetForm, t }) => {
         {t("tryAgain")}
       </button>
     </motion.div>
+  );
+};
+
+const FormProgressBar = ({ step, steps }) => {
+  return (
+    <div className="absolute top-0 left-0 h-1 bg-n-1/5 w-full">
+      <motion.div
+        className="h-full bg-primary-pink"
+        initial={{ width: 0 }}
+        animate={{ width: `${((step + 1) / steps.length) * 100}%` }}
+      />
+    </div>
+  );
+};
+
+const FormNav = ({
+  step,
+  steps,
+  handlePrev,
+  handleNext,
+  isStepValid,
+  currentStepData,
+  formUi,
+}) => {
+  return (
+    <div className="flex items-center justify-between pt-4 md:pt-6">
+      <button
+        onClick={handlePrev}
+        disabled={step === 0}
+        className={`text-[10px] font-mono tracking-widest uppercase transition-opacity ${
+          step === 0
+            ? "opacity-0 pointer-events-none"
+            : "opacity-50 hover:opacity-100"
+        }`}
+      >
+        {formUi.back}
+      </button>
+
+      <Button
+        onClick={handleNext}
+        disabled={!isStepValid && !currentStepData.options}
+        className={"text-sm md:text-base"}
+      >
+        {step === steps.length - 1 ? formUi.dispatching : formUi.continue}
+      </Button>
+    </div>
+  );
+};
+
+const FormFields = ({ contact, currentStep }) => {
+  const { formData, updateField, handleNext, isSending, isStepValid } = contact;
+  const currentField = currentStep?.field;
+  const fieldValue = formData[currentField] || "";
+
+  return (
+    <div className="relative">
+      {currentStep.options ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {currentStep.options.map((opt) => {
+            const isSelected = fieldValue === opt;
+            return (
+              <button
+                key={opt}
+                onClick={() => {
+                  updateField(opt);
+                  setTimeout(handleNext, 250);
+                }}
+                className={`p-6 rounded-2xl border transition-all duration-300 text-center group relative overflow-hidden ${
+                  isSelected
+                    ? "border-primary-pink bg-primary-pink/10"
+                    : "border-n-1/10 bg-n-1/5 hover:border-n-1/30"
+                }`}
+              >
+                <span className="relative z-10 text-sm uppercase tracking-wider">
+                  {opt}
+                </span>
+                {isSelected && (
+                  <motion.div
+                    layoutId="active-opt"
+                    className="absolute inset-0 bg-primary-pink/10"
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 30,
+                    }}
+                  />
+                )}
+              </button>
+            );
+          })}
+        </div>
+      ) : currentStep.type === "textarea" ? (
+        <textarea
+          autoFocus
+          disabled={isSending}
+          value={fieldValue}
+          onChange={(e) => updateField(e.target.value)}
+          placeholder={currentStep.placeholder}
+          className="w-full bg-transparent border-b-2 border-white/10 py-4 text-2xl md:text-4xl font-light focus:outline-none focus:border-primary-pink transition-colors resize-none h-32"
+        />
+      ) : (
+        <input
+          autoFocus={currentStep.id !== "name"}
+          type={currentStep.type}
+          disabled={isSending}
+          value={fieldValue}
+          onChange={(e) => updateField(e.target.value)}
+          onKeyDown={(e) =>
+            e.key === "Enter" && isStepValid && !isSending && handleNext()
+          }
+          placeholder={currentStep.placeholder}
+          className="w-full bg-transparent border-b-2 border-white/10 py-4 text-2xl md:text-4xl font-light focus:outline-none focus:border-primary-pink transition-colors"
+        />
+      )}
+    </div>
   );
 };

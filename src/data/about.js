@@ -1,7 +1,7 @@
 import { Layout, Zap, Activity, Layers } from "lucide-react";
 
 export const getHeroData = (t) => ({
-  subtitle: "Full Stack Software Engineer",
+  subtitle: "Full-Stack Software Engineer",
   title_line1: t("hero.title_line1"),
   title_gradient: t("hero.title_gradient"),
   title_line2: t("hero.title_line2"),

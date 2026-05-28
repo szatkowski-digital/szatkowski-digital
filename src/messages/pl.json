@@ -50,37 +50,37 @@
     "skills": {
       "header": {
         "number": "02",
-        "title": "Możliwości"
+        "title": "KOMPETENCJE"
       },
       "items": [
         {
-          "title": "Architektura Full-Stack",
-          "desc": "Projektowanie skalowalnych, kompleksowych systemów przy użyciu Next.js i Node.js, które rosną wraz z biznesem.",
+          "title": "Aplikacje Webowe & SaaS",
+          "desc": "End-to-end development systemów chmurowych.",
           "icon": "Layers"
         },
         {
-          "title": "Inżynieria API",
-          "desc": "Budowanie solidnych, bezpiecznych i dobrze udokumentowanych API RESTful oraz GraphQL dla płynnego przepływu danych.",
+          "title": "Architektura Headless",
+          "desc": "Ultraszybkie frontendy spięte z elastycznym systemem zarządzania treścią.",
           "icon": "Cpu"
         },
         {
-          "title": "Frontend Excellence",
-          "desc": "Przekuwanie złożonych projektów w perfekcyjne, wydajne interfejsy przy użyciu Reacta i Framer Motion.",
+          "title": "Automatyzacja Biznesu",
+          "desc": "Dedykowane panele (ERP/CRM) eliminujące powtarzalną pracę i arkusze Excela.",
           "icon": "Layout"
         },
         {
-          "title": "Projektowanie Baz Danych",
-          "desc": "Modelowanie wydajnych struktur danych i optymalizacja zapytań w PostgreSQL oraz MongoDB dla maksymalnej niezawodności.",
+          "title": "Integracje API",
+          "desc": "Budowanie bezpiecznych pomostów wymiany danych i integracja zewnętrznych usług.",
           "icon": "Database"
         },
         {
-          "title": "Optymalizacja Wydajności",
-          "desc": "Analiza Core Web Vitals, renderowania po stronie serwera i strategii cache'owania dla błyskawicznego działania.",
+          "title": "Projektowanie Baz Danych",
+          "desc": "Modelowanie relacyjnych i nierelacyjnych struktur (PostgreSQL, MongoDB) odpornych na duży ruch.",
           "icon": "Zap"
         },
         {
-          "title": "Inżynieria Produktu",
-          "desc": "Więcej niż kod: zrozumienie logiki biznesowej i potrzeb użytkowników, by dostarczać kompletne produkty.",
+          "title": "Audyt i Optymalizacja",
+          "desc": "Poprawa wyników Core Web Vitals, redukcja długu technologicznego i przyspieszanie wolnych aplikacji.",
           "icon": "Code2"
         }
       ]
@@ -94,24 +94,24 @@
     "philosophy": {
       "items": [
         {
-          "label": "Doświadczenie",
-          "q": "Interfejs to emocje.",
-          "s": "Tworzę systemy, które nie tylko działają, ale zachwycają płynnością. Każdy ruch kursora i przejście mają swój cel i rytm."
-        },
-        {
           "label": "Wydajność",
-          "q": "Szybkość to fundament.",
-          "s": "Zero zbędnego oczekiwania. Optymalizuję kod tak, aby interakcja była natychmiastowa, a backend niewidoczny dla użytkownika."
+          "q": "Architektura bez kompromisów.",
+          "s": "Zero page-builderów. Koduję w Next.js (SSR/SSG), wyciskając 100/100 w Core Web Vitals. Dla klienta to wyższe SEO, dla zespołu technicznego – stabilny, przewidywalny fundament."
         },
         {
-          "label": "Prostota",
-          "q": "Mniej znaczy więcej.",
-          "s": "Usuwam szum, zostawiam czystą wartość. Projektuję logiczne, intuicyjne ścieżki, w których użytkownik nigdy się nie gubi."
+          "label": "Doświadczenie",
+          "q": "Czysty ale płynny UX.",
+          "s": "Projektuję płynne ścieżki użytkownika. Czysty interfejs uzupełniony celowym motion designem (Framer Motion) buduje poczucie obcowania z produktem premium."
         },
         {
-          "label": "Ruch",
-          "q": "Ożywiona technologia.",
-          "s": "Dyskretne animacje i mikrointerakcje to moja specjalność. Nadaję aplikacjom ludzki charakter poprzez dopracowany motion design."
+          "label": "Skalowalność",
+          "q": "Gotowość na wzrost.",
+          "s": "Aplikacja musi wytrzymać nagły ruch. Projektuję bezpieczne API i optymalizuję bazy danych (PostgreSQL, MongoDB), tworząc systemy, które skalują się razem z biznesem."
+        },
+        {
+          "label": "Odpowiedzialność",
+          "q": "Produkcja to dopiero początek.",
+          "s": "Oddanie projektu to nie koniec pracy. Biorę pełną odpowiedzialność za stabilność, monitoring analityki i dalszy rozwój oprogramowania. Działam jak Twój partner technologiczny."
         }
       ],
       "explore": "Eksploruj",
@@ -180,6 +180,12 @@
         "sendFailed": "Wystąpił błąd serwera. Spróbuj ponownie później.",
         "unknown": "Wystąpił nieznany błąd."
       }
+    },
+    "email": {
+      "subject": "Zapytanie ze strony Szatkowski Digital",
+      "labelName": "Imię i nazwisko",
+      "labelService": "Usługa",
+      "labelMessage": "Wiadomość"
     },
     "step": "Krok",
     "back": "Wstecz",

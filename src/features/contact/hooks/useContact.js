@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 
-export const useContact = ({ steps }) => {
+export const useContact = ({ steps, locale }) => {
   const [step, setStep] = useState(0);
+  const [isSending, setIsSending] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -10,27 +11,44 @@ export const useContact = ({ steps }) => {
     message: "",
   });
 
-  const handleNext = useCallback(() => {
-    if (step < steps.length - 1) {
-      setStep(step + 1);
-    } else {
-      setIsSubmitted(true);
+  const handleNext = useCallback(async () => {
+    const isLastStep = step === steps.length - 1;
+
+    if (!isLastStep) {
+      setStep((prev) => prev + 1);
+      return;
     }
-  }, [step]);
+
+    setIsSending(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, locale }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        alert("Coś poszło nie tak, spróbuj ponownie.");
+      }
+    } catch (error) {
+      console.error("Błąd wysyłki:", error);
+    } finally {
+      setIsSending(false);
+    }
+  }, [step, steps, formData, locale]);
 
   const handlePrev = useCallback(() => {
-    if (step > 0) setStep(step - 1);
-  }, [step]);
+    if (step > 0) setStep((prev) => prev - 1);
+  }, []);
 
   const updateField = useCallback(
     (val) => {
       const currentField = steps[step].field;
-      setFormData((prev) => ({
-        ...prev,
-        [currentField]: val,
-      }));
+      setFormData((prev) => ({ ...prev, [currentField]: val }));
     },
-    [step]
+    [step, steps]
   );
 
   const isStepValid = useCallback(() => {
@@ -54,7 +72,7 @@ export const useContact = ({ steps }) => {
     isStepValid: isStepValid(),
     isSubmitted,
     setIsSubmitted,
-    isSending: false, // Placeholder for sending state
+    isSending,
   };
 };
 

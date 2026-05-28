@@ -35,13 +35,13 @@ export default function About() {
 
       <WhoAmISection t={whoAmIData} />
 
+      <PhilosophySection t={philosophyData} />
+
+      {/* <PersonalSection t={personalData} /> */}
+
       <SkillsSection t={skillsData} />
 
       <TechStackSection t={techStackData} />
-
-      <PhilosophySection t={philosophyData} />
-
-      <PersonalSection t={personalData} />
 
       <CTASection t={ctaData} />
     </div>

@@ -7,6 +7,7 @@ export const getProjects = (t) => [
     image: "/images/smokins_banner.png",
     href: "/portfolio/smokins-app",
     alt: t("project1.images_alt"),
+    technologies: ["React Native", "JavaScript", "Appwrite"],
   },
   {
     id: "02",
@@ -16,6 +17,7 @@ export const getProjects = (t) => [
     image: "/images/blitzform_banner.png",
     href: "/portfolio/blitzform",
     alt: t("project2.images_alt"),
+    technologies: ["Next.js", "JavaScript", "Tailwind CSS"],
   },
   {
     id: "03",
@@ -25,5 +27,6 @@ export const getProjects = (t) => [
     image: "/images/sidequests_banner.webp",
     href: "/portfolio/side-quests",
     alt: t("project3.images_alt"),
+    technologies: ["WordPress", "Figma", "Illustrator"],
   },
 ];

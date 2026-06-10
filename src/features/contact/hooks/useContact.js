@@ -41,7 +41,7 @@ export const useContact = ({ steps, locale }) => {
 
   const handlePrev = useCallback(() => {
     if (step > 0) setStep((prev) => prev - 1);
-  }, []);
+  }, [step]);
 
   const updateField = useCallback(
     (val) => {

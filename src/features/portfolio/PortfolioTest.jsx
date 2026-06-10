@@ -22,7 +22,7 @@ export default function Portfolio() {
         variants={slideUpFast}
         initial="initial"
         animate="enter"
-        className="shell-bleed relative flex flex-col items-center justify-center gap-[clamp(1rem,3dvh,2rem)]"
+        className="shell-bleed relative h-[clamp(30rem,75dvh,50rem)] md:h-[clamp(25rem,70dvh,40rem)] flex flex-col items-center justify-center gap-[clamp(1rem,3dvh,2rem)]"
       >
         <ProjectsCarousel
           carouselProps={carouselProps}

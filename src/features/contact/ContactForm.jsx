@@ -3,22 +3,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle2, XCircle } from "lucide-react";
 
 export const ContactForm = ({ contact, steps, formUi }) => {
-  const {
-    step,
-    isSubmitted,
-    setStep,
-    setIsSubmitted,
-    formData,
-    setFormData,
-    handlePrev,
-    handleNext,
-    isStepValid,
-  } = contact;
+  const { step, isSubmitted, setStep, setIsSubmitted, formData, setFormData } =
+    contact;
   const currentStepData = steps[step];
 
   return (
     <div className="relative lg:col-span-7 w-full glass-card rounded-[40px] p-12 md:p-20 lg:p-24 overflow-hidden">
-      <FormProgressBar step={step} steps={steps} />
+      <FormProgressBar step={step} steps={steps.length} />
 
       {/* FORM SECTION */}
       <AnimatePresence mode="wait">
@@ -44,13 +35,10 @@ export const ContactForm = ({ contact, steps, formUi }) => {
             <FormFields contact={contact} currentStep={currentStepData} />
 
             <FormNav
-              step={step}
-              steps={steps}
-              handlePrev={handlePrev}
-              handleNext={handleNext}
-              isStepValid={isStepValid}
+              contact={contact}
               currentStepData={currentStepData}
               formUi={formUi}
+              steps={steps.length}
             />
           </motion.div>
         ) : (
@@ -158,21 +146,15 @@ const FormProgressBar = ({ step, steps }) => {
       <motion.div
         className="h-full bg-primary-pink"
         initial={{ width: 0 }}
-        animate={{ width: `${((step + 1) / steps.length) * 100}%` }}
+        animate={{ width: `${((step + 1) / steps) * 100}%` }}
       />
     </div>
   );
 };
 
-const FormNav = ({
-  step,
-  steps,
-  handlePrev,
-  handleNext,
-  isStepValid,
-  currentStepData,
-  formUi,
-}) => {
+const FormNav = ({ contact, currentStepData, formUi, steps }) => {
+  const { step, handlePrev, handleNext, isStepValid, isSending } = contact;
+
   return (
     <div className="flex items-center justify-between pt-4 md:pt-6">
       <button
@@ -189,10 +171,10 @@ const FormNav = ({
 
       <Button
         onClick={handleNext}
-        disabled={!isStepValid && !currentStepData.options}
+        disabled={(!isStepValid && !currentStepData.options) || isSending}
         className={"text-sm md:text-base"}
       >
-        {step === steps.length - 1 ? formUi.dispatching : formUi.continue}
+        {step === steps - 1 ? formUi.dispatching : formUi.continue}
       </Button>
     </div>
   );

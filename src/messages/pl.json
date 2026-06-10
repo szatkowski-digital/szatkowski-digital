@@ -7,8 +7,8 @@
     },
     "seo": {
       "home": {
-        "title": "BlitzForm - mobilna fabryka druku 3D na miejscu i części przemysłowe",
-        "description": "BlitzForm oferuje mobilny druk 3D w terenie, szybkie przetwarzanie części przemysłowych i cyfrowy magazyn części wprost do Twojej lokalizacji."
+        "title": "Paweł | Full-Stack Developer - Next.js, Node.js, TypeScript",
+        "description": "Inżynier oprogramowania Full-Stack. Tworzę wydajne aplikacje webowe, systemy SaaS i skalowalne architektury backendowe w ekosystemie JavaScript/TypeScript."
       }
     }
   },
@@ -16,17 +16,17 @@
   "home": {
     "hero": {
       "greeting": ["Jestem", "Paweł"],
-      "subtitle": "Full-stack developer",
+      "subtitle": "Full-Stack Developer & Software Engineer",
       "ctaButton": "Poznajmy się lepiej",
-      "ctaPortfolioButton": "Zobacz moje portfolio"
+      "ctaPortfolioButton": "Zobacz moje projekty"
     },
     "portfolioPreview": {
       "verticalTag": {
         "action": "Zobacz",
-        "subject": "Moje Portfolio"
+        "subject": "Moje Projekty"
       },
       "header": "Efekt \"wow\" do Twojej strony.",
-      "description": "Czysty kod. Dobry vibe. Zero nudy.\nProjektuję płynne doświadczenia cyfrowe\nw\u00A0React – na web, mobile i\u00A0wszystko,\nco przed nami.",
+      "description": "Czysty kod. Przemyślana architektura. Zero kompromisów.\nProjektuję i implementuję zaawansowane aplikacje full-stack\nw\u00A0React – od zoptymalizowanych interfejsów\npo skalowalne systemy backendowe",
       "footer": "Zmieniajmy świat, piksel po pikselu."
     }
   },
@@ -134,36 +134,36 @@
   },
 
   "contact": {
-    "badge": "Kontakt",
+    "badge": "Współpraca",
     "title_line1": "Napisz",
-    "title_line2": "Do mnie!",
-    "description": "Niezależnie od tego, czy masz gotowy plan, czy tylko ogólny zarys wizji, pomogę Ci zbudować coś wyjątkowego.",
+    "title_line2": "do mnie!",
+    "description": "Szukasz doświadczonego Full-Stack Developera do projektu lub stałego zespołu? Napisz – chętnie omówię szczegóły techniczne.",
     "labels": {
       "email": "Email",
       "phone": "Telefon",
       "location": "Lokalizacja",
       "status": "Dostępny"
     },
-    "city": "Wrocław, Polska",
+    "city": "Wrocław, Polska (oraz Zdalnie)",
     "form": {
       "name": {
         "question": "Nazywam się...",
-        "placeholder": "Imię lub nazwa firmy"
+        "placeholder": "Twoje imię lub nazwa firmy"
       },
       "email": {
         "question": "Mój e-mail to...",
-        "placeholder": "email@przyklad.pl"
+        "placeholder": "email@firma.pl"
       },
       "service": {
-        "question": "Interesuje mnie...",
+        "question": "Forma współpracy...",
         "options": {
-          "product": "Budowa produktu",
-          "engineering": "Inżynieria oprogramowania",
-          "consulting": "Konsultacje techniczne"
+          "product": "Projekt Full-Stack / SaaS",
+          "engineering": "Dołączenie do zespołu",
+          "consulting": "Konsultacja techniczna"
         }
       },
       "message": {
-        "question": "Moja wizja...",
+        "question": "Wizja...",
         "placeholder": "Opisz krótko projekt lub rolę..."
       }
     },
@@ -183,14 +183,14 @@
     },
     "email": {
       "subject": "Zapytanie ze strony Szatkowski Digital",
-      "labelName": "Imię i nazwisko",
-      "labelService": "Usługa",
+      "labelName": "Imię i nazwisko / Firma",
+      "labelService": "Typ współpracy",
       "labelMessage": "Wiadomość"
     },
     "step": "Krok",
     "back": "Wstecz",
     "continue": "Dalej",
-    "dispatch": "Wyślij...",
+    "dispatch": "Wysyłanie...",
     "send": "Wyślij wiadomość"
   },
 

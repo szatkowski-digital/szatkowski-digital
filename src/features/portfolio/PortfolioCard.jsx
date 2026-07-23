@@ -33,7 +33,7 @@ export const PortfolioCard = ({
             isCurrentActive ? { opacity: 1, x: 0 } : { opacity: 0.4, x: 10 }
           }
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="flex flex-col h-full w-full align-center justify-center gap-[clamp(.5rem,5%,1.5rem)] p-8 md:p-12"
+          className="flex flex-col h-full w-full items-start justify-center gap-[clamp(.5rem,4%,1.5rem)] p-8 md:p-12"
         >
           <span className="font-michroma text-[0.5rem] tracking-[0.25rem] text-primary-aqua block uppercase">
             {project.label}
@@ -43,13 +43,13 @@ export const PortfolioCard = ({
             {project.title}
           </h2>
 
-          <p className="text-white/50 font-light leading-relaxed mb-4 md:mb-2 text-sm lg:text-base">
+          <TechBadge tech={project.technologies} />
+
+          <p className="text-n-1/60 text-sm lg:text-base">
             {project.description}
           </p>
 
-          <TechBadge tech={project.technologies} />
-
-          <TransitionLink href={project.href} className="self-start">
+          <TransitionLink href={project.href} className="self-start mt-4">
             <Button className="text-xl lg:text-lg 2xl:text-xl">
               {buttonText}
             </Button>
@@ -69,7 +69,7 @@ const TechBadge = ({ tech }) => {
   return (
     <>
       {tech && tech.length > 0 && (
-        <div className="flex flex-wrap gap-2 my-2">
+        <div className="flex flex-wrap gap-2 lg:gap-4">
           {tech.map((tech, i) => (
             <span
               key={i}

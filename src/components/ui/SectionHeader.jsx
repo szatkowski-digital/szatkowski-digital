@@ -8,7 +8,10 @@ export const SectionHeader = ({ number, title }) => {
   const isInView = useInView(ref, { once: false });
 
   return (
-    <div ref={ref} className="flex flex-col mb-12 md:mb-20">
+    <div
+      ref={ref}
+      className="flex flex-col mb-12 md:mb-[clamp(2rem,7dvh,5rem)]"
+    >
       <div className="flex items-baseline gap-4">
         <motion.span
           initial={{ opacity: 0, x: -20 }}
@@ -23,7 +26,8 @@ export const SectionHeader = ({ number, title }) => {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl md:text-7xl font-bold uppercase tracking-tighter"
+          className="text-4xl md:text-[clamp(2rem,5dvh,4rem)] font-bold uppercase tracking-tighter"
+          //md:text-6xl
         >
           {title}
         </motion.h2>

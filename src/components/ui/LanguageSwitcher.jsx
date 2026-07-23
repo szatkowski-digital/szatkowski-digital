@@ -1,8 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { useLocale } from "next-intl";
-import { useRouter, usePathname } from "@/i18n/navigation";
+import { useLanguageChange } from "@/hooks/useLanguageChange";
 
 const LANGUAGES = [
   { code: "pl", label: "Polski", icon: "/pl_icon.svg" },
@@ -12,9 +11,7 @@ const LANGUAGES = [
 export default function LanguageSwitcher() {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
-  const locale = useLocale();
-  const router = useRouter();
-  const pathname = usePathname();
+  const { locale, changeLanguage } = useLanguageChange();
 
   const current = LANGUAGES.find((l) => l.code === locale) ?? LANGUAGES[0];
 
@@ -29,13 +26,8 @@ export default function LanguageSwitcher() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  const changeLanguage = (code) => {
-    if (code === locale) {
-      setOpen(false);
-      return;
-    }
-
-    router.replace(pathname, { locale: code });
+  const handleSelect = (code) => {
+    changeLanguage(code);
     setOpen(false);
   };
 
@@ -79,7 +71,7 @@ export default function LanguageSwitcher() {
           {LANGUAGES.map((lang) => (
             <button
               key={lang.code}
-              onClick={() => changeLanguage(lang.code)}
+              onClick={() => handleSelect(lang.code)}
               className="
                 flex items-center gap-3
                 w-full px-4 py-3

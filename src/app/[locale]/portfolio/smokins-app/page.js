@@ -7,18 +7,20 @@ import MainTransition from "@/components/ui/MainTransition";
 
 export default function page() {
   return (
-    <MainTransition className="bg-n-9 text-n-1">
-      <HeroSection
-        src="/images/smokins_banner.webp"
-        alt="Smokins app"
-        title="Smokins Loyalty App"
-        description="Cyfrowa transformacja programu lojalnościowego dla sieci retail"
-        keywords="Mobile App • eCommerce • Loyalty System"
-      />
-      <IntroSection />
-      <AppUXSection />
-      <SellerPanelSection />
-      <TechStackSection />
+    <MainTransition>
+      <section className="shell">
+        <HeroSection
+          src="/images/smokins_banner.webp"
+          alt="Smokins app"
+          title="Smokins Loyalty App"
+          description="Cyfrowa transformacja programu lojalnościowego dla sieci retail"
+          keywords="Mobile App • eCommerce • Loyalty System"
+        />
+        <IntroSection />
+        <AppUXSection />
+        <SellerPanelSection />
+        <TechStackSection />
+      </section>
     </MainTransition>
   );
 }

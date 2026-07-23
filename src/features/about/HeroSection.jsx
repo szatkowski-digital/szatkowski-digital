@@ -35,13 +35,6 @@ export const HeroSection = ({ t }) => {
         <p className="max-w-xl text-sm md:text-lg text-n-1/50 leading-relaxed font-light mb-8">
           {t.description}
         </p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-          className="w-px h-24 bg-linear-to-b from-primary-pink to-transparent mx-auto"
-        />
       </motion.div>
     </section>
   );

@@ -59,8 +59,8 @@
           "icon": "Layers"
         },
         {
-          "title": "Architektura Headless",
-          "desc": "Ultraszybkie frontendy spięte z elastycznym systemem zarządzania treścią.",
+          "title": "Szybki Frontend & CMS",
+          "desc": "Ultraszybkie strony oraz aplikacje spięte z elastycznym systemem zarządzania treścią.",
           "icon": "Cpu"
         },
         {
@@ -75,7 +75,7 @@
         },
         {
           "title": "Projektowanie Baz Danych",
-          "desc": "Modelowanie relacyjnych i nierelacyjnych struktur (PostgreSQL, MongoDB) odpornych na duży ruch.",
+          "desc": "Bezpieczne i wydajne przechowywanie danych użytkowników, odporne na nagłe skoki ruchu na stronie.",
           "icon": "Zap"
         },
         {
@@ -91,31 +91,24 @@
         "title": "Technologie"
       }
     },
-    "philosophy": {
+    "approach": {
       "items": [
         {
-          "label": "Wydajność",
-          "q": "Architektura bez kompromisów.",
-          "s": "Zero page-builderów. Koduję w Next.js (SSR/SSG), wyciskając 100/100 w Core Web Vitals. Dla klienta to wyższe SEO, dla zespołu technicznego – stabilny, przewidywalny fundament."
+          "label": "Backend & Systems",
+          "q": "Solidność to podstawa",
+          "s": "Buduję API i logikę backendową w JavaScript i Node.js, rozwijając umiejętności w TypeScript. Pracowałem z bazami danych takimi jak Appwrite, projektując strukturę pod konkretne potrzeby aplikacji. Stawiam na czytelny, dobrze zorganizowany kod."
         },
         {
-          "label": "Doświadczenie",
-          "q": "Czysty ale płynny UX.",
-          "s": "Projektuję płynne ścieżki użytkownika. Czysty interfejs uzupełniony celowym motion designem (Framer Motion) buduje poczucie obcowania z produktem premium."
+          "label": "Frontend & Web Vitals",
+          "q": "Płynność i precyzja",
+          "s": "Tworzę interaktywne interfejsy w React i Next.js, stylując je w Tailwind CSS i ożywiając animacjami w Motion. Dbam o płynność i responsywność aplikacji, a komponenty piszę tak, żeby łatwo było je rozwijać i utrzymywać."
         },
         {
-          "label": "Skalowalność",
-          "q": "Gotowość na wzrost.",
-          "s": "Aplikacja musi wytrzymać nagły ruch. Projektuję bezpieczne API i optymalizuję bazy danych (PostgreSQL, MongoDB), tworząc systemy, które skalują się razem z biznesem."
-        },
-        {
-          "label": "Odpowiedzialność",
-          "q": "Produkcja to dopiero początek.",
-          "s": "Oddanie projektu to nie koniec pracy. Biorę pełną odpowiedzialność za stabilność, monitoring analityki i dalszy rozwój oprogramowania. Działam jak Twój partner technologiczny."
+          "label": "DevOps & Technical Rigor",
+          "q": "Porządek od podstaw",
+          "s": "Korzystam z Gita, GitHub Actions i Dockera w codziennej pracy, dbając o porządek w projekcie, od konteneryzacji po jasny commit history i czytelną strukturę repo."
         }
-      ],
-      "explore": "Eksploruj",
-      "discover": "Przejdź dalej"
+      ]
     },
     "cta": {
       "title_1": "Zbudujmy razem coś",
@@ -126,10 +119,6 @@
         "middle": "Skalowalne Systemy",
         "right": "Wysoka Wydajność"
       }
-    },
-    "personal": {
-      "subtitle": "Wysokie osiągi",
-      "quote": "Dla mnie kod jest jak wyczynowa maszyna. Backend to surowa moc pod maską, a frontend to aerodynamika doświadczenia. Usuwam zbędny opór, by każda interakcja była natychmiastowa i płynna."
     }
   },
 

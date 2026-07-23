@@ -49,39 +49,29 @@
     },
     "skills": {
       "header": {
-        "number": "02",
-        "title": "Core capabilities"
+        "number": "03",
+        "title": "Hard Numbers"
       },
       "items": [
         {
-          "title": "Full-Stack Architecture",
-          "desc": "Designing scalable, end-to-end systems using Next.js, Node.js, and modern databases that scale with your business.",
+          "title": "100/100 PageSpeed Score",
+          "desc": "Average mobile and desktop performance across deployments",
           "icon": "Layers"
         },
         {
-          "title": "API Engineering",
-          "desc": "Building robust, secure, and well-documented RESTful and GraphQL APIs to power seamless data flow.",
+          "title": "<150ms Time-to-First-Byte",
+          "desc": "Lightning-fast server response times via edge optimization",
           "icon": "Cpu"
         },
         {
-          "title": "Frontend Excellence",
-          "desc": "Translating complex designs into pixel-perfect, high-performance interfaces with React and Framer Motion.",
+          "title": "-45% Bundle Bloat Reduction",
+          "desc": "Achieved through strict tree-shaking and zero-dependency practices",
           "icon": "Layout"
         },
         {
-          "title": "Database Design",
-          "desc": "Architecting efficient data models and optimizing queries in PostgreSQL and MongoDB for maximum reliability.",
+          "title": "100% SLA Uptime Target",
+          "desc": "Resilient systems built with complete Docker and DB replication",
           "icon": "Database"
-        },
-        {
-          "title": "Performance Ops",
-          "desc": "Deep-diving into Core Web Vitals, server-side rendering, and caching strategies for lightning-fast loads.",
-          "icon": "Zap"
-        },
-        {
-          "title": "Product Engineering",
-          "desc": "Beyond coding: understanding business logic and user needs to deliver complete, value-driven products.",
-          "icon": "Code2"
         }
       ]
     },
@@ -91,31 +81,24 @@
         "title": "The Stack"
       }
     },
-    "philosophy": {
+    "approach": {
       "items": [
         {
-          "label": "Performance-First",
-          "q": "Uncompromised Speed",
-          "s": "No bloated page builders. I leverage Next.js (SSR/SSG) to hit peak Core Web Vitals. It means better organic reach for businesses and a reliable, optimized codebase for technical teams."
+          "label": "Backend & Systems",
+          "q": "Built for Reliability",
+          "s": "I build APIs and backend logic with JavaScript and Node.js, with growing TypeScript skills. I've worked with databases like Appwrite, structuring data around real application needs. I focus on writing clean, well-organized code."
         },
         {
-          "label": "Intuitive UX & Motion",
-          "q": "Frictionless interactions",
-          "s": "I design logical user flows enhanced by purposeful motion design. Every transition and micro-interaction is engineered to elevate the product and drive user conversion."
+          "label": "Frontend & Web Vitals",
+          "q": "Speed Meets Precision",
+          "s": "I build interactive interfaces with React and Next.js, styled with Tailwind CSS and brought to life with Motion animations. I focus on smooth, responsive UI, writing components that are easy to extend and maintain."
         },
         {
-          "label": "Scalable Architecture",
-          "q": "Built for heavy lifting",
-          "s": "A beautiful frontend is useless if the database crashes. I build secure APIs and optimize data structures (PostgreSQL, MongoDB) to ensure the system withstands sudden traffic spikes."
-        },
-        {
-          "label": "End-to-End Ownership",
-          "q": "Production is just the beginning",
-          "s": "Deployment is day zero. Whether I'm building for a client or working within a product team, I take full accountability for code quality, monitoring, and long-term maintainability."
+          "label": "DevOps & Technical Rigor",
+          "q": "Discipline by Design",
+          "s": "I use Git, GitHub Actions, and Docker in my daily workflow, keeping projects organized — from containerization to clear commit history and clean repo structure."
         }
-      ],
-      "explore": "Explore",
-      "discover": "Discover More"
+      ]
     },
     "cta": {
       "title_1": "Let’s build something",
@@ -126,10 +109,6 @@
         "middle": "Scalable Systems",
         "right": "High Performance Design"
       }
-    },
-    "personal": {
-      "subtitle": "High performance",
-      "quote": "I see code as a high-performance machine—beneath. Backend is the raw power under the hood; frontend is the aerodynamics of the experience. I eliminate drag to ensure every interaction is instant and fluid."
     }
   },
 

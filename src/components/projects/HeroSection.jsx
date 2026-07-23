@@ -10,7 +10,7 @@ export default function HeroSection({
   keywords,
 }) {
   return (
-    <section className="relative min-h-screen max-lg:pt-24 flex flex-col-reverse lg:flex-row overflow-hidden justify-center items-center gap-16">
+    <section className="shell-bleed min-h-screen max-lg:pt-24 flex flex-col-reverse lg:flex-row overflow-hidden justify-center items-center gap-16">
       {/* IMAGE SIDE */}
       <div className="w-full lg:w-4/7 lg:py-32 flex items-center justify-center">
         <motion.div

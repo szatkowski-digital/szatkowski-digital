@@ -2,63 +2,76 @@
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
 
-.slick-slider,
-.slick-list,
-.slick-track {
-  height: 100%;
-}
-
-:root {
-  --background: #ffffff;
-  --foreground: #0A0A0A;
-  color-scheme: dark;
-}
-
 @theme {
-  /* 🎨 Colors */
+  /* Colors */
   --color-primary-pink: #C94FA3;
-  --color-primary-pink--soft: #E0A8D1;
   --color-primary-aqua: #04CFA7;
-  --color-primary-aqua--soft: #9DE9D9;
   --color-primary-red: #FD0300;
-  --color-tech-pink: #BA5293;
 
   --color-n-1: #EFEFEF;
   --color-n-2: #1A1A1A;
   --color-n-3: #2B2B2B;
   --color-n-4: #B3B3B3;
-  --color-n-5: #3f3a52;
+  --color-n-5: #3F3A52;
   --color-n-6: #252134;
-  --color-n-7: #161b22;
+  --color-n-7: #161B22;
   --color-n-8: #0A0A0A;
 
-  /* 🖋️ Fonts */
-  --font-michroma: var(--font-michroma);
-  --font-inter: var(--font-inter);
+  /* Fonts */
+  --font-michroma: var(--font-michroma), sans-serif;
+  --font-inter: var(--font-inter), sans-serif;
 
-  /* 🔠 Letter spacing */
+  /* Spacing & Letter Spacing */
   --letter-spacing-tagline: 0.15em;
 
-  /* 🧱 Border */
-  --border-width-default: 0.0625rem;
+  --text-h1: clamp(3.5rem, 8.5vw + 1rem, 7.5rem);
+  --text-h1--line-height: 0.85;
+
+  --text-h2: clamp(2.75rem, 5.5vw + 1rem, 5rem);
+  --text-h2--line-height: 0.9;
+
+  --text-h3: clamp(1.75rem, 3vw + 0.5rem, 3rem);
+  --text-h3--line-height: 1;
+
+  --text-h4: clamp(1.35rem, 2vw + 0.5rem, 2.25rem);
+  --text-h4--line-height: 1.1;
+
+  --text-h5: clamp(1.15rem, 1.4vw + 0.4rem, 1.65rem);
+  --text-h5--line-height: 1.2;
+
+  --text-h6: clamp(0.95rem, 1vw + 0.3rem, 1.25rem);
+  --text-h6--line-height: 1.3;
+
+  --text-body-lg: clamp(1rem, 0.8vw + 0.7rem, 1.25rem);
+  --text-body-sm: clamp(0.875rem, 0.5vw + 0.65rem, 1.125rem);
 }
 
 @layer base {
   :root {
     color-scheme: dark;
-    --container-padding: clamp(1rem, 0.5rem + 5.5vw, 8rem);
+    --container-padding: clamp(1rem, 5.5vw, 8rem);
     --container-max-width: 1440px;
   }
 
-  * {
+  html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-n-8 text-n-1 text-base overscroll-none antialiased selection:bg-primary-pink/30 selection:text-n-1;
-    font-family: Inter, Michroma, sans-serif;
+    background-color: var(--color-n-8);
+    color: var(--color-n-1);
+    font-family: var(--font-inter);
+    font-size: 1rem;
+    line-height: 1.5;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
     padding-top: env(safe-area-inset-top);
     padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  ::selection {
+    background-color: rgba(201, 79, 163, 0.3);
+    color: var(--color-n-1);
   }
 
   main {
@@ -71,131 +84,138 @@
     user-select: none;
     -webkit-user-drag: none;
   }
+
+  /* Slider fix */
+  .slick-slider,
+  .slick-list,
+  .slick-track {
+    height: 100%;
+  }
 }
 
+/* 🧩 COMPONENT CLASSES */
 @layer components {
 
   /* SCREENS */
   .app-screen {
-    @apply relative flex w-full items-center justify-center overflow-x-hidden;
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
     min-height: 100dvh;
-    height: auto;
-    min-height: clamp(500px, 100dvh, 100dvh);
-
-    @supports (-webkit-touch-callout: none) {
-      min-height: -webkit-fill-available;
-    }
   }
 
   /* CONTAINERS */
   .shell {
-    @apply relative mx-auto w-full;
+    position: relative;
+    margin-inline: auto;
+    width: 100%;
     max-width: var(--container-max-width);
     padding-inline: var(--container-padding);
   }
 
   .shell-bleed {
-    @apply relative;
+    position: relative;
     width: 100vw;
     margin-inline-start: calc(50% - 50vw);
   }
 
   .shell-prose {
-    @apply relative mx-auto w-full;
+    position: relative;
+    margin-inline: auto;
+    width: 100%;
     max-width: 768px;
     padding-inline: var(--container-padding);
   }
 
-  /* TYPOGRAPHY */
+  /* TYPOGRAPHY UTILITIES (dla znaczników HTML) */
   .h1 {
-    @apply leading-[1.1] tracking-tight text-n-1;
-    font-family: var(--font-michroma);
-    font-size: clamp(2.25rem, 4vw, 4rem);
+    font-family: var(--font-inter);
+    font-size: var(--text-h1);
+    line-height: var(--text-h1--line-height);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    color: var(--color-n-1);
   }
 
   .h2 {
-    @apply leading-[1.15] text-n-1;
-    font-family: var(--font-michroma);
-    font-size: clamp(1.5rem, 2.6vw, 3rem);
+    font-family: var(--font-inter);
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--color-n-1);
   }
 
   .h3 {
-    @apply leading-snug text-n-1;
     font-family: var(--font-michroma);
-    font-size: clamp(1.25rem, 2vw, 2rem);
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    color: var(--color-n-1);
   }
 
   .h4 {
-    @apply leading-snug text-n-1;
     font-family: var(--font-michroma);
-    font-size: clamp(1.125rem, 1.6vw, 1.75rem);
+    font-size: var(--text-h4);
+    line-height: var(--text-h4--line-height);
+    color: var(--color-n-1);
   }
 
   .h5 {
-    @apply leading-snug text-n-1;
     font-family: var(--font-michroma);
-    font-size: clamp(1rem, 1.4vw, 1.5rem);
+    font-size: var(--text-h5);
+    line-height: var(--text-h5--line-height);
+    color: var(--color-n-1);
   }
 
   .h6 {
-    @apply leading-snug tracking-wide text-n-1;
     font-family: var(--font-michroma);
-    font-size: clamp(0.95rem, 1.2vw, 1.25rem);
+    font-size: var(--text-h6);
+    line-height: var(--text-h6--line-height);
+    letter-spacing: 0.025em;
+    color: var(--color-n-1);
   }
 
   /* BODY TEXT */
   .body-lg {
-    @apply leading-relaxed text-n-1;
     font-family: var(--font-inter);
-    font-size: clamp(1rem, 1.1vw, 1.25rem);
+    font-size: var(--text-body-lg);
+    line-height: 1.625;
+    color: var(--color-n-1);
   }
 
   .body-sm {
-    @apply font-medium leading-relaxed text-n-4;
     font-family: var(--font-inter);
-    font-size: clamp(0.875rem, 0.95vw, 1.125rem);
-  }
-
-  .menu-text {
-    @apply font-medium tracking-wide text-n-1;
-    font-family: var(--font-inter);
-    font-size: clamp(0.875rem, 0.9vw, 1rem);
+    font-size: var(--text-body-sm);
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--color-n-4);
   }
 }
 
-@layer utilities {
-  .text-reveal {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-  }
-
-  .grid-background {
-    background-image:
-      linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-  }
-
-  .glass-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-  }
-
-  .glow-pink {
-    box-shadow: 0 0 30px rgba(222, 49, 130, 0.15);
-  }
-
-  .glow-teal {
-    box-shadow: 0 0 30px rgba(6, 216, 179, 0.15);
-  }
+@utility text-reveal {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
-@keyframes grid-move {
-  0% {
-    transform: translateY(0);
-  }
+@utility grid-background {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
 
-  100% {
-    transform: translateY(40px);
-  }
+@utility glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+@utility glow-pink {
+  box-shadow: 0 0 30px rgba(201, 79, 163, 0.2);
+}
+
+@utility glow-teal {
+  box-shadow: 0 0 30px rgba(4, 207, 167, 0.2);
 }

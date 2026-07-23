@@ -15,7 +15,7 @@ const Button = ({
   const isAqua = color === "primary-aqua";
   const isPink = color === "primary-pink";
 
-  const classes = `button relative inline-flex items-center justify-center py-3 md:py-4 px-5 md:px-7 space-x-1 rounded-full transition-colors duration-300 whitespace-nowrap shrink-0 
+  const classes = `button relative inline-flex items-center justify-center py-3 md:py-4 px-5 md:px-7 space-x-1 rounded-full transition-colors duration-300 whitespace-nowrap shrink-0 cursor-pointer
   ${className || ""}
   ${isAqua ? "bg-n-1 hover:bg-primary-aqua text-n-8 hover:text-n-1" : ""}
   ${isPink ? "bg-n-1 hover:bg-primary-pink text-n-8 hover:text-n-1" : ""}
@@ -49,13 +49,3 @@ const Button = ({
 };
 
 export default Button;
-
-{
-  /* <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="px-12 py-6 bg-n-1 text-n-8 font-bold rounded-full flex items-center gap-3 mx-auto hover:bg-primary-aqua hover:text-white transition-colors duration-300"
-        >
-          GET IN TOUCH <ArrowRight className="w-5 h-5" />
-        </motion.button> */
-}

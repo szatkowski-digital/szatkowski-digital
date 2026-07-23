@@ -47,7 +47,7 @@ export default function Hero() {
             custom={0.2}
             initial={rotate90Left.initial}
             animate={rotate90Left.enter}
-            className="text-[10vh] font-extrabold md:text-[6vw] uppercase tracking-tighter leading-[0.8] transform-3d"
+            className="h1 uppercase transform-3d"
           >
             {t.raw("hero.greeting").map((line, index) => (
               <motion.span key={`greeting-line-${index}`} className="block">

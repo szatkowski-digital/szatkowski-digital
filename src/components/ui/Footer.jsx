@@ -2,10 +2,12 @@
 
 import { usePathname } from "next/navigation";
 import { SOCIAL_LINKS, FOOTER_INFO } from "@/data/navigation";
+import { useLanguageChange } from "@/hooks/useLanguageChange";
 
 export default function Footer() {
   const pathname = usePathname();
   const isHome = pathname === "/" || pathname === "/en";
+  const { locale, changeLanguage } = useLanguageChange();
 
   return (
     <footer className="absolute bottom-0 left-0 w-full pb-8 px-(--container-padding) z-50 pointer-events-none">
@@ -30,12 +32,22 @@ export default function Footer() {
                 {FOOTER_INFO.email}
               </a>
 
-              <div className="flex gap-4">
-                <div className="flex gap-2">
-                  <button className="text-white">PL</button>
-                  <span>/</span>
-                  <button className="hover:opacity-100">EN</button>
-                </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => changeLanguage("pl")}
+                  className={`transition ${locale === "pl" ? "text-white font-bold" : "text-white/30 hover:text-white"}`}
+                >
+                  PL
+                </button>
+
+                <span className="text-white/40">/</span>
+
+                <button
+                  onClick={() => changeLanguage("en")}
+                  className={`transition ${locale === "en" ? "text-white font-bold" : "text-white/30 hover:text-white"}`}
+                >
+                  EN
+                </button>
               </div>
             </div>
 

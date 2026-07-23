@@ -1,3 +1,4 @@
+import { head } from "framer-motion/client";
 import { Layout, Zap, Activity, Layers } from "lucide-react";
 
 export const getHeroData = (t) => ({
@@ -48,13 +49,11 @@ export const getTechStackData = (t) => {
   };
 };
 
-export const getPhilosophyData = (t) => {
+export const getApproachData = (t) => {
   const icons = [Layout, Zap, Activity, Layers];
-  const rawItems = t.raw("philosophy.items");
+  const rawItems = t.raw("approach.items");
 
   return {
-    exploreLabel: t("philosophy.explore"),
-    discoverLabel: t("philosophy.discover"),
     items: rawItems.map((item, index) => ({
       ...item,
       icon: icons[index] || Layout,

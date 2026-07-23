@@ -23,7 +23,7 @@ export default function Contact() {
         variants={slideUpFast}
         initial="initial"
         animate="enter"
-        className="shell grid lg:grid-cols-12 gap-20 lg:gap-12 items-start"
+        className="shell grid lg:grid-cols-12 gap-12 lg:gap-16 items-start w-full"
       >
         <ContactInfo localTime={localTime} t={info} />
 

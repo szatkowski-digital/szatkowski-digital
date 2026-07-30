@@ -1,19 +1,18 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { useMotionValue, animate, useMotionValueEvent } from "framer-motion";
+import useIsMobile from "@/hooks/useIsMobile";
 
-/**
- * Performance-optimized carousel logic using Framer Motion and ResizeObserver.
- * Bypasses React VDOM re-renders during active drag interactions.
- */
 export const useCarousel = ({
   total,
-  cardWidthRatio = 0.75,
-  gapRatio = 0.04,
+  gapRatio = 0.03,
   projectedVelocityMultiplier = 0.12,
 }) => {
+  const isMobile = useIsMobile();
   const containerRef = useRef(null);
+  const shellRef = useRef(null);
 
   const [containerWidth, setContainerWidth] = useState(0);
+  const [cardWidth, setCardWidth] = useState(0);
   const [activeRealIndex, setActiveRealIndex] = useState(0);
 
   const isAnimating = useRef(false);
@@ -21,22 +20,19 @@ export const useCarousel = ({
 
   const x = useMotionValue(0);
 
-  const cardWidth = containerWidth * cardWidthRatio;
   const gap = containerWidth * gapRatio;
   const step = cardWidth + gap;
 
-  // Calculates target X position to perfectly center the current slide
   const getTargetX = useCallback(
     (index) => {
-      if (!containerWidth) return 0;
+      if (!containerWidth || !cardWidth) return 0;
       const containerCenter = containerWidth / 2;
       const itemCenter = index * step + cardWidth / 2;
       return containerCenter - itemCenter;
     },
-    [containerWidth, step, cardWidth]
+    [containerWidth, cardWidth, step]
   );
 
-  // Cache drag boundaries to prevent function evaluation on every render pass
   const constraints = useMemo(() => {
     return {
       left: getTargetX(total - 1),
@@ -44,30 +40,35 @@ export const useCarousel = ({
     };
   }, [getTargetX, total]);
 
-  // Tracks physical container size to handle RWD and layout shifts seamlessly
   useEffect(() => {
     const container = containerRef.current;
+    const shell = shellRef.current;
     if (!container) return;
 
     const observer = new ResizeObserver((entries) => {
-      if (!entries || entries.length === 0) return;
-      const { width } = entries[0].contentRect;
-      setContainerWidth(width);
+      for (const entry of entries) {
+        if (entry.target === container) {
+          setContainerWidth(entry.contentRect.width);
+        }
+        if (entry.target === shell) {
+          setCardWidth(entry.contentRect.width);
+        }
+      }
     });
 
     observer.observe(container);
+    if (shell) observer.observe(shell);
+
     return () => observer.disconnect();
   }, []);
 
-  // Sets initial centered position once the container width is available
   useEffect(() => {
-    if (containerWidth > 0) {
+    if (containerWidth > 0 && cardWidth > 0) {
       x.set(getTargetX(currentIndexRef.current));
       setActiveRealIndex(currentIndexRef.current);
     }
-  }, [containerWidth, getTargetX, x]);
+  }, [containerWidth, cardWidth, getTargetX, x]);
 
-  // Decoupled listener tracking active slide index on the animation thread
   useMotionValueEvent(x, "change", (latestX) => {
     if (!containerWidth || total <= 0) return;
 
@@ -81,10 +82,10 @@ export const useCarousel = ({
         closestIndex = i;
       }
     }
-    setActiveRealIndex(closestIndex);
+
+    setActiveRealIndex((prev) => (prev !== closestIndex ? closestIndex : prev));
   });
 
-  // Snaps container to a specific card using fluid spring physics
   const handleSnap = useCallback(
     (closestIndex) => {
       isAnimating.current = true;
@@ -105,13 +106,20 @@ export const useCarousel = ({
     [getTargetX, x]
   );
 
-  // Calculates swipe inertia (velocity) on release to guess the next logical card
   const handleDragEnd = useCallback(
     (e, info) => {
-      if (!containerWidth) return;
+      if (!containerWidth || !cardWidth) return;
 
-      const projectedX =
-        x.get() + info.velocity.x * projectedVelocityMultiplier;
+      const currentVelocityMultiplier = isMobile
+        ? projectedVelocityMultiplier * 2.5
+        : projectedVelocityMultiplier;
+
+      let projectedX = x.get() + info.velocity.x * currentVelocityMultiplier;
+
+      if (isMobile) {
+        projectedX += info.offset.x * 0.5;
+      }
+
       let closestIndex = 0;
       let minDistance = Infinity;
 
@@ -128,6 +136,7 @@ export const useCarousel = ({
     },
     [
       containerWidth,
+      cardWidth,
       x,
       total,
       projectedVelocityMultiplier,
@@ -161,6 +170,7 @@ export const useCarousel = ({
   return {
     carouselProps: {
       containerRef,
+      shellRef,
       containerWidth,
       cardWidth,
       gap,

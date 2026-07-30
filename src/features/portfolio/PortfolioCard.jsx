@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { TransitionLink } from "@/components/utils/TransitionLink";
 import Button from "@/components/ui/Button";
 
 export const PortfolioCard = ({
@@ -9,7 +8,7 @@ export const PortfolioCard = ({
   buttonText,
 }) => {
   return (
-    <div className="relative w-full min-w-25 h-full glass-card rounded-[40px] overflow-hidden group flex flex-col md:flex-row">
+    <div className="relative w-full min-w-25 h-full glass-card rounded-4xl overflow-hidden group flex flex-col md:flex-row">
       {/* Image Section */}
       <div className="relative w-full md:w-3/5 h-1/3 md:h-auto overflow-hidden">
         <motion.img
@@ -26,14 +25,14 @@ export const PortfolioCard = ({
       </div>
 
       {/* Text Section */}
-      <div className="w-full md:w-2/5 h-2/3 md:h-full z-10">
+      <div className="w-full md:w-2/5 h-2/3 md:h-full z-10 flex flex-col justify-between gap-4 p-6 md:p-12">
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={
             isCurrentActive ? { opacity: 1, x: 0 } : { opacity: 0.4, x: 10 }
           }
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="flex flex-col h-full w-full items-start justify-center gap-[clamp(.5rem,4%,1.5rem)] p-8 md:p-12"
+          className="flex flex-col h-full w-full items-start justify-center gap-[clamp(.5rem,4%,1.5rem)]"
         >
           <span className="font-michroma text-[0.5rem] tracking-[0.25rem] text-primary-aqua block uppercase">
             {project.label}
@@ -48,13 +47,9 @@ export const PortfolioCard = ({
           <p className="text-n-1/60 text-sm lg:text-base">
             {project.description}
           </p>
-
-          <TransitionLink href={project.href} className="self-start mt-4">
-            <Button className="text-xl lg:text-lg 2xl:text-xl">
-              {buttonText}
-            </Button>
-          </TransitionLink>
         </motion.div>
+
+        <Button href={project.href}>{buttonText}</Button>
       </div>
 
       {/* Slide Index */}
@@ -73,7 +68,7 @@ const TechBadge = ({ tech }) => {
           {tech.map((tech, i) => (
             <span
               key={i}
-              className="px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-[10px] md:text-xs font-mono tracking-wider text-white/80 whitespace-nowrap"
+              className="px-4 py-1.5 rounded-full border border-white/10 bg-white/3 text-[10px] md:text-xs font-mono tracking-wider text-white/80 whitespace-nowrap"
             >
               {tech}
             </span>

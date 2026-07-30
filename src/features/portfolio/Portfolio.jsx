@@ -17,7 +17,7 @@ export default function Portfolio() {
   const { carouselProps, navigationProps } = useCarousel({ total });
 
   return (
-    <section className="app-screen pt-20 pb-30 md:py-[clamp(5.5rem,15dvh,10rem)] ">
+    <section className="app-screen pt-20 pb-30 md:py-[clamp(5.5rem,15dvh,10rem)]">
       <motion.div
         variants={slideUpFast}
         initial="initial"

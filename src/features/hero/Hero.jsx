@@ -72,7 +72,10 @@ export default function Hero() {
             className="pt-3 transform-3d"
           >
             <TransitionLink href="/about">
-              <Button className="text-xl lg:text-lg 2xl:text-xl">
+              <Button
+                showArrow={true}
+                className="text-xl lg:text-lg 2xl:text-xl"
+              >
                 {t("hero.ctaButton")}
               </Button>
             </TransitionLink>
@@ -87,7 +90,7 @@ export default function Hero() {
             >
               <TransitionLink href="/portfolio">
                 <Button
-                  color="primary-aqua"
+                  variant="glow"
                   className="text-xl lg:text-lg 2xl:text-xl"
                 >
                   {t("hero.ctaPortfolioButton")}

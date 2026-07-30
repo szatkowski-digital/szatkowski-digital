@@ -8,7 +8,7 @@ export const ContactInfo = ({ localTime, t }) => {
           {t.badge}
         </span>
 
-        <h1 className="text-[10vh] font-extrabold md:text-[6vw] uppercase tracking-tighter leading-[0.8]">
+        <h1 className="h1 uppercase">
           {t.title1} <br /> <span>{t.title2}</span>
         </h1>
 

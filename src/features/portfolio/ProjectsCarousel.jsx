@@ -4,6 +4,7 @@ import { PortfolioCard } from "./PortfolioCard";
 function ProjectsCarousel({ carouselProps, projects, t }) {
   const {
     containerRef,
+    shellRef,
     containerWidth,
     cardWidth,
     gap,
@@ -19,9 +20,16 @@ function ProjectsCarousel({ carouselProps, projects, t }) {
       className="w-full relative overflow-hidden transition-opacity duration-300"
       style={{
         touchAction: "pan-y",
-        opacity: containerWidth > 0 ? 1 : 0,
+        opacity: containerWidth > 0 && cardWidth > 0 ? 1 : 0,
       }}
     >
+      {/* Niewidoczny element pomocniczy – ResizeObserver czyta z niego idealną szerokość zawartości .shell */}
+      <div
+        ref={shellRef}
+        className="shell pointer-events-none"
+        style={{ position: "absolute", height: 0, visibility: "hidden" }}
+      />
+
       <motion.div
         style={{ x }}
         drag="x"
@@ -38,7 +46,7 @@ function ProjectsCarousel({ carouselProps, projects, t }) {
                 marginRight: gap,
                 flexShrink: 0,
               }}
-              className="h-[clamp(30rem,75dvh,50rem)] md:h-[clamp(25rem,60dvh,60rem)]"
+              className="h-[clamp(30rem,68dvh,50rem)] md:h-[clamp(25rem,60dvh,60rem)]"
             >
               <PortfolioCard
                 project={item}

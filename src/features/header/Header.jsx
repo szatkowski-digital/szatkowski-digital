@@ -8,10 +8,9 @@ import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 
 import Image from "next/image";
-import Link from "next/link";
 
-import MobileMenu from "@/components/design/MobileMenu";
-import MenuSvg from "@/components/design/MenuSvg";
+import MobileMenu from "@/features/header/MobileMenu";
+import MenuSvg from "@/features/header/MenuSvg";
 import { TransitionLink } from "@/components/utils/TransitionLink";
 
 /**
@@ -124,9 +123,15 @@ export default function Header() {
  */
 function Logo() {
   return (
-    <Link href="/" aria-label="Homepage">
-      <Image src="/logo.svg" alt="Logo" width={125} height={125} priority />
-    </Link>
+    <TransitionLink href="/" aria-label="Szatkowski Digital - Home">
+      <img
+        src="/logo.svg"
+        alt="Logo"
+        width={125}
+        height={50}
+        className="w-31.25 h-auto"
+      />
+    </TransitionLink>
   );
 }
 

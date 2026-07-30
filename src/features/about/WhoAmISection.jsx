@@ -7,7 +7,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export const WhoAmISection = ({ t }) => {
   return (
-    <section className="mx-auto">
+    <section id="who-am-i" className="pt-28">
       <SectionHeader number={t.number} title={t.title} />
       <div className="grid md:grid-cols-2 gap-12 items-start">
         <motion.p

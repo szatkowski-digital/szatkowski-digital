@@ -1,8 +1,8 @@
 "use client";
 
 import { runPageTransition } from "@/hooks/pageTransitions";
-import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 const LOCALES = ["en"];
 
@@ -16,41 +16,48 @@ function normalizePath(path = "") {
   return "/" + segments.join("/");
 }
 
-export const TransitionLink = ({ onClick, children, href, ...props }) => {
+export const TransitionLink = ({
+  onClick,
+  children,
+  href,
+  className,
+  disabled,
+  ...props
+}) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleClick = async (e) => {
-    const target = typeof href === "string" ? href : (href?.pathname ?? "");
+  const handleNavigate = async () => {
+    if (disabled) return;
 
+    const target = typeof href === "string" ? href : (href?.pathname ?? "");
     const currentNormalized = normalizePath(pathname);
     const targetNormalized = normalizePath(target);
 
     if (currentNormalized === targetNormalized) {
-      e.preventDefault();
       window.scrollTo({ top: 0, behavior: "smooth" });
       router.refresh();
       if (onClick) onClick();
       return;
     }
 
-    e.preventDefault();
-
     await runPageTransition();
-
     router.push(href);
-
     if (onClick) onClick();
   };
 
   return (
-    <Link
+    <motion.a
       {...props}
       href={href}
-      onClick={handleClick}
+      className={className}
+      onTap={() => handleNavigate()}
+      onClick={(e) => {
+        e.preventDefault();
+      }}
       onMouseEnter={() => router.prefetch(href)}
     >
       {children}
-    </Link>
+    </motion.a>
   );
 };

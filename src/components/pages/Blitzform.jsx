@@ -1,7 +1,7 @@
 import React from "react";
-import HeroSection from "../projects/HeroSection";
+import HeroSection from "../../features/projects/HeroSection";
 import Carousel from "../ui/Carousel";
-import MediaSection from "../projects/MediaSection";
+import MediaSection from "../../features/projects/MediaSection";
 
 const images = [
   "/images/blitzform_hero.webp",

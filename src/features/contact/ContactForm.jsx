@@ -8,7 +8,7 @@ export const ContactForm = ({ contact, steps, formUi }) => {
   const currentStepData = steps[step];
 
   return (
-    <div className="relative lg:col-span-7 w-full glass-card rounded-[40px] p-12 md:p-20 lg:p-24 overflow-hidden">
+    <div className="relative w-full md:w-3/5 glass-card rounded-[40px] p-12 md:p-20 lg:p-24 overflow-hidden">
       <FormProgressBar step={step} steps={steps.length} />
 
       {/* FORM SECTION */}
@@ -156,7 +156,7 @@ const FormNav = ({ contact, currentStepData, formUi, steps }) => {
   const { step, handlePrev, handleNext, isStepValid, isSending } = contact;
 
   return (
-    <div className="flex items-center justify-between pt-4 md:pt-6">
+    <div className="flex items-center gap-8 justify-between pt-4 md:pt-6">
       <button
         onClick={handlePrev}
         disabled={step === 0}
@@ -172,7 +172,6 @@ const FormNav = ({ contact, currentStepData, formUi, steps }) => {
       <Button
         onClick={handleNext}
         disabled={(!isStepValid && !currentStepData.options) || isSending}
-        className={"text-sm md:text-base"}
       >
         {step === steps - 1 ? formUi.dispatching : formUi.continue}
       </Button>

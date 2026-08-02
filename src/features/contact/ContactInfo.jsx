@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export const ContactInfo = ({ localTime, t }) => {
   return (
-    <div className="lg:col-span-5 space-y-8">
+    <div className="w-full md:w-2/5 space-y-8">
       <div className="space-y-4">
         <span className="font-michroma text-[10px] tracking-[0.3em] text-primary-aqua uppercase mb-4 block">
           {t.badge}
@@ -35,7 +35,7 @@ export const ContactInfo = ({ localTime, t }) => {
 const ContactLink = ({ label, href, content }) => {
   return (
     <motion.div
-      whileHover={{ x: 20 }}
+      whileHover={{ x: 16 }}
       transition={{ type: "spring", stiffness: 400, damping: 10 }}
       className="group cursor-pointer"
     >
@@ -43,7 +43,7 @@ const ContactLink = ({ label, href, content }) => {
         {label}
       </span>
 
-      <a href={href} className="text-2xl font-bold block">
+      <a href={href} className="body-lg font-bold block">
         {content}
       </a>
     </motion.div>

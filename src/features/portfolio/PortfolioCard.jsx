@@ -49,7 +49,9 @@ export const PortfolioCard = ({
           </p>
         </motion.div>
 
-        <Button href={project.href}>{buttonText}</Button>
+        <Button showArrow={true} href={project.href}>
+          {buttonText}
+        </Button>
       </div>
 
       {/* Slide Index */}

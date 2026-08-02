@@ -230,5 +230,35 @@
         "description": "A creative collection of 3D product visualizations and web design projects. Each render highlights realistic materials, lighting, and precise modeling used in modern digital branding."
       }
     }
+  },
+
+  "projects": {
+    "smokins": {
+      "intro": {
+        "mainText": "Smokins to sieć detaliczna, która postanowiła zamienić papierowe pieczątki na cyfrowy ekosystem.",
+        "subText": "Aplikacja została zaprojektowana z myślą o szybkości i wysokim kontraście. Cel był prosty: interfejs typu utility-first, który pozwala na błyskawiczną obsługę przy kasie bez zbędnych kliknięć.",
+        "techText": "Głównym priorytetem technologicznym było stworzenie skalowalnego rozwiązania cross-platformowego, które obsłuży logikę biznesową bez względu na system operacyjny."
+      },
+      "appUx": {
+        "title": "Interfejs Aplikacji",
+        "description": "Zaprojektowany pod kątem szybkiej nawigacji i maksymalnego kontrastu w trudnym oświetleniu.",
+        "bottomText": "Optymalizacja procesu skanowania skróciła czas obsługi klienta o 40%."
+      },
+      "sellerPanel": {
+        "title": "Panel Sprzedawcy",
+        "description": "Narzędzie dla pracowników punktów handlowych do weryfikacji i przyznawania punktów.",
+        "bottomText": "Działa bezproblemowo na wszystkich tabletach i urządzeniach mobilnych."
+      },
+      "techStack": {
+        "designTitle": "Design & Strategy",
+        "designDesc": "UI/UX Design, Interactive Prototyping, Brand Identity",
+        "techTitle": "Technical Stack",
+        "techDesc": "React Native, Expo SDK, JavaScript (ES6), NativeWind",
+        "backendTitle": "Backend & Infrastructure",
+        "backendDesc": "Firebase / Google Cloud, Auth, Database, Deployment",
+        "title": "Smokins Loyalty App",
+        "buttonText": "Następny Projekt"
+      }
+    }
   }
 }

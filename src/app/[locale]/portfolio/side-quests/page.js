@@ -1,6 +1,6 @@
-import HeroSection from "@/components/projects/HeroSection";
-import MediaSection from "@/components/projects/MediaSection";
-import LogoGrid from "@/components/projects/others/LogoGrid";
+import HeroSection from "@/features/projects/HeroSection";
+import MediaSection from "@/features/projects/MediaSection";
+import LogoGrid from "@/features/projects/others/LogoGrid";
 import Carousel from "@/components/ui/Carousel";
 
 const desc = `• projekty logotypów

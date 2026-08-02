@@ -8,7 +8,7 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ["lucide-react"],
   },
-  allowedDevOrigins: ["192.168.33.110"],
+  allowedDevOrigins: ["192.168.33.100"],
 };
 
 export default withNextIntl(nextConfig);

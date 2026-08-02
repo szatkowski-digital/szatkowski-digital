@@ -1,4 +1,4 @@
-import LogoGrid from "@/components/projects/others/LogoGrid";
+import LogoGrid from "@/features/projects/others/LogoGrid";
 import { Blitzform } from "@/components/pages/Blitzform";
 import MainTransition from "@/components/ui/MainTransition";
 

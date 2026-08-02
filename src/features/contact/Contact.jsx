@@ -18,12 +18,12 @@ export default function Contact() {
   const { localTime } = useLocalTime();
 
   return (
-    <section className="app-screen pt-20 pb-30 md:py-[clamp(5.5rem,15dvh,10rem)] flex items-center justify-center">
+    <section className="app-screen pt-20 pb-30 md:py-[clamp(5.5rem,15dvh,10rem)]">
       <motion.div
         variants={slideUpFast}
         initial="initial"
         animate="enter"
-        className="shell grid lg:grid-cols-12 gap-12 lg:gap-16 items-start w-full"
+        className="shell flex flex-col md:flex-row gap-16 md:gap-24 items-center w-full"
       >
         <ContactInfo localTime={localTime} t={info} />
 

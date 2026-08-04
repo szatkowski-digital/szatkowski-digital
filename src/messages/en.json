@@ -8,8 +8,8 @@
     },
     "seo": {
       "home": {
-        "title": "BlitzForm - mobilna fabryka druku 3D na miejscu i części przemysłowe",
-        "description": "BlitzForm oferuje mobilny druk 3D w terenie, szybkie przetwarzanie części przemysłowych i cyfrowy magazyn części wprost do Twojej lokalizacji."
+        "title": "Szatkowski Digital | Full-Stack Developer & High-Performance Web Apps",
+        "description": "I create high-performance web applications, polished interfaces with animation physics, and modern full-stack systems. Check out my portfolio."
       }
     }
   },
@@ -259,8 +259,8 @@
     },
     "blitzform": {
       "hero": {
-        "alt": "Blitzform app",
-        "title": "Blitzform 3D Factory",
+        "alt": "Blitzform website",
+        "title": "Blitzform 3D",
         "description": "Digital showcase and mobile parts factory app for a 3D printing startup",
         "keywords": "3D Printing • Mobile First • Container Factory"
       },

@@ -8,8 +8,8 @@
     },
     "seo": {
       "home": {
-        "title": "Paweł | Full-Stack Developer - Next.js, Node.js, TypeScript",
-        "description": "Inżynier oprogramowania Full-Stack. Tworzę wydajne aplikacje webowe, systemy SaaS i skalowalne architektury backendowe w ekosystemie JavaScript/TypeScript."
+        "title": "Szatkowski Digital | Full-Stack Developer & High-Performance Web Apps",
+        "description": "Tworzę wydajne aplikacje internetowe, dopracowane interfejsy z fizyką animacji oraz nowoczesne systemy full-stack. Zobacz moje portfolio."
       }
     }
   },
@@ -255,8 +255,8 @@
     },
     "blitzform": {
       "hero": {
-        "alt": "Blitzform app",
-        "title": "Blitzform 3D Factory",
+        "alt": "Blitzform website",
+        "title": "Blitzform 3D",
         "description": "Cyfrowa wizytówka oraz mobilna fabryka części dla startupu druku 3D",
         "keywords": "3D Printing • Mobile First • Container Factory"
       },

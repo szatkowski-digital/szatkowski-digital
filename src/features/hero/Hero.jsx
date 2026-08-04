@@ -216,9 +216,21 @@ function InterfacesBlock({ className, header, description, footer }) {
  */
 
 const SOCIAL_LINKS = [
-  { icon: Linkedin, href: "https://linkedin.com/", label: "LinkedIn" },
-  { icon: Github, href: "https://github.com/", label: "GitHub" },
-  { icon: Instagram, href: "https://instagram.com/", label: "Instagram" },
+  {
+    icon: Linkedin,
+    href: "https://linkedin.com/in/pawe%C5%82-szatkowski-776959183/",
+    label: "LinkedIn",
+  },
+  {
+    icon: Github,
+    href: "https://github.com/szatkowski-digital/",
+    label: "GitHub",
+  },
+  {
+    icon: Instagram,
+    href: "https://instagram.com/szatkowski_digital/",
+    label: "Instagram",
+  },
 ];
 
 function SocialsHero({ exit, onAnimationComplete }) {

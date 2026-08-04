@@ -19,7 +19,7 @@ export const HeroSection = ({ t }) => {
   };
 
   return (
-    <section ref={heroRef} className="shell-bleed relative pt-28">
+    <section ref={heroRef} className="shell-bleed pt-28">
       <ScrollFloatingPixels sectionRef={heroRef} pixels={heroPixels} />
 
       <motion.div

@@ -45,7 +45,7 @@ export default function TechStackSection({ t, onNextProject }) {
 
         {/* RIGHT HERO / NEXT PROJECT */}
         <div className="order-1 lg:order-2 flex flex-col items-center lg:items-end justify-center gap-8 md:gap-16 text-center lg:text-right min-h-[30vh] lg:min-h-[60vh]">
-          <h1 className="h1 font-bold max-w-xl">{title}</h1>
+          <h1 className="h1 max-w-xl">{title}</h1>
 
           <Button href={onNextProject} showArrow={true}>
             {buttonText}

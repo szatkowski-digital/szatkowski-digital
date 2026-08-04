@@ -54,10 +54,7 @@ export default function HeroSection({ t, src, tech }) {
         viewport={{ once: true }}
         className="flex flex-col justify-center items-center lg:items-end w-full lg:w-3/7 text-center lg:text-right max-lg:px-6 lg:pr-16 xl:pr-24 gap-4 md:gap-6"
       >
-        <motion.h1
-          variants={slideUp2}
-          className="text-[8vh] font-black md:text-[6vw] uppercase tracking-tighter leading-[0.8]"
-        >
+        <motion.h1 variants={slideUp2} className="h1 uppercase pb-6">
           {title}
         </motion.h1>
 

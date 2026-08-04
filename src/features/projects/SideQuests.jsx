@@ -28,7 +28,7 @@ export function SideQuests() {
   return (
     <div className="shell">
       <HeroSection
-        src="/images/sidequests_banner.webp"
+        src="/images/sidequests_banner.avif"
         t={heroData}
         tech={["WordPress", "Figma", "3D Modeling"]}
       />

@@ -37,7 +37,7 @@ export function SmokinsApp() {
         t={appUxData}
         media={
           <Image
-            src="/images/smokins_appUX.webp"
+            src="/images/smokins_appUx.webp"
             width={892}
             height={612}
             alt={t("appUx.title")}

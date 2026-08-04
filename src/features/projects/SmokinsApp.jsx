@@ -26,7 +26,7 @@ export function SmokinsApp() {
   return (
     <div className="shell">
       <HeroSection
-        src="/images/smokins_banner.webp"
+        src="/images/smokins_banner_hero.avif"
         t={heroData}
         tech={["React Native", "JavaScript", "Appwrite"]}
       />
@@ -37,7 +37,7 @@ export function SmokinsApp() {
         t={appUxData}
         media={
           <Image
-            src="/images/smokins_app_UX.webp"
+            src="/images/smokins_appUX.webp"
             width={892}
             height={612}
             alt={t("appUx.title")}

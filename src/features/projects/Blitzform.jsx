@@ -27,7 +27,7 @@ export function Blitzform() {
   return (
     <div className="shell">
       <HeroSection
-        src="/images/blitzform_banner.webp"
+        src="/images/blitzform_banner_hero.avif"
         t={heroData}
         tech={["Next.js", "JavaScript / TypeScript", "Motion"]}
       />

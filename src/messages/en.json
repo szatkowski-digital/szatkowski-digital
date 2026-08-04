@@ -3,7 +3,8 @@
     "navigation": {
       "about": "About",
       "portfolio": "Projects",
-      "contact": "Contact"
+      "contact": "Contact",
+      "backToPortfolio": "Back to portfolio"
     },
     "seo": {
       "home": {
@@ -224,20 +225,26 @@
 
   "projects": {
     "smokins": {
+      "hero": {
+        "alt": "Smokins app",
+        "title": "Smokins Loyalty App",
+        "description": "Digital transformation of a retail chain's loyalty program",
+        "keywords": "Mobile App • eCommerce • Loyalty System"
+      },
       "intro": {
-        "mainText": "Smokins to sieć detaliczna, która postanowiła zamienić papierowe pieczątki na cyfrowy ekosystem.",
-        "subText": "Aplikacja została zaprojektowana z myślą o szybkości i wysokim kontraście. Cel był prosty: interfejs typu utility-first, który pozwala na błyskawiczną obsługę przy kasie bez zbędnych kliknięć.",
-        "techText": "Głównym priorytetem technologicznym było stworzenie skalowalnego rozwiązania cross-platformowego, które obsłuży logikę biznesową bez względu na system operacyjny."
+        "mainText": "Smokins is a retail chain that replaced paper stamp cards with a fully digital loyalty ecosystem.",
+        "subText": "The interface was built utility-first: speed and high contrast were the priority, letting staff close a transaction at the register in as few taps as possible.",
+        "techText": "The core technical requirement was a scalable, cross-platform solution that runs the same business logic regardless of the device's operating system."
       },
       "appUx": {
-        "title": "Interfejs Aplikacji",
-        "description": "Zaprojektowany pod kątem szybkiej nawigacji i maksymalnego kontrastu w trudnym oświetleniu.",
-        "bottomText": "Optymalizacja procesu skanowania skróciła czas obsługi klienta o 40%."
+        "title": "App Interface",
+        "description": "Designed for fast navigation and maximum contrast under the harsh lighting conditions typical of point-of-sale environments.",
+        "bottomText": "Scanning and points redemption were reduced to a two-step flow, cutting checkout time by 40%. A flattened screen hierarchy removes unnecessary transitions, while large touch targets keep mis-taps to a minimum during peak hours."
       },
       "sellerPanel": {
-        "title": "Panel Sprzedawcy",
-        "description": "Narzędzie dla pracowników punktów handlowych do weryfikacji i przyznawania punktów.",
-        "bottomText": "Działa bezproblemowo na wszystkich tabletach i urządzeniach mobilnych."
+        "title": "Seller Panel",
+        "description": "A tool for store staff to verify customers and award loyalty points.",
+        "bottomText": "The panel runs identically across tablets, phones, and older in-store devices, with no drop in performance or responsiveness. The authorization and validation layer was designed to minimize the risk of manual point-awarding abuse."
       },
       "techStack": {
         "designTitle": "Design & Strategy",
@@ -247,7 +254,78 @@
         "backendTitle": "Backend & Infrastructure",
         "backendDesc": "Firebase / Google Cloud, Auth, Database, Deployment",
         "title": "Smokins Loyalty App",
-        "buttonText": "Następny Projekt"
+        "buttonText": "Next Project"
+      }
+    },
+    "blitzform": {
+      "hero": {
+        "alt": "Blitzform app",
+        "title": "Blitzform 3D Factory",
+        "description": "Digital showcase and mobile parts factory app for a 3D printing startup",
+        "keywords": "3D Printing • Mobile First • Container Factory"
+      },
+      "intro": {
+        "mainText": "Blitzform builds containerized, mobile industrial 3D printing factories designed to operate in demanding field conditions.",
+        "subText": "The brief called for a fast, no-frills site with clean UX that reflects the brand's engineering-first identity, while previewing the upcoming app built around a virtual parts database.",
+        "techText": "The frontend was built in plain JSX for maximum UI flexibility, while the warehouse and virtual factory logic runs on strongly-typed TypeScript to reduce errors as the parts database scales."
+      },
+      "appUx": {
+        "title": "Industrial Interface",
+        "description": "Built for clarity, blending the raw aesthetic of industrial systems with a modern UI layer.",
+        "bottomText": "A dark theme and precise typography establish a technical, professional identity while keeping data-dense screens fully legible. The visual hierarchy guides users from brand messaging down to specific product parameters without losing context along the way."
+      },
+      "mobileUx": {
+        "title": "Mobile-First Optimization",
+        "description": "Fully responsive and fast-loading, built for users who open the site directly from the field.",
+        "bottomText": "Page layout and asset sizes were optimized for the weaker network conditions typical of industrial and remote job sites. Critical content loads first, so the interface becomes usable before images and animations finish loading in full."
+      },
+      "techStack": {
+        "designTitle": "Design & Strategy",
+        "designDesc": "UI/UX Design, Technical Branding, Industrial Aesthetic",
+        "techTitle": "Technical Stack",
+        "techDesc": "Next.js, JavaScript (JSX) / TypeScript, Tailwind CSS 4, Motion",
+        "backendTitle": "App & Infrastructure",
+        "backendDesc": "Parts Database Engine, Vercel Deployment, Modular Architecture",
+        "title": "Blitzform 3D",
+        "buttonText": "Next Project"
+      }
+    },
+    "sideQuests": {
+      "hero": {
+        "alt": "Side Quests portfolio",
+        "title": "Side Quests",
+        "description": "A collection of logo design, marketing graphics, 3D renders, and custom websites",
+        "keywords": "Logo Design • 3D & Marketing • Web Development"
+      },
+      "intro": {
+        "mainText": "Side Quests is where the creative work lives — original logos, marketing graphics, 3D rendering, and websites.",
+        "subText": "Alongside full-scale app development, this covers client work in logo design, marketing creative, and website builds for both individuals and businesses.",
+        "techText": "Design work runs through Figma, Blender, and the Adobe suite (Illustrator/Photoshop), with sites shipped on WordPress or in plain HTML/JS depending on the project's needs."
+      },
+      "corporateIdentity": {
+        "title": "Logo Design & Branding",
+        "description": "Original logos, marks, and brand guidelines built from the ground up, including typography and color usage rules.",
+        "bottomText": "Every logo starts with research and concept sketches, moves through vector work in Figma and Illustrator, and ends with a full brand guideline covering color variants and usage rules. That process keeps the mark consistent no matter where it ends up being used."
+      },
+      "projects3d": {
+        "title": "Marketing & 3D Modeling",
+        "description": "3D objects, product visualizations, and marketing graphics built for digital and print channels.",
+        "bottomText": "Models and scenes are built in Blender and rendered at resolutions suitable for both large-format print and social media, then finished in Photoshop for lighting, contrast, and consistency with the client's visual identity."
+      },
+      "websites": {
+        "title": "Websites & WordPress",
+        "description": "Fast, fully responsive websites and landing pages built on WordPress or in plain HTML/JS.",
+        "bottomText": "Every site is optimized for load speed, basic SEO, and consistent rendering across mobile and desktop. Code and CMS structure are chosen so clients can update content themselves without touching the technical layer."
+      },
+      "techStack": {
+        "designTitle": "Logo & Identity",
+        "designDesc": "Figma, Adobe Illustrator, Vector Design, Logo Guidelines",
+        "techTitle": "3D & Marketing Graphics",
+        "techDesc": "Blender, Photoshop, Product Renders, Social Media Visuals",
+        "backendTitle": "Web Development",
+        "backendDesc": "WordPress, HTML5, CSS3, JavaScript (ES6), SEO",
+        "title": "Side Quests",
+        "buttonText": "Next Project"
       }
     }
   }

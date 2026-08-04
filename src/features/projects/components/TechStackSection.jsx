@@ -21,7 +21,7 @@ export default function TechStackSection({ t, onNextProject }) {
   });
 
   return (
-    <section ref={ref} className="shell md:shell-bleed relative pb-36 md:pb-24">
+    <section ref={ref} className="relative pb-36 md:pb-24">
       <div className="flex flex-col md:flex-row items-center justify-between">
         {/* LEFT TECH STACK */}
         <motion.div
@@ -44,10 +44,12 @@ export default function TechStackSection({ t, onNextProject }) {
         </motion.div>
 
         {/* RIGHT HERO / NEXT PROJECT */}
-        <div className="order-1 lg:order-2 flex flex-col items-center lg:items-end justify-center gap-8 text-center lg:text-right min-h-[30vh] lg:min-h-[60vh]">
+        <div className="order-1 lg:order-2 flex flex-col items-center lg:items-end justify-center gap-8 md:gap-16 text-center lg:text-right min-h-[30vh] lg:min-h-[60vh]">
           <h1 className="h1 font-bold max-w-xl">{title}</h1>
 
-          <Button onClick={onNextProject}>{buttonText}</Button>
+          <Button href={onNextProject} showArrow={true}>
+            {buttonText}
+          </Button>
         </div>
       </div>
     </section>

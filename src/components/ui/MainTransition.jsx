@@ -53,12 +53,12 @@ export default function MainTransition({ children }) {
   return (
     <motion.main
       ref={mainRef}
-      style={{ transformOrigin: origin }}
+      style={{ transformOrigin: origin, position: "relative" }}
       animate={{
         opacity: exit ? 0 : 1,
-        scale: exit ? 0.95 : 1,
+        y: exit ? 20 : 0,
       }}
-      transition={{ duration: 0.3, ease: [0.4, 0, 1, 1] }}
+      transition={{ duration: 0.2, ease: [0.4, 0, 1, 1] }}
       onAnimationComplete={() => {
         if (exit && resolveRef.current) {
           resolveRef.current();

@@ -1,5 +1,3 @@
-import { delay } from "framer-motion";
-
 export const slideLeft = {
   initial: {
     scale: 0.95,
@@ -116,5 +114,45 @@ export const slideUpFast = {
     opacity: 1,
     y: 0,
     transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] },
+  },
+};
+
+export const staggerContainer = {
+  initial: {},
+  enter: {
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+export const slideUp2 = {
+  initial: {
+    opacity: 0,
+    y: 30,
+  },
+  enter: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.215, 0.61, 0.355, 1],
+    },
+  },
+};
+
+export const slideLeft2 = {
+  initial: {
+    opacity: 0,
+    x: 40,
+  },
+  enter: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+    },
   },
 };

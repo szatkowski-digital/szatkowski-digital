@@ -1,3 +1,10 @@
+export const getHeroData = (t) => ({
+  alt: t("hero.alt"),
+  title: t("hero.title"),
+  description: t("hero.description"),
+  keywords: t("hero.keywords"),
+});
+
 export const getIntroData = (t) => ({
   mainText: t("intro.mainText"),
   subText: t("intro.subText"),

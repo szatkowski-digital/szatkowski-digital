@@ -149,28 +149,28 @@
   }
 
   .h3 {
-    font-family: var(--font-michroma);
+    font-family: var(--font-inter);
     font-size: var(--text-h3);
     line-height: var(--text-h3--line-height);
     color: var(--color-n-1);
   }
 
   .h4 {
-    font-family: var(--font-michroma);
+    font-family: var(--font-inter);
     font-size: var(--text-h4);
     line-height: var(--text-h4--line-height);
     color: var(--color-n-1);
   }
 
   .h5 {
-    font-family: var(--font-michroma);
+    font-family: var(--font-inter);
     font-size: var(--text-h5);
     line-height: var(--text-h5--line-height);
     color: var(--color-n-1);
   }
 
   .h6 {
-    font-family: var(--font-michroma);
+    font-family: var(--font-inter);
     font-size: var(--text-h6);
     line-height: var(--text-h6--line-height);
     letter-spacing: 0.025em;

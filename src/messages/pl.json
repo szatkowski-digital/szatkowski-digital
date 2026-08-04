@@ -3,7 +3,8 @@
     "navigation": {
       "about": "O mnie",
       "portfolio": "Portfolio",
-      "contact": "Kontakt"
+      "contact": "Kontakt",
+      "backToPortfolio": "Powrót do portfolio"
     },
     "seo": {
       "home": {
@@ -126,14 +127,14 @@
     "badge": "Współpraca",
     "title_line1": "Napisz",
     "title_line2": "do mnie!",
-    "description": "Szukasz doświadczonego Full-Stack Developera do projektu lub stałego zespołu? Napisz – chętnie omówię szczegóły techniczne.",
+    "description": "Szukasz doświadczonego Full-Stack Developera do projektu lub stałego zespołu? Napisz - chętnie omówię szczegóły techniczne.",
     "labels": {
       "email": "Email",
       "phone": "Telefon",
       "location": "Lokalizacja",
       "status": "Dostępny"
     },
-    "city": "Wrocław, Polska (oraz Zdalnie)",
+    "city": "Wrocław, Polska",
     "form": {
       "name": {
         "question": "Nazywam się...",
@@ -215,39 +216,31 @@
         "description": "Moja kreatywna piaskownica. Zbiór eksperymentów 3D, realistycznych renderów i konceptów brandingowych.",
         "images_alt": "MSI product render"
       }
-    },
-    "projectPages": {
-      "project1": {
-        "title": "Smokin’s Loyalty App",
-        "description": "A simple and efficient loyalty program that allows users to earn and redeem points by scanning QR codes. The app includes separate roles for users and admins, ensuring seamless in-store management via smartphone only."
-      },
-      "project2": {
-        "title": "Blanco Trade WebApp",
-        "description": "A modern B2B platform designed to simplify trading operations and data visualization for business partners. The app provides responsive dashboards, advanced analytics, and real-time updates for seamless collaboration."
-      },
-      "project3": {
-        "title": "Design & 3D Visualization",
-        "description": "A creative collection of 3D product visualizations and web design projects. Each render highlights realistic materials, lighting, and precise modeling used in modern digital branding."
-      }
     }
   },
 
   "projects": {
     "smokins": {
+      "hero": {
+        "alt": "Smokins app",
+        "title": "Smokins Loyalty App",
+        "description": "Cyfrowa transformacja programu lojalnościowego dla sieci retail",
+        "keywords": "Mobile App • eCommerce • Loyalty System"
+      },
       "intro": {
-        "mainText": "Smokins to sieć detaliczna, która postanowiła zamienić papierowe pieczątki na cyfrowy ekosystem.",
-        "subText": "Aplikacja została zaprojektowana z myślą o szybkości i wysokim kontraście. Cel był prosty: interfejs typu utility-first, który pozwala na błyskawiczną obsługę przy kasie bez zbędnych kliknięć.",
-        "techText": "Głównym priorytetem technologicznym było stworzenie skalowalnego rozwiązania cross-platformowego, które obsłuży logikę biznesową bez względu na system operacyjny."
+        "mainText": "Smokins to sieć detaliczna, która zdecydowała się zastąpić papierowe pieczątki cyfrowym ekosystemem lojalnościowym.",
+        "subText": "Interfejs zaprojektowano w duchu utility-first: priorytetem była szybkość obsługi i wysoki kontrast, pozwalające kasjerowi zamknąć transakcję w minimalnej liczbie kliknięć.",
+        "techText": "Kluczowym wymogiem technologicznym było stworzenie skalowalnego rozwiązania cross-platformowego, obsługującego tę samą logikę biznesową niezależnie od systemu operacyjnego urządzenia."
       },
       "appUx": {
         "title": "Interfejs Aplikacji",
-        "description": "Zaprojektowany pod kątem szybkiej nawigacji i maksymalnego kontrastu w trudnym oświetleniu.",
-        "bottomText": "Optymalizacja procesu skanowania skróciła czas obsługi klienta o 40%."
+        "description": "Zaprojektowany pod kątem szybkiej nawigacji i maksymalnego kontrastu w trudnych warunkach oświetleniowych punktu sprzedaży.",
+        "bottomText": "Proces skanowania kodu i naliczania punktów został skrócony do dwóch kroków, co przełożyło się na 40% redukcję czasu obsługi klienta przy kasie. Uproszczona hierarchia ekranów eliminuje zbędne przejścia, a duże elementy interaktywne ograniczają liczbę błędnych kliknięć w godzinach szczytu."
       },
       "sellerPanel": {
         "title": "Panel Sprzedawcy",
-        "description": "Narzędzie dla pracowników punktów handlowych do weryfikacji i przyznawania punktów.",
-        "bottomText": "Działa bezproblemowo na wszystkich tabletach i urządzeniach mobilnych."
+        "description": "Narzędzie dla pracowników punktów handlowych do weryfikacji tożsamości klienta i przyznawania punktów lojalnościowych.",
+        "bottomText": "Panel działa identycznie na tabletach, telefonach i starszych urządzeniach mobilnych używanych w salonach sprzedaży, bez utraty wydajności czy responsywności interfejsu. Warstwa autoryzacji i walidacji danych została zaprojektowana tak, by minimalizować ryzyko nadużyć przy ręcznym przyznawaniu punktów."
       },
       "techStack": {
         "designTitle": "Design & Strategy",
@@ -257,6 +250,77 @@
         "backendTitle": "Backend & Infrastructure",
         "backendDesc": "Firebase / Google Cloud, Auth, Database, Deployment",
         "title": "Smokins Loyalty App",
+        "buttonText": "Następny Projekt"
+      }
+    },
+    "blitzform": {
+      "hero": {
+        "alt": "Blitzform app",
+        "title": "Blitzform 3D Factory",
+        "description": "Cyfrowa wizytówka oraz mobilna fabryka części dla startupu druku 3D",
+        "keywords": "3D Printing • Mobile First • Container Factory"
+      },
+      "intro": {
+        "mainText": "Blitzform buduje kontenerowe, mobilne fabryki przemysłowego druku 3D, przystosowane do pracy w trudnych warunkach terenowych.",
+        "subText": "Zadaniem było stworzenie szybkiej, surowej wizytówki z czystym UX, odzwierciedlającej inżynieryjny charakter marki oraz zapowiadającej aplikację z wirtualną bazą części.",
+        "techText": "Warstwę frontendową zbudowano w czystym JSX dla maksymalnej elastyczności UI, natomiast logika magazynu i wirtualnej fabryki oparta jest o silnie typowany TypeScript, co ogranicza ryzyko błędów przy skalowaniu bazy danych części."
+      },
+      "appUx": {
+        "title": "Industrialny Interfejs",
+        "description": "Zaprojektowany z myślą o czytelności, czerpiący z surowej estetyki systemów przemysłowych połączonej z nowoczesnym UI.",
+        "bottomText": "Ciemny motyw i precyzyjna typografia budują wizerunek marki technologicznej, jednocześnie zachowując pełną czytelność danych technicznych na ekranach z dużą ilością informacji. Hierarchia wizualna prowadzi użytkownika od ogólnego przekazu marki do konkretnych parametrów produktu bez utraty kontekstu."
+      },
+      "mobileUx": {
+        "title": "Optymalizacja Mobile-First",
+        "description": "Pełna responsywność i błyskawiczne ładowanie, zaprojektowane z myślą o użytkownikach otwierających stronę bezpośrednio w terenie.",
+        "bottomText": "Układ strony oraz rozmiar zasobów zostały zoptymalizowane pod kątem słabszych połączeń sieciowych, typowych dla lokalizacji przemysłowych i terenowych. Priorytetowe ładowanie treści krytycznych pozwala uzyskać interaktywny interfejs jeszcze przed pełnym pobraniem grafik i animacji."
+      },
+      "techStack": {
+        "designTitle": "Design & Strategy",
+        "designDesc": "UI/UX Design, Technical Branding, Industrial Aesthetic",
+        "techTitle": "Technical Stack",
+        "techDesc": "Next.js, JavaScript (JSX) / TypeScript, Tailwind CSS 4, Motion",
+        "backendTitle": "App & Infrastructure",
+        "backendDesc": "Parts Database Engine, Vercel Deployment, Modular Architecture",
+        "title": "Blitzform 3D",
+        "buttonText": "Następny Projekt"
+      }
+    },
+    "sideQuests": {
+      "hero": {
+        "alt": "Side Quests portfolio",
+        "title": "Side Quests",
+        "description": "Kolekcja projektów logo, grafiki marketingowej, renderów 3D oraz dedykowanych stron WWW",
+        "keywords": "Logo Design • 3D & Marketing • Web Development"
+      },
+      "intro": {
+        "mainText": "Side Quests to przestrzeń na projekty kreatywne — od autorskich logotypów, przez grafikę marketingową, po rendering 3D i strony internetowe.",
+        "subText": "Równolegle z pracą nad zaawansowanymi aplikacjami realizuję zlecenia obejmujące projektowanie logo, tworzenie kreacji marketingowych oraz wdrożenia stron internetowych dla klientów indywidualnych i biznesowych.",
+        "techText": "Łączę warsztat projektowy z technologią: pracuję w Figmie, Blenderze i pakiecie Adobe (Illustrator/Photoshop), a strony wdrażam na WordPressie lub w czystym kodzie HTML/JS, w zależności od wymagań projektu."
+      },
+      "corporateIdentity": {
+        "title": "Projektowanie Logo & Branding",
+        "description": "Unikalne logotypy, znaki graficzne i księgi znaków tworzone od podstaw, wraz z zasadami stosowania typografii i kolorystyki marki.",
+        "bottomText": "Każdy projekt logo powstaje od researchu i szkiców koncepcyjnych, przez wektoryzację w Figmie i Illustratorze, aż po finalną księgę znaku z wariantami kolorystycznymi i wytycznymi użycia. Takie podejście gwarantuje spójność marki niezależnie od nośnika, na którym logo jest później wykorzystywane."
+      },
+      "projects3d": {
+        "title": "Marketing & Modelowanie 3D",
+        "description": "Trójwymiarowe obiekty, wizualizacje produktowe oraz grafiki reklamowe i materiały marketingowe przygotowywane pod potrzeby kanałów cyfrowych.",
+        "bottomText": "Modele i sceny 3D tworzone w Blenderze są renderowane w rozdzielczości gotowej do druku wielkoformatowego oraz publikacji w mediach społecznościowych, a następnie dopracowywane w Photoshopie pod kątem światła, kontrastu i spójności z identyfikacją wizualną marki klienta."
+      },
+      "websites": {
+        "title": "Strony WWW & WordPress",
+        "description": "Szybkie, w pełni responsywne strony internetowe i landing page'e budowane na WordPressie lub w czystym kodzie HTML/JS.",
+        "bottomText": "Każda strona jest optymalizowana pod kątem szybkości ładowania, podstawowych zasad SEO oraz poprawnego wyświetlania na urządzeniach mobilnych i desktopowych. Struktura kodu i CMS-a dobierana jest tak, by klient mógł samodzielnie aktualizować treści bez konieczności ingerencji w warstwę techniczną."
+      },
+      "techStack": {
+        "designTitle": "Logo & Identity",
+        "designDesc": "Figma, Adobe Illustrator, Vector Design, Logo Guidelines",
+        "techTitle": "3D & Marketing Graphics",
+        "techDesc": "Blender, Photoshop, Product Renders, Social Media Visuals",
+        "backendTitle": "Web Development",
+        "backendDesc": "WordPress, HTML5, CSS3, JavaScript (ES6), SEO",
+        "title": "Side Quests",
         "buttonText": "Następny Projekt"
       }
     }

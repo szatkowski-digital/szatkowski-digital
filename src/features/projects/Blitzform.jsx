@@ -14,21 +14,22 @@ import TechStackSection from "./components/TechStackSection";
 import MediaSection from "./components/MediaSection";
 
 import Image from "next/image";
+import Carousel from "@/features/projects/components/Carousel";
 
-export function SmokinsApp() {
-  const t = useTranslations("projects.smokins");
+export function Blitzform() {
+  const t = useTranslations("projects.blitzform");
   const introData = getIntroData(t);
   const appUxData = getMediaSectionData(t, "appUx");
-  const sellerPanelData = getMediaSectionData(t, "sellerPanel");
+  const sellerPanelData = getMediaSectionData(t, "mobileUx");
   const techStackData = getTechStackData(t);
   const heroData = getHeroData(t);
 
   return (
     <div className="shell">
       <HeroSection
-        src="/images/smokins_banner.webp"
+        src="/images/blitzform_banner.webp"
         t={heroData}
-        tech={["React Native", "JavaScript", "Appwrite"]}
+        tech={["Next.js", "JavaScript / TypeScript", "Motion"]}
       />
 
       <IntroSection t={introData} />
@@ -36,13 +37,13 @@ export function SmokinsApp() {
       <MediaSection
         t={appUxData}
         media={
-          <Image
-            src="/images/smokins_app_UX.webp"
-            width={892}
-            height={612}
-            alt={t("appUx.title")}
-            priority
-            className="w-full h-full object-contain object-center"
+          <Carousel
+            imgs={[
+              "/images/blitzform/blitzform_home_ss.avif",
+              "/images/blitzform/blitzform_tech_ss.avif",
+              "/images/blitzform/blitzform_about_ss.avif",
+              "/images/blitzform/blitzform_contact_ss.avif",
+            ]}
           />
         }
       />
@@ -50,20 +51,18 @@ export function SmokinsApp() {
       <MediaSection
         t={sellerPanelData}
         media={
-          <Image
-            src="/images/smokins_sellerPanel.webp"
-            width={892}
-            height={612}
-            alt={t("sellerPanel.title")}
-            priority
-            className="w-full h-full object-contain object-center"
+          <Carousel
+            imgs={[
+              "/images/blitzform/blitzform_mobile_hero.avif",
+              "/images/blitzform/blitzform_mobile_info.avif",
+            ]}
           />
         }
       />
 
       <TechStackSection
         t={techStackData}
-        onNextProject="/portfolio/blitzform"
+        onNextProject="/portfolio/side-quests"
       />
     </div>
   );

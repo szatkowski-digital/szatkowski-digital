@@ -1,14 +1,13 @@
 "use client";
+
+import { slideUp2, staggerContainer } from "@/animations/motionVariants";
+import TechBadge from "@/components/ui/TechBadge";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function HeroSection({
-  src,
-  alt,
-  title,
-  description,
-  keywords,
-}) {
+export default function HeroSection({ t, src, tech }) {
+  const { alt, title, description, keywords } = t;
+
   return (
     <section className="shell-bleed min-h-screen max-lg:pt-24 flex flex-col-reverse lg:flex-row overflow-hidden justify-center items-center gap-16">
       {/* IMAGE SIDE */}
@@ -48,18 +47,35 @@ export default function HeroSection({
       </div>
 
       {/* TEXT SIDE */}
-      <div className="flex flex-col justify-center items-center lg:items-end w-full lg:w-3/7 text-center lg:text-right max-lg:px-6 lg:pr-16 xl:pr-24">
+      <motion.div
+        variants={staggerContainer}
+        initial="initial"
+        whileInView="enter"
+        viewport={{ once: true }}
+        className="flex flex-col justify-center items-center lg:items-end w-full lg:w-3/7 text-center lg:text-right max-lg:px-6 lg:pr-16 xl:pr-24 gap-4 md:gap-6"
+      >
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          variants={slideUp2}
           className="text-[8vh] font-black md:text-[6vw] uppercase tracking-tighter leading-[0.8]"
         >
           {title}
         </motion.h1>
-        <p className="body-lg mt-6 max-w-xl text-n-1">{description}</p>
-        <p className="body-sm mt-4 text-n-4">{keywords}</p>
-      </div>
+
+        <motion.div variants={slideUp2}>
+          <TechBadge tech={tech} />
+        </motion.div>
+
+        <motion.p variants={slideUp2} className="body-lg max-w-xl text-n-1">
+          {description}
+        </motion.p>
+
+        <motion.p
+          variants={slideUp2}
+          className="body-sm text-sm font-mono text-n-4 font-medium"
+        >
+          {keywords}
+        </motion.p>
+      </motion.div>
     </section>
   );
 }

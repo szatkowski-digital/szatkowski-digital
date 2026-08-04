@@ -1,10 +1,10 @@
-import LogoGrid from "@/features/projects/others/LogoGrid";
-import { Blitzform } from "@/components/pages/Blitzform";
+import LogoGrid from "@/features/projects/components/LogoGrid";
 import MainTransition from "@/components/ui/MainTransition";
+import { Blitzform } from "@/features/projects/Blitzform";
 
 export default function page() {
   return (
-    <MainTransition className="bg-n-9 text-n-1">
+    <MainTransition>
       <Blitzform />
     </MainTransition>
   );

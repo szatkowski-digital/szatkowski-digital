@@ -27,6 +27,6 @@ export const getProjects = (t) => [
     image: "/images/sidequests_banner.webp",
     href: "/portfolio/side-quests",
     alt: t("project3.images_alt"),
-    technologies: ["WordPress", "Figma", "Illustrator"],
+    technologies: ["WordPress", "Figma", "3D Modeling"],
   },
 ];

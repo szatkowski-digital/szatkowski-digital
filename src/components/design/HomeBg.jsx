@@ -1,45 +1,29 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
-import { del } from "framer-motion/client";
+// Usunięto niepotrzebny import { del }
 
 /**
  * ------------------------------------------------------------------
  * HERO BACKGROUND
  * ------------------------------------------------------------------
- * Full screen animated SVG background.
- *
- * Behaviour:
- * - always fills entire viewport
- * - behaves like CSS background-size: cover
- * - may crop edges but never leaves empty space
- * - layered parallax motion
- * - page transition exit animation
  */
 
 const SvgComponent = ({ exit, onAnimationComplete }) => {
-  /**
-   * ------------------------------------------------------------------
-   * PARALLAX LAYERS
-   * ------------------------------------------------------------------
-   */
+  const shouldReduceMotion = useReducedMotion();
+
   const slow = useMouseParallax({ strength: 10, stiffness: 50 });
   const medium = useMouseParallax({ strength: 20, stiffness: 50 });
   const fast = useMouseParallax({ strength: 30, stiffness: 50 });
 
-  /**
-   * ------------------------------------------------------------------
-   * ZOOM ANIMATION
-   * ------------------------------------------------------------------
-   */
   const zoomVariants = {
     initial: {
       scale: 3,
       opacity: 0,
     },
     animate: {
-      scale: 0.8,
+      scale: shouldReduceMotion ? 1 : 0.8,
       opacity: 1,
       transition: {
         duration: 3,
@@ -48,7 +32,7 @@ const SvgComponent = ({ exit, onAnimationComplete }) => {
       },
     },
     exitState: {
-      scale: 3,
+      scale: shouldReduceMotion ? 1 : 3,
       opacity: 0,
       transition: {
         duration: 0.8,
@@ -57,8 +41,10 @@ const SvgComponent = ({ exit, onAnimationComplete }) => {
     },
   };
 
+  const transformOrigin = "349.34px 229.52px";
+
   return (
-    <div className="absolute h-full w-full -z-10 blur-sm opacity-40">
+    <div className="absolute inset-0 -z-10 blur-sm opacity-40 overflow-hidden">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 698.68 459.04"
@@ -68,7 +54,12 @@ const SvgComponent = ({ exit, onAnimationComplete }) => {
         {/* LAYER — GRAY */}
         <motion.g
           id="layer-gray"
-          style={{ x: slow.x, y: slow.y }}
+          style={{
+            x: shouldReduceMotion ? 0 : slow.x,
+            y: shouldReduceMotion ? 0 : slow.y,
+            transformOrigin,
+            willChange: "transform, opacity",
+          }}
           variants={zoomVariants}
           initial="initial"
           animate={exit ? "exitState" : "animate"}
@@ -91,7 +82,12 @@ const SvgComponent = ({ exit, onAnimationComplete }) => {
         {/* LAYER — GREEN */}
         <motion.g
           id="layer-green"
-          style={{ x: medium.x, y: medium.y }}
+          style={{
+            x: shouldReduceMotion ? 0 : medium.x,
+            y: shouldReduceMotion ? 0 : medium.y,
+            transformOrigin,
+            willChange: "transform, opacity",
+          }}
           variants={zoomVariants}
           initial="initial"
           animate={exit ? "exitState" : "animate"}
@@ -110,7 +106,12 @@ const SvgComponent = ({ exit, onAnimationComplete }) => {
         {/* LAYER — PINK */}
         <motion.g
           id="layer-pink"
-          style={{ x: fast.x, y: fast.y }}
+          style={{
+            x: shouldReduceMotion ? 0 : fast.x,
+            y: shouldReduceMotion ? 0 : fast.y,
+            transformOrigin,
+            willChange: "transform, opacity",
+          }}
           variants={zoomVariants}
           initial="initial"
           animate={exit ? "exitState" : "animate"}
